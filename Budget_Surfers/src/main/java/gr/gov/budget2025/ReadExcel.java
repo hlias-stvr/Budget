@@ -6,14 +6,13 @@ import java.io.InputStream;
 
 public class ReadExcel {
     public static void main(String[] args) {
-        String fileName = "budget25.xlsx"; // το αρχείο μέσα στο resources
-
+        String fileName = "budget25.xlsx";
         try (InputStream inputStream = ReadExcel.class.getClassLoader().getResourceAsStream(fileName);
              Workbook workbook = new XSSFWorkbook(inputStream)) {
 
             Sheet sheet = workbook.getSheetAt(0); // παίρνουμε το πρώτο φύλλο Excel
 
-            System.out.println("📊 Διαβάζοντας δεδομένα από το φύλλο: " + sheet.getSheetName());
+            System.out.println("Διαβάζοντας δεδομένα από το φύλλο: " + sheet.getSheetName());
             System.out.println("----------------------------------------------------");
 
             // Επανάληψη σε όλες τις γραμμές
