@@ -127,6 +127,8 @@ public class ExcelToDatabase {
     // MAIN METHOD
     // ------------------------------
     public static void main(String[] args) {
+    
+
         String excelPath = "C:\\Users\\eugen\\Budget\\Budget_Surfers\\src\\main\\resourses\\budget25.xlsx";
         String dbPath = "C:\\Users\\eugen\\Budget\\Budget_Surfers\\target\\db\\budg.db";
 
@@ -135,6 +137,7 @@ public class ExcelToDatabase {
         try {
             importer.connect();          // Δημιουργεί φάκελο + αρχείο DB
             importer.createTable();      // Δημιουργεί τον πίνακα
+            importer.connection.createStatement().execute("DELETE FROM proyp");
             importer.readExcelAndInsert();// Διαβάζει Excel και εισάγει δεδομένα
             importer.printData();        // Τυπώνει τα δεδομένα
         } catch (Exception e) {
