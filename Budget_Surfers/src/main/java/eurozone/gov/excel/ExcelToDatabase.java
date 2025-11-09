@@ -129,8 +129,8 @@ public class ExcelToDatabase {
     public static void main(String[] args) {
     
 
-        String excelPath = "C:\\Users\\eugen\\Budget\\Budget_Surfers\\src\\main\\resourses\\budget25.xlsx";
-        String dbPath = "C:\\Users\\eugen\\Budget\\Budget_Surfers\\target\\db\\budg.db";
+        String excelPath = "src\\main\\resourses\\budget25.xlsx";
+        String dbPath = "target\\db\\budg.db";
 
         ExcelToDatabase importer = new ExcelToDatabase(excelPath, dbPath);
 
