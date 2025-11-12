@@ -9,8 +9,8 @@ public class ReadTwoCsvFiles {
 
     public static void main(String[] args) {
         
-        String file1 = "Budget\\Budget_Surfers\\src\\main\\resourses\\gr_revenue_expenses_25.csv";
-        String file2 = "Budget\\Budget_Surfers\\src\\main\\resourses\\gr_ministy_25.csv";
+        String file1 = "src\\main\\resourses\\gr_revenue_expenses_25.csv";
+        String file2 = "src\\main\\resourses\\gr_ministy_25.csv";
 
         String[][] revenue = readCsv(file1);   
         String[][] budget = readCsv(file2);   
