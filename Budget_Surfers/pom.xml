@@ -25,12 +25,6 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <!-- Apache POI για Excel (XLSX) -->
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-ooxml</artifactId>
-      <version>5.3.0</version>
-      </dependency>
   </dependencies>
 
 <build>
