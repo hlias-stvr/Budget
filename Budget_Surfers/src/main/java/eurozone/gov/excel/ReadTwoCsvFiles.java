@@ -9,17 +9,17 @@ public class ReadTwoCsvFiles {
 
     public static void main(String[] args) {
         
-        String file1 = "Budget\\Budget_Surfers\\src\\main\\resourses\\gr_ministy_25.csv";
-        String file2 = "Budget\\Budget_Surfers\\src\\main\\resourses\\gr_revenue_expenses_25.csv";
+        String file1 = "Budget\\Budget_Surfers\\src\\main\\resourses\\gr_revenue_expenses_25.csv";
+        String file2 = "Budget\\Budget_Surfers\\src\\main\\resourses\\gr_ministy_25.csv";
 
-        String[][] budget = readCsv(file1);   
-        String[][] revenue = readCsv(file2);   
+        String[][] revenue = readCsv(file1);   
+        String[][] budget = readCsv(file2);   
 
-        System.out.println("=== ΑΡΧΕΙΟ 1: gr_ministy_25.csv ===");
-        printFirstRows(budget, 34);
+        System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
+        printFirstRows(revenue, 30);
 
-        System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_revenue_expenses_25.csv ===");
-        printFirstRows(revenue,30);
+        System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
+        printFirstRows(budget,34);
     }
 
     // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
