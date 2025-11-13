@@ -1,6 +1,6 @@
 package eurozone.gov.excel;
 public class avgeurozone {
-    public static int[] converToInt(String[][] budget) {
+    public static int[] convertToInt(String[][] budget) {
         int[] grministr = new int[20];
         for (int i = 4; i < 24; i++) {
             grministr[i-4] = Integer.parseInt(budget[i][2]);
