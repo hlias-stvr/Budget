@@ -12,14 +12,23 @@ public class ReadTwoCsvFiles {
         String file1 = "src\\main\\resourses\\gr_revenue_expenses_25.csv";
         String file2 = "src\\main\\resourses\\gr_ministy_25.csv";
 
-        String[][] revenue = readCsv(file1);   
-        String[][] budget = readCsv(file2);   
+        String[][] revenue = readCsv(file1);  
+        String[][] budget = readCsv(file2);
 
         System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
         printFirstRows(revenue, 30);
 
         System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
         printFirstRows(budget,34);
+        long [] A = avgeurozone.convertToLong(budget);
+        double [] B = avgeurozone.ministrDiv(A);
+        double [] C = avgeurozone.compareGrToEurozone(B);
+        for(int i = 0; i < 11; i++) {
+            System.out.println(B[i]);
+        }
+        for(int i = 0; i < 11; i++) {
+            System.out.println(C[i]);
+        }
     }
 
     // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
