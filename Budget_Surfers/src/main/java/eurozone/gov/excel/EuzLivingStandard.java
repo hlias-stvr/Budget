@@ -8,12 +8,12 @@ public class EuzLivingStandard {
                 gdppopulation[i][j] = Long.parseLong(gdppop[i][j+1]);
             }
         }
-        return Gdppopulation;
+        return gdppopulation;
     }
     public static final int GRAVGGDP = 25300;
     public static double[] findStandLiving(Long[][] gdppopulation) {
         double[] stdLive = new double[20];
-        int sum = 0;
+        double sum = 0;
         for (int k = 0 ; k < 19 ; k++) {
             stdLive[k] = (double) (gdppopulation[k][0] / gdppopulation[k][1]);
             sum = sum + stdLive[k];
@@ -35,7 +35,7 @@ public class EuzLivingStandard {
             double stdLiveGrEuz = stdLive[19] - GRAVGGDP;
             if (stdLiveGrEuz > 0) {
             System.out.println("Η Ελλάδα έχει μικρότερο βιοτικό επίπεδο από τον μέσο όρο της Ευρωζώνης κατά " + stdLiveGrEuz + " μονάδες του ευρώ.");
-        } else if (stdLiveDiff < 0) {
+        } else if (stdLiveGrEuz < 0) {
             System.out.println("Η Ελλάδα έχει μεγαλύτερο βιοτικό επίπεδο από τον μέσο όρο της Ευρωζώνης κατά " + stdLiveGrEuz + " μονάδες του ευρώ.");
         } else {
             System.out.println("Η Ελλάδα έχει το ίδιο βιοτικό επίπεδο με τον μέσο όρο της Ευρωζώνης");
