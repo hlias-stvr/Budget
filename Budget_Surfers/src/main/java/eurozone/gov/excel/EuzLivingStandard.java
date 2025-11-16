@@ -22,13 +22,25 @@ public class EuzLivingStandard {
         return stdLive;
     }
     public static void compareStdLive(int a, double stdLive[], String gdppop[][]) {
-        double stdLiveDiff = stdLive[a] - GRAVGGDP;
+        if (a != 20) {
+            double stdLiveDiff = stdLive[a] - GRAVGGDP;
         if (stdLiveDiff > 0) {
-            System.out.println("Η " + gdppop[a][0] + " έχει μεγαλύτερο βιωτικό επίπεδο από την Ελλάδα κατά " + stdLiveDiff + " μονάδες του ευρώ.");
+            System.out.println("Η " + gdppop[a-1][0] + " έχει μεγαλύτερο βιοτικό επίπεδο από την Ελλάδα κατά " + stdLiveDiff + " μονάδες του ευρώ."); // a - 1 because we want user's coices to start from number 1
         } else if (stdLiveDiff < 0) {
-            System.out.println("Η " + gdppop[a][0] + " έχει μικρότερο βιωτικό επίπεδο από την Ελλάδα κατά " + stdLiveDiff + " μονάδες του ευρώ.");
+            System.out.println("Η " + gdppop[a-1][0] + " έχει μικρότερο βιοτικό επίπεδο από την Ελλάδα κατά " + stdLiveDiff + " μονάδες του ευρώ.");
         } else {
-             System.out.println("Η " + gdppop[a][0] + " έχει το ίδιο βιωτικό επίπεδο με την Ελλάδα.");
+            System.out.println("Η " + gdppop[a-1][0] + " έχει το ίδιο βιοτικό επίπεδο με την Ελλάδα.");
         }
+        } else {
+            double stdLiveGrEuz = stdLive[19] - GRAVGGDP;
+            if (stdLiveGrEuz > 0) {
+            System.out.println("Η Ελλάδα έχει μικρότερο βιοτικό επίπεδο από τον μέσο όρο της Ευρωζώνης κατά " + stdLiveGrEuz + " μονάδες του ευρώ.");
+        } else if (stdLiveDiff < 0) {
+            System.out.println("Η Ελλάδα έχει μεγαλύτερο βιοτικό επίπεδο από τον μέσο όρο της Ευρωζώνης κατά " + stdLiveGrEuz + " μονάδες του ευρώ.");
+        } else {
+            System.out.println("Η Ελλάδα έχει το ίδιο βιοτικό επίπεδο με τον μέσο όρο της Ευρωζώνης");
+        }
+        }
+        
     }
 }
