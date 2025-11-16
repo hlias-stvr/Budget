@@ -15,10 +15,10 @@
             String[][] budget = readCsv(file2);   
 
             System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
-            printFirstRows(revenue, 30);
+            printFirstRows(revenue, 33);
 
             System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
-            printFirstRows(budget,34);
+            printFirstRows(budget,35);
         }
 
         // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
