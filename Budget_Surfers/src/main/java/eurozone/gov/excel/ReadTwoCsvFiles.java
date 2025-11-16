@@ -10,15 +10,20 @@
         public static void main(String[] args) {
             String file1 = "src\\main\\resourses\\gr_revenue_expenses_25.csv";
             String file2 = "src\\main\\resourses\\gr_ministy_25.csv";
+            String file3 = "src\\main\\resourses\\Gdp_population_euz.csv";
 
             String[][] revenue = readCsv(file1);   
-            String[][] budget = readCsv(file2);   
+            String[][] budget = readCsv(file2);
+            String[][] gdppop = readCsv(file3);   
 
             System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
-            printFirstRows(revenue, 30);
+            printFirstRows(revenue, 33);
 
             System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
-            printFirstRows(budget,34);
+            printFirstRows(budget,35);
+
+            System.out.println("\n=== ΑΡΧΕΙΟ 3: Gdp_population_euz.csv ===");
+            printFirstRows(gdppop,20);
         }
 
         // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
