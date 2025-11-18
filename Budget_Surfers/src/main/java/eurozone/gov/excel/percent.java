@@ -3,7 +3,7 @@ public class percent {
         long[][] dataToLong = new long[k][5];
             for (int i = a - 2 ; i < k + a ; i++) {
                 for (int j = 0 ; j < 5 ; j++) {
-                    dataToLong[i][j] = Long.Parselong(revenue[i][j+2]);   
+                    dataToLong[i][j] = Long.Parselong(revenue[i][j+2]);
                 }
             }
     }
@@ -16,7 +16,17 @@ public class percent {
                 for (int j = 0; j < 4  ; j++) {
                     variance[i][j] = ((LongData[i][j] - LongData[i][j+1]) / LongData[i][j+1]) * 100;
                 }
-            }       
+            }
         return variance;
+    }
+    public static double[] amount(long[][] LongData) {
+        double[][] amountdiff = new double[32][5];
+            for (int i = 0; i < 32; i++) {
+                for (int j = 0; j < 5  ; j++) {
+                    amountdiff[i][j] = (LongData[i][j] - LongData[i][j+1]);
+                }
+            }
+        return amountdiff;
+        
     }
 }
