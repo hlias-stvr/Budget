@@ -4,6 +4,7 @@
     import java.io.FileReader;
     import java.nio.charset.StandardCharsets;
     import java.util.ArrayList;
+    import java.util.Scanner;
 
     public class ReadTwoCsvFiles {
 
@@ -24,6 +25,41 @@
 
             System.out.println("\n=== ΑΡΧΕΙΟ 3: Gdp_population_euz.csv ===");
             printFirstRows(gdppop,20);
+
+            long [][] D = EuzLivingStandard.compareToLong(gdppop);
+            double [] E = EuzLivingStandard.findStandLiving(D);
+            for (int i = 0; i<E.length; i++) {
+            System.out.println(E[i]);
+            }
+        
+           Scanner scanner1 = new Scanner(System.in);
+           int a = -1;
+           
+           while (true) { //μέχρι να δώσει ο χρήστης σωστή τιμή
+            try {
+             System.out.println("Δώσε αριθμό για την χώρα που θες να συγκρίνεις με την Ελλάδα");
+             a = scanner1.nextInt();
+            if (a < 1 || a > 20) {
+                throw new IllegalArgumentException(" Ο αριθμός πρέπει να είναι από 1 μέχρι 20");
+            }
+            System.out.println("Έβαλες τον αριθμό" + a);
+            EuzLivingStandard.compareStdLive(a,E,gdppop );
+            
+            scanner1.close();
+            
+            
+            break;
+            } catch(IllegalArgumentException e) { 
+                System.out.println("Σφάλμα" + e.getMessage());
+
+            } catch (Exception e) {
+                System.out.println("Πρέπει να δώσεις αριθμό");
+                scanner1.nextLine(); //καθάρισμα εισόδου
+            }
+                
+                
+            }
+            
         }
 
         // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
