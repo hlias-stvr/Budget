@@ -11,12 +11,12 @@ public class percent {
     long H = converterToLong(revenue, 16, 16); // must be in main
     long I = converterToLong(revenue, 1, 32); // must be in main
     public static double[] percentual(long[][] LongData) {
-        double[][] varrev = new double[14][4];
-            for (int i = 0; i < 14; i++) {
+        double[][] variance = new double[32][4];
+            for (int i = 0; i < 32; i++) {
                 for (int j = 0; j < 4  ; j++) {
-                    var[i][j] = ((LongData[i][j] - LongData[i][j+1]) / LongData[i][j+1]) * 100;
+                    variance[i][j] = ((LongData[i][j] - LongData[i][j+1]) / LongData[i][j+1]) * 100;
                 }
             }       
-        return var;
+        return variance;
     }
 }
