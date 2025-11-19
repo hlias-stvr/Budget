@@ -1,13 +1,15 @@
 package eurozone.gov.excel;
 
 public class regionalPer {
-    private long[] budgetLong = new long[7];
-    private long[] transformToLong(String[][] budget) {
+    
+    public static long[] transformToLong(String[][] budget) {
+        long[] budgetLong = new long[7];
         for (int i = 25 ; i < 32 ; i++) {
             budgetLong[i - 25] = Long.parseLong(budget[i][2]); 
         }
+        return budgetLong;
     }
-    public long[] calcBudgetPerPerson() { 
+    public static double[] calcBudgetPerPerson(long []budgetLong) { 
         double[] perPerson = new double[7];
         long[] population = new long[7];
         population[0] = 3814064;
@@ -22,9 +24,9 @@ public class regionalPer {
         }
         return perPerson;
     }
-    public long[] calcBudgetPerRegion() {
+    public static double[] calcBudgetPerRegion(long []budgetLong, double perPerson) {
         double[] perRegion = new double[7];
-        int sum = 0;
+        long sum = 0;
         for (int i = 0 ; i < 7 ; i++) {
             sum = sum + budgetLong[i];
         }
