@@ -20,15 +20,6 @@ public class ReadTwoCsvFiles {
 
         System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
         printFirstRows(budget,35);
-        long [] A = avgeurozone.convertToLong(budget);
-        double [] B = avgeurozone.ministrDiv(A);
-        double [] C = avgeurozone.compareGrToEurozone(B);
-        for(int i = 0; i < 11; i++) {
-            System.out.println(B[i]);
-        }
-        for(int i = 0; i < 11; i++) {
-            System.out.println(C[i]);
-        }
     }
 
     // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
