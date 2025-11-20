@@ -17,17 +17,9 @@
             String[][] budget = readCsv(file2);
             String[][] gdppop = readCsv(file3);   
 
-            System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
-            printFirstRows(revenue, 33);
-
-            System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
-            printFirstRows(budget,35);
-
-            System.out.println("\n=== ΑΡΧΕΙΟ 3: Gdp_population_euz.csv ===");
-            printFirstRows(gdppop,20);
            int choice = -1;
            do {
-            System.out.println("Επίλεξε 1 για προβολή στοιχείων κρατικού πεουπολογισμού");
+            System.out.println("Επίλεξε 1 για προβολή στοιχείων κρατικού προϋπολογισμού");
             System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τουσ μέσους όρους της Ευρωζώνης");
             System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
             System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
@@ -45,8 +37,7 @@
 
             System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
             printFirstRows(budget,35);
-            break;
-            } else if (choice ==2) {
+            } else if (choice == 2) {
                 long [] A = avgeurozone.convertToLong(budget);
                 double [] B = avgeurozone.ministrDiv(A);
                 double [] C = avgeurozone.compareGrToEurozone(B);
@@ -69,57 +60,122 @@
                             System.out.println("Η Ελλάδα δαπανεί το ίδιο ποσοστό στον τομέα "+grSectors[i]+" από τον ΜΟ της Ευρωζώνης");
                         }
                     }
-                } else if (choice == 3) {
+                }
+            } else if (choice == 3) {
                     long[][] s = percent.converterToLong(revenue, 14,2);
                     long[][] f = percent.converterToLong(revenue, 16, 16);
                     double[][] g = percent.percentual(s);
                     double[][] h = percent.percentual(f);
                     long[][] n = percent.amount(s);
                     long[][] m = percent.amount(f);
-                    System.out.println("Επίλεξε 1 για να δεις τα ποσά ανά έτος");
-                    System.out.println("Επίλεξε 2 για να δεις τα ποσοστά ανά έτος");
+                    System.out.println("Γράψε 1 για σύγκριση εσόδων");
+                    System.out.println("Γράψε 2 για σύγκριση εξόδων");
                     Scanner scanner4 = new Scanner(System.in);
                     int choice3 = scanner4.nextInt();
+                    System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
+                    System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
+                    Scanner scanner5 = new Scanner(System.in);
+                    int choice4 = scanner5.nextInt();
+                    if(choice3 ==1) {
+                        if (choice4 == 1) {
+                            System.out.println("Τα ποσοστά των εσόδων ανά έτος είναι:");
+                            for(int i = 0; i < g.length; i++) {
+                                for(int j = 0; j < 4; j++) {
+                                    if (j == 0) {
+                                    System.out.print(revenue[i][1]+" "+g[i][j]+"% ");
+                                    } else if (j == 1 || j ==2) {
+                                        System.out.print(g[i][j]+"% ");
+                                    } else if (j == 3) {
+                                        System.out.println(g[i][j]+"%");
+                                    }
+                                }
+                            }
+                        } else if (choice4 == 2) {
+                            System.out.println("τα ποσά των εσόδων ανά έτος είναι:");
+                            for(int i = 0; i < n.length; i++) {
+                                for(int j = 0; j < 4; j++) {
+                                    if (j == 0) {
+                                    System.out.print(revenue[i][1]+" "+n[i][j]+"% ");
+                                    } else if (j == 1 || j ==2) {
+                                        System.out.print(n[i][j]+"% ");
+                                    } else if (j == 3) {
+                                        System.out.println(n[i][j]+"%");
+                                    }
+                                }
+                            }
+                        }
+                    } else if (choice3 == 2) {
+                        if (choice4 == 1) {
+                            System.out.println("τα ποσοστά ανά έτος είναι:");
+                            for(int i = 0; i < h.length; i++) {
+                                for(int j = 0; j < 4; j++) {
+                                    if (j == 0) {
+                                    System.out.print(revenue[i][1]+" "+h[i][j]+"% ");
+                                    } else if (j == 1 || j ==2) {
+                                        System.out.print(h[i][j]+"% ");
+                                    } else if (j == 3) {
+                                        System.out.println(h[i][j]+"%");
+                                    }
+                                }
+                            }
+                        } else if (choice == 2) {
+                            System.out.println("τα ποσά ανά έτος είναι:");
+                            for(int i = 0; i < m.length; i++) {
+                                for(int j = 0; j < 4; j++) {
+                                  if (j == 0) {
+                                    System.out.print(revenue[i][1]+" "+m[i][j]+"% ");
+                                    } else if (j == 1 || j ==2) {
+                                        System.out.print(m[i][j]+"% ");
+                                    } else if (j == 3) {
+                                        System.out.println(m[i][j]+"%");
+                                    }  
+                                }
+                            }
+                        }
+                    }
                     
-                }   
-                break;
-             }
-        } while (choice != 0);
-            long [][] D = EuzLivingStandard.compareToLong(gdppop);
-            double [] E = EuzLivingStandard.findStandLiving(D);
-            for (int i = 0; i<E.length; i++) {
-            System.out.println(E[i]);
-            }
-        
-           Scanner scanner1 = new Scanner(System.in);
-           int a = -1;
-           
-           while (true) { //μέχρι να δώσει ο χρήστης σωστή τιμή
-            try {
-             System.out.println("Δώσε αριθμό για την χώρα που θες να συγκρίνεις με την Ελλάδα");
-             a = scanner1.nextInt();
-            if (a < 1 || a > 20) {
-                throw new IllegalArgumentException(" Ο αριθμός πρέπει να είναι από 1 μέχρι 20");
-            }
-            System.out.println("Έβαλες τον αριθμό" + a);
-            EuzLivingStandard.compareStdLive(a,E,gdppop );
+            } else if (choice == 4) {
+                long [][] D = EuzLivingStandard.compareToLong(gdppop);
+                double [] E = EuzLivingStandard.findStandLiving(D);
+                for (int i = 0; i<E.length; i++) {
+                    if (i < 19) {
+                    System.out.println("Τα ΚΚΑΕΠ της χώρας "+gdppop[i][0]+" είναι "+E[i]);
+                    } else if (i == 19) {
+                        System.err.println("Τα ΚΚΑΕΠ του ΜΟ της Ευρωζώνης είναι "+E[i]);
+                    }
+                }
+                Scanner scanner1 = new Scanner(System.in);
+                int a = -1;
+                System.out.println("Γράψε\n 1 για Αυστρία\n 2 για Βέλγιο\n 3 για Κροατία\n"
+                +" 4 για Κύπρο\n 5 για Εσθονία\n 6 για Φινλανδία\n 7 για Γαλλία\n 8 για Γερμανία\n" 
+                +" 9 για Ιρλανδία\n 10 για Ιταλία\n 11 για Λετονία\n 12 για Λιθουανία\n" 
+                 +" 13 για Λουξεμβούργο\n 14 για Μάλτα\n 15 για Ολλανδία\n 16 για Πορτογαλία\n" 
+                 +" 17 για Σλοβακία\n 18 για Σλοβενία\n 19 για Ισπανία\n 20 για ΜΟ Ευρωζώνης ");
+                while (true) { //μέχρι να δώσει ο χρήστης σωστή τιμή
+                    try {
+                        System.out.println("Δώσε αριθμό για την χώρα που θες να συγκρίνεις με την Ελλάδα");
+                        a = scanner1.nextInt();
+                        if (a < 1 || a > 20) {
+                            throw new IllegalArgumentException(" Ο αριθμός πρέπει να είναι από 1 μέχρι 20");
+                        }
+                        System.out.println("Έβαλες τον αριθμό" + a);
+                        EuzLivingStandard.compareStdLive(a,E,gdppop );
             
-            scanner1.close();
-            
-            
-            break;
-            } catch(IllegalArgumentException e) { 
-                System.out.println("Σφάλμα" + e.getMessage());
+                        scanner1.close();
+                        break;
+                    } catch(IllegalArgumentException e) { 
+                        System.out.println("Σφάλμα" + e.getMessage());
 
-            } catch (Exception e) {
-                System.out.println("Πρέπει να δώσεις αριθμό");
-                scanner1.nextLine(); //καθάρισμα εισόδου
+                    } catch (Exception e) {
+                        System.out.println("Πρέπει να δώσεις αριθμό");
+                        scanner1.nextLine(); //καθάρισμα εισόδου
+                    }
+                }
             }
-                
-                
-            }
-            
-        }
+
+                break;
+        } while (choice != 0);
+    }
 
         // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
         static String[][] readCsv(String path) {
