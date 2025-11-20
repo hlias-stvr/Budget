@@ -27,7 +27,7 @@ public class EuzLivingStandard {
         if (stdLiveDiff > 0) {
             System.out.println("Η " + gdppop[a-1][0] + " έχει μεγαλύτερο βιοτικό επίπεδο από την Ελλάδα κατά " + stdLiveDiff + " μονάδες του ευρώ.");
         } else if (stdLiveDiff < 0) {
-            System.out.println("Η " + gdppop[a-1][0] + " έχει μικρότερο βιοτικό επίπεδο από την Ελλάδα κατά " + stdLiveDiff + " μονάδες του ευρώ.");
+            System.out.println("Η " + gdppop[a-1][0] + " έχει μικρότερο βιοτικό επίπεδο από την Ελλάδα κατά " + Math.abs(stdLiveDiff) + " μονάδες του ευρώ.");
         } else {
             System.out.println("Η " + gdppop[a-1][0] + " έχει το ίδιο βιοτικό επίπεδο με την Ελλάδα.");
         }
