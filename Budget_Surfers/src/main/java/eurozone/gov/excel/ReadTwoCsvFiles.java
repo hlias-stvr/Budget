@@ -25,7 +25,66 @@
 
             System.out.println("\n=== ΑΡΧΕΙΟ 3: Gdp_population_euz.csv ===");
             printFirstRows(gdppop,20);
+           int choice = -1;
+           do {
+            System.out.println("Επίλεξε 1 για προβολή στοιχείων κρατικού πεουπολογισμού");
+            System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τουσ μέσους όρους της Ευρωζώνης");
+            System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
+            System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
+            System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
+            System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+            System.out.println("0 για έξοδο");
+            Scanner scanner2 = new Scanner(System.in);
+            choice = scanner2.nextInt(); 
+            if (choice == 0) {
+                System.out.println("Έξοδος από το πρόγραμμα");
+                break;
+            } else if (choice == 1) {
+                System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
+            printFirstRows(revenue, 33);
 
+            System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
+            printFirstRows(budget,35);
+            break;
+            } else if (choice ==2) {
+                long [] A = avgeurozone.convertToLong(budget);
+                double [] B = avgeurozone.ministrDiv(A);
+                double [] C = avgeurozone.compareGrToEurozone(B);
+                String[] grSectors = avgeurozone.sectors();
+                System.out.println("Επίλεξε 1 για να δείς τις ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
+                System.out.println("2 για να τις συγκρίνεις με τους τομείς της Ευρωζώνης");
+                Scanner scanner3 = new Scanner(System.in);
+                int choice2 = scanner3.nextInt();
+                if (choice2 == 1) {
+                    for(int i = 0; i < 11; i++) {
+                        System.out.println("Η Ελλάδα δαπανεί " + B[i] + "%"+" στον τομέα "+grSectors[i]);
+                    }
+                } else if (choice2 == 2) {
+                    for(int i = 0; i < 11; i++) {
+                        if(C[i] > 0) {
+                        System.out.println("Η Ελλάδα δαπανεί "+ C[i] + "% λιγότερο στον τομέα "+grSectors[i]+" από τον ΜΟ της Ευρωζώνης");
+                        } else if(C[i] < 0) {
+                            System.out.println("Η Ελλάδα δαπανεί "+ Math.abs(C[i]) + "% περισσότερο στον τομέα "+grSectors[i]+" από τον ΜΟ της Ευρωζώνης");
+                        } else {
+                            System.out.println("Η Ελλάδα δαπανεί το ίδιο ποσοστό στον τομέα "+grSectors[i]+" από τον ΜΟ της Ευρωζώνης");
+                        }
+                    }
+                } else if (choice == 3) {
+                    long[][] s = percent.converterToLong(revenue, 14,2);
+                    long[][] f = percent.converterToLong(revenue, 16, 16);
+                    double[][] g = percent.percentual(s);
+                    double[][] h = percent.percentual(f);
+                    long[][] n = percent.amount(s);
+                    long[][] m = percent.amount(f);
+                    System.out.println("Επίλεξε 1 για να δεις τα ποσά ανά έτος");
+                    System.out.println("Επίλεξε 2 για να δεις τα ποσοστά ανά έτος");
+                    Scanner scanner4 = new Scanner(System.in);
+                    int choice3 = scanner4.nextInt();
+                    
+                }   
+                break;
+             }
+        } while (choice != 0);
             long [][] D = EuzLivingStandard.compareToLong(gdppop);
             double [] E = EuzLivingStandard.findStandLiving(D);
             for (int i = 0; i<E.length; i++) {

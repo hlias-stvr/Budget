@@ -27,6 +27,10 @@ public class avgeurozone {
         }
         return grpercent;
     }
+    public static String[] sectors() {
+        String grSectors[] = {"publicserv", "def", "pubordsaf", "econ", "envprot", "houscomamen", "health", "recrculrel", "edu", "socialprot", "grsum"};
+        return grSectors;
+    }
     public static double [] compareGrToEurozone(double[] grpercent) {
         double [] euzpercent = {6.0, 1.2, 1.7, 5.7, 0.9, 1.2, 7.4, 1.1, 4.6, 19.8, 49.5};
         double [] diffgreuz = new double[11];
