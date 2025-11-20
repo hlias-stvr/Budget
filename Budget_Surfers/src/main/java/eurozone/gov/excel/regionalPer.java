@@ -3,14 +3,14 @@ package eurozone.gov.excel;
 public class regionalPer {
     
     public static long[] transformToLong(String[][] budget) {
-        long[] budgetLong = new long[7];
+        long[] budgetlong = new long[7];
         for (int i = 25 ; i < 32 ; i++) {
-            budgetLong[i - 25] = Long.parseLong(budget[i][2]); 
+            budgetlong[i - 25] = Long.parseLong(budget[i][2]); 
         }
-        return budgetLong;
+        return budgetlong;
     }
-    public static double[] calcBudgetPerPerson(long []budgetLong) { 
-        double[] perPerson = new double[7];
+    public static double[] calcBudgetPerPerson(long []budgetlong) { 
+        double[] perperson = new double[7];
         long[] population = new long[7];
         population[0] = 3814064;
         population[1] = 1196509;
@@ -20,19 +20,19 @@ public class regionalPer {
         population[5] = 624408;
         population[6] = 2357870;
         for (int l = 0 ; l < 7 ; l++) {
-            perPerson[l] = (double) (budgetLong[l] / population[l] ) * 100;
+            perperson[l] = Math.round((budgetlong[l] / (double) population[l]) * 10.0) / 10.0;
         }
-        return perPerson;
+        return perperson;
     }
-    public static double[] calcBudgetPerRegion(long []budgetLong, double perPerson) {
-        double[] perRegion = new double[7];
+    public static double[] calcBudgetPerRegion(long []budgetlong) {
+        double[] perregion = new double[7];
         long sum = 0;
         for (int i = 0 ; i < 7 ; i++) {
-            sum = sum + budgetLong[i];
+            sum = sum + budgetlong[i];
         }
         for (int j = 0 ; j < 7 ; j++) {
-            perRegion[j] = (double) (budgetLong[j] / sum) * 100;
+            perregion[j] = Math.round(((budgetlong[j] / (double) sum) * 100) * 10.0) / 10.0;
         }
-        return perRegion;
+        return perregion;
     } 
 }
