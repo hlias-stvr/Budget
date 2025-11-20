@@ -178,6 +178,25 @@
                         }
                     }
                 }
+            }else if (choice == 5) {
+               long budgetLong[] = regionalPer.transformToLong(budget);
+               double perPerson[] = regionalPer.calcBudgetPerPerson(budgetLong);
+               double perRegion[] = regionalPer.calcBudgetPerRegion(budgetLong);
+               System.out.println("Γράψε 1 για να δεις την δαπάνη ανά πολίτη");
+               System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
+               Scanner scanner7 = new Scanner(System.in);
+               int choice6 = scanner7.nextInt();
+               if (choice6 == 1) {
+                    for (int i = 0; i < perPerson.length; i++) {
+                        
+                        System.out.println(budget[i+25][1]+ " " + perPerson[i]);
+                        
+                    }
+                } else if (choice6 == 2) {
+                    for (int i = 0; i < perRegion.length; i++) {
+                        System.out.println(budget[i+25][1]+ " " + perRegion[i] + "%");
+                    }
+                }
             }
                 break;
         } while (choice != 0);
