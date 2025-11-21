@@ -78,7 +78,7 @@
                     int choice4 = scanner5.nextInt();
                     if(choice3 ==1) {
                         if (choice4 == 1) {
-                            System.out.println("Τα ποσοστά των εσόδων ανά έτος είναι:");
+                            System.out.println("Η διαφορά των ποσοστών των εσόδων ανά έτος είναι:");
                             for(int i = 0; i < g.length; i++) {
                                 for(int j = 0; j < 4; j++) {
                                     if (j == 0) {
@@ -91,7 +91,7 @@
                                 }
                             }
                         } else if (choice4 == 2) {
-                            System.out.println("τα ποσά των εσόδων ανά έτος είναι:");
+                            System.out.println("η διαφορά των ποσών των εσόδων ανά έτος είναι:");
                             for(int i = 0; i < n.length; i++) {
                                 for(int j = 0; j < 4; j++) {
                                     if (j == 0) {
@@ -106,7 +106,7 @@
                         }
                     } else if (choice3 == 2) {
                         if (choice4 == 1) {
-                            System.out.println("τα ποσοστά ανά έτος είναι:");
+                            System.out.println("Η διαφορά των ποσοστών ανά έτος είναι:");
                             for(int i = 0; i < h.length; i++) {
                                 for(int j = 0; j < 4; j++) {
                                     if (j == 0) {
@@ -119,7 +119,7 @@
                                 }
                             }
                         } else if (choice4 == 2) {
-                            System.out.println("τα ποσά ανά έτος είναι:");
+                            System.out.println("Η διαφορά των ποσών ανά έτος είναι:");
                             for(int i = 0; i < m.length; i++) {
                                 for(int j = 0; j < 4; j++) {
                                   if (j == 0) {
