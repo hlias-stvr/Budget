@@ -38,23 +38,31 @@ import java.util.Scanner;
                             System.out.println("Έξοδος από το πρόγραμμα");
                             break;
                         } else if (choice == 1) {
+                            
+                            
                             System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
                             printFirstRows(revenue, 33);
 
                             System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
                             printFirstRows(budget,35);
+                             
+                            
                         } else if (choice == 2) {
                             long [] A = avgeurozone.convertToLong(budget);
                             double [] B = avgeurozone.ministrDiv(A);
                             double [] C = avgeurozone.compareGrToEurozone(B);
                             String[] grSectors = avgeurozone.sectors();
+                            int choice2 = -1;
+                            do {
+                               
                             System.out.println("Επίλεξε 1 για να δείς τις ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
                             System.out.println("2 για να τις συγκρίνεις με τους τομείς της Ευρωζώνης");
+                            System.out.println("0 για πίσω");
                             Scanner scanner3 = new Scanner(System.in);
                             while (true) {
                                 try {
-                                    int choice2 = scanner3.nextInt();
-                                    if (choice2 < 1 || choice2 > 2) {
+                                     choice2 = scanner3.nextInt();
+                                    if (choice2 < 0 || choice2 > 2) {
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                     }
                                     if (choice2 == 1) {
@@ -80,7 +88,16 @@ import java.util.Scanner;
                                     scanner3.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
-                    
+                        } while (choice2 != 0);
+                         if (choice2 == 0) {
+                                    System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
+                                    System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τους μέσους όρους της Ευρωζώνης");
+                                    System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
+                                    System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
+                                    System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
+                                    System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+                                    System.out.println("0 για έξοδο");
+                                }
                         } else if (choice == 3) {
                             long[][] s = percent.converterToLong(revenue, 14,2);
                             long[][] f = percent.converterToLong(revenue, 16, 16);
