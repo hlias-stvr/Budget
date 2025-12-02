@@ -63,7 +63,7 @@ import java.util.Scanner;
                                 try {
                                      choice2 = scanner3.nextInt();
                                     if (choice2 < 0 || choice2 > 2) {
-                                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
+                                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                                     }
                                     if (choice2 == 1) {
                                         for(int i = 0; i < 11; i++) {
@@ -105,24 +105,31 @@ import java.util.Scanner;
                             double[][] h = percent.percentual(f);
                             long[][] n = percent.amount(s);
                             long[][] m = percent.amount(f);
+                            int choice3 = -1;
                             System.out.println("Γράψε 1 για σύγκριση εσόδων");
                             System.out.println("Γράψε 2 για σύγκριση εξόδων");
+                            System.out.println("0 για πίσω");
+                            do {
+                           
                             Scanner scanner4 = new Scanner(System.in);
                             while(true) {
                                 try {
-                                    int choice3 = scanner4.nextInt();
-                                    if (choice3 < 1 || choice3 > 2){
+                                    choice3 = scanner4.nextInt();
+                                    if (choice3 < 0 || choice3 > 2){
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                     }
                             if(choice3 ==1) {
+                                int choice4 = -1;
+                            do {
                                 System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
                                 System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
+                                System.out.println("0 για πίσω");
                                 while(true) {
                                     Scanner scanner5 = new Scanner(System.in);
                                 try {
-                                int choice4 = scanner5.nextInt();
-                                if (choice4 < 1 || choice4 > 2) {
-                                    throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
+                                 choice4 = scanner5.nextInt();
+                                if (choice4 < 0 || choice4 > 2) {
+                                    throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                                 }
                                 if (choice4 == 1) {
                                     System.out.println("Η διαφορά των ποσοστών των εσόδων ανά έτος είναι:");
@@ -158,18 +165,29 @@ import java.util.Scanner;
                                     System.out.println("Πρέπει να δώσεις αριθμό");
                                     scanner5.nextLine(); //καθάρισμα εισόδου
                                 }
-                            }
+                                }
+                                 if (choice4 == 0) {
+                                    System.out.println("Γράψε 1 για σύγκριση εσόδων");
+                                    System.out.println("Γράψε 2 για σύγκριση εξόδων");
+                                }
+                            }while (choice4!= 0);
+                            
+                               
+                                
                         
                         
                             } else if (choice3 == 2) {
+                                int choice4 = -1;
+                                
+                                do {
                                 System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
                                 System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
-                                
+                                System.out.println("0 για πίσω");
                                 Scanner scanner5 = new Scanner(System.in);
                                 while(true){
                                 try {
-                                int choice4 = scanner5.nextInt();
-                                if (choice4 < 1 || choice4 > 2) {
+                                 choice4 = scanner5.nextInt();
+                                if (choice4 < 0 || choice4 > 2) {
                                     throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                 }
                                 if (choice4 == 1) {
@@ -206,10 +224,13 @@ import java.util.Scanner;
                                     System.out.println("Πρέπει να δώσεις αριθμό");
                                     scanner5.nextLine(); //καθάρισμα εισόδου
                                 }
+                                }
+                                if (choice4 == 0) {
+                                    System.out.println("Γράψε 1 για σύγκριση εσόδων");
+                                    System.out.println("Γράψε 2 για σύγκριση εξόδων");
+                                }
+                                 }while (choice4!=0);
                             }
-                         
-                        
-                        }
                          break;
                                 } catch (IllegalArgumentException e) {
                                     System.out.println("Σφάλμα" + e.getMessage());
@@ -218,6 +239,16 @@ import java.util.Scanner;
                                     scanner4.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
+                            if(choice3 == 0) {
+                                 System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
+                                    System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τους μέσους όρους της Ευρωζώνης");
+                                    System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
+                                    System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
+                                    System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
+                                    System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+                                    System.out.println("0 για έξοδο");
+                            }
+                        } while (choice3 != 0);
                         
                     
                         } else if (choice == 4) {
