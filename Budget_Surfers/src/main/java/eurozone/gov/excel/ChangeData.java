@@ -46,11 +46,16 @@ public class ChangeData {
                     grpercent[input1 - 1] = input2;
                     System.out.println("Ο νέος πίνακας είναι ο εξής:");
                     for (int i = 0; i < grpercent.length; i++) {
-                            System.out.println(i + 1 + " " + grSectors[i] + " " + grpercent[i] + "%");
+                            System.out.println(i + 1 + " "+ grSectors[i] + " " + grpercent[i] + "%");
                     }
                     if (grpercent[10] != startsumpercent) {
                         System.out.println("Το συνολικό ποσοστό δεν είναι ίσο με το αρχικό ποσοστό, " +
                         "άρα θα πρέπει να μεταβάλλεις ποσοστά και άλλου/ων τομέα/ων");
+                        if (grpercent[10] < startsumpercent) {
+                        System.out.println("Μένει να πρσθέσεις " + Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0 + " σε κάποιον τομέα");
+                        } else if (grpercent[10] > startsumpercent) {
+                        System.out.println("Μένει να αφαιρέσεις " + Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0 + " από κάποιον τομέα");
+                        }
                     }
                     break;
                 } catch (IllegalArgumentException e){
