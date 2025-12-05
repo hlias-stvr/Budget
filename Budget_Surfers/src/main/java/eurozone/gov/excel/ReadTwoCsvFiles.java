@@ -60,7 +60,6 @@ import java.util.Scanner;
                             String[] grSectors = avgeurozone.sectors();
                             int choice2 = -1;
                             do {
-                               
                             System.out.println("Επίλεξε 1 για να δείς τις ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
                             System.out.println("2 για να τις συγκρίνεις με τους τομείς της Ευρωζώνης");
                             System.out.println("0 για πίσω");
@@ -73,16 +72,16 @@ import java.util.Scanner;
                                     }
                                     if (choice2 == 1) {
                                         for(int i = 0; i < 11; i++) {
-                                            System.out.println("Η Ελλάδα δαπανά " + B[i] + "%"+" στον τομέα "+grSectors[i]);
+                                            System.out.println("Η Ελλάδα δαπανά " + B[i] + "%" + " στον τομέα " + grSectors[i]);
                                         }
                                     } else if (choice2 == 2) {
                                         for(int i = 0; i < 11; i++) {
                                             if(C[i] > 0) {
-                                                System.out.println("Η Ελλάδα δαπανά "+ C[i] + "% λιγότερο στον τομέα "+grSectors[i]+" από τον ΜΟ της Ευρωζώνης");
+                                                System.out.println("Η Ελλάδα δαπανά "+ C[i] + "% λιγότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
                                             } else if(C[i] < 0) {
-                                                System.out.println("Η Ελλάδα δαπανά "+ Math.abs(C[i]) + "% περισσότερο στον τομέα "+grSectors[i]+" από τον ΜΟ της Ευρωζώνης");
+                                                System.out.println("Η Ελλάδα δαπανά "+ Math.abs(C[i]) + "% περισσότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
                                             } else {
-                                                System.out.println("Η Ελλάδα δαπανά το ίδιο ποσοστό στον τομέα "+grSectors[i]+" από τον ΜΟ της Ευρωζώνης");
+                                                System.out.println("Η Ελλάδα δαπανά το ίδιο ποσοστό στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
                                             }
                                         }
                                     }
@@ -345,7 +344,7 @@ import java.util.Scanner;
                             double perPerson[] = regionalPer.calcBudgetPerPerson(budgetLong);
                             double perRegion[] = regionalPer.calcBudgetPerRegion(budgetLong);
                             int choice6 = -1;
-                            do {
+                        do {
                             System.out.println("Γράψε 1 για να δεις την δαπάνη ανά πολίτη");
                             System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
                             System.out.println("0 για πίσω");
@@ -383,8 +382,12 @@ import java.util.Scanner;
                                 System.out.println("0 για έξοδο");
                             }
                         } while(choice6 !=0);
+                        } else if (choice == 6) {
+                            long [] A = avgeurozone.convertToLong(budget);
+                            double [] grpercent = avgeurozone.ministrDiv(A);
+                            String[] grSectors = avgeurozone.sectors();
+                            ChangeData.newGrPercent(grpercent, grSectors);
                         }
-            
                     } catch (IllegalArgumentException e){
                         System.out.println("Σφάλμα" + e.getMessage());
                     } catch (Exception e) {
