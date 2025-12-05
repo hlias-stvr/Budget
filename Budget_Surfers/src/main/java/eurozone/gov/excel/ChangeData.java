@@ -87,4 +87,15 @@ public class ChangeData {
         } while ((grpercent[10] != startsumpercent) || (input3 == 1));
         return grpercent;
     }
+    public static long[] newAmountPerRegion(long[] budgetLong, String[][] budget) {
+        Scanner input = new Scanner(System.in);
+        int sum = 0;
+        for (int i = 0; i < budgetLong.length; i++) {
+            sum += budgetLong[i];
+        }
+        System.out.println("Αυτός είναι ο πίνακας με τα αρχικά ποσά δαπανών ανά περιφέρεια");
+        for (int i = 0; i < budgetLong.length; i++) {
+            System.out.println((i + 1) + " " + budget[i + 25][1] + " " + budgetLong[i]);
+        }
+    }
 }
