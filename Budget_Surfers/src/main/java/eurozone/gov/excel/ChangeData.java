@@ -10,6 +10,7 @@ public class ChangeData {
         for (int i = 0; i < grpercent.length; i++) {
             System.out.println((i + 1) + " " + grSectors[i] + " " + grpercent[i] + "%");
         }
+        int input3 = 1;
         do {
             int input1 = -1;
             double input2 = -1.0;
@@ -56,17 +57,34 @@ public class ChangeData {
                     if (grpercent[10] != startsumpercent) {
                         System.out.println("Το συνολικό ποσοστό δεν είναι ίσο με το αρχικό ποσοστό, " +
                         "άρα θα πρέπει να μεταβάλλεις ποσοστά και άλλου/ων τομέα/ων");
-                        
+                    } else {
+                        System.out.println("Το συνολικό ποσοστό είναι ίσο με το αρχικό.");
+                        System.out.println("Γράψε:\n0 Aν τελείωσες την μετατροπή των ποσοστών");
+                        System.out.println("1 Αν θέλεις να συνεχίσεις την μετατροπή των ποσοστών");
+                        while (true) {
+                            try {
+                                input3 = input.nextInt();
+                                if (input3 < 0 || input3 > 1) {
+                                    throw new IllegalArgumentException("Η επιλογή πρέπει να είναι 0 ή 1");
+                                }
+                                break;
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Σφάλμα" + e.getMessage());
+                            } catch (Exception e) {
+                                System.out.println("Πρέπει να δώσεις αριθμό");
+                                input.nextLine();
+                            }
+                        }   
                     }
                     break;
-                } catch (IllegalArgumentException e){
+                } catch (IllegalArgumentException e) {
                         System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                         System.out.println("Πρέπει να δώσεις αριθμό");
                         input.nextLine();
                 }
             }
-        } while (grpercent[10] != startsumpercent);
+        } while ((grpercent[10] != startsumpercent) || (input3 == 1));
         return grpercent;
     }
 }
