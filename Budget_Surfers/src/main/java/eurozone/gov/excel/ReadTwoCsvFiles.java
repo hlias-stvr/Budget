@@ -345,7 +345,7 @@ import java.util.Scanner;
                             double perRegion[] = regionalPer.calcBudgetPerRegion(budgetLong);
                             int choice6 = -1;
                         do {
-                            System.out.println("Γράψε 1 για να δεις την δαπάνη ανά πολίτη");
+                            System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
                             System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
                             System.out.println("0 για πίσω");
                             while (true) {
@@ -383,20 +383,37 @@ import java.util.Scanner;
                             }
                         } while(choice6 !=0);
                         } else if (choice == 6) {
-                            long [] A = avgeurozone.convertToLong(budget);
-                            double [] grpercent = avgeurozone.ministrDiv(A);
-                            String[] grSectors = avgeurozone.sectors();
-                            double[] newgrPercent = ChangeData.newGrPercent(grpercent, grSectors);
-                            double [] newCompareAvgEurz = avgeurozone.compareGrToEurozone(newgrPercent);
-                            Scanner scanner9 = new Scanner(System.in);
-                            int choice7 = -1;
-                        do {
-                            System.out.println("Επίλεξε 1 για να δείς τις νέες ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
-                            System.out.println("2 για να τις συγκρίνεις τα νέα ποσοστά με τους τομείς της Ευρωζώνης");
-                            System.out.println("0 για πίσω");
+                            int choice8 = -1;
                             
-                            while (true) {
-                                try {
+                            do{
+                            System.out.println("Γράψε\n1 Για να μεταβάλλεις τις δαπάνες ανά τομέα");
+                            System.out.println("2 Για να μεταβάλλεις τις δαπάνες ανά περιφέρεια");
+                            System.out.println("0 Για πίσω");
+                            Scanner scanner9 = new Scanner(System.in);
+                            
+                            while(true) {
+                            try{
+                            choice8 = scanner9.nextInt();
+                            if (choice8 < 0 || choice8 > 2) {
+                                throw new IllegalArgumentException("Η επιλογή πρέπει να είναι 0 ή 1 ή 2");
+                            }
+                            if (choice8 == 1) {
+                                long [] A = avgeurozone.convertToLong(budget);
+                                double [] grpercent = avgeurozone.ministrDiv(A);
+                                String[] grSectors = avgeurozone.sectors();
+                                double[] newgrPercent = ChangeData.newGrPercent(grpercent, grSectors);
+                                double [] newCompareAvgEurz = avgeurozone.compareGrToEurozone(newgrPercent);
+                            
+                                int choice7 = -1;
+                            
+                            
+                                do {
+                                    System.out.println("Επίλεξε\n1 για να δείς τις νέες ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
+                                    System.out.println("2 για να τις συγκρίνεις τα νέα ποσοστά με τους τομείς της Ευρωζώνης");
+                                    System.out.println("0 για πίσω");
+                            
+                                    while (true) {
+                                    try {
                                      choice7 = scanner9.nextInt();
                                     if (choice7 < 0 || choice7 > 2) {
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
@@ -426,9 +443,65 @@ import java.util.Scanner;
                             }
                             
                             } while(choice7 !=0);
-                            
                             break;
+                        } else if (choice8 == 2) {
+                           long[] longBudget = regionalPer.transformToLong(budget);
+                           long[] newLongBudget = ChangeData.newAmountPerRegion(longBudget,  budget);
+                           int choice9 = -1;
+                           
+                           do {
+                            double perPerson[] = regionalPer.calcBudgetPerPerson(newLongBudget);
+                            double perRegion[] = regionalPer.calcBudgetPerRegion(newLongBudget);
+                            System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
+                            System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
+                            System.out.println("0 για πίσω");
+                            while (true) {
+                                try {
+                                    
+                                     choice9 = scanner9.nextInt();
+                                    if (choice9 < 0 || choice9 > 2) {
+                                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
+                                    }
+                                    if (choice9 == 1) {
+                                        for (int i = 0; i < perPerson.length; i++) {
+                                            System.out.println(budget[i+25][1]+ " " + perPerson[i]);
+                                        }
+                                    } else if (choice9 == 2) {
+                                        for (int i = 0; i < perRegion.length; i++) {
+                                            System.out.println(budget[i+25][1]+ " " + perRegion[i] + "%");
+                                        }
+                                    }
+                                    break;
+                                } catch (IllegalArgumentException e){
+                                    System.out.println("Σφάλμα" + e.getMessage());
+                                } catch (Exception e) {
+                                    System.out.println("Πρέπει να δώσεις αριθμό");
+                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                }
+                            }
+                            } while(choice9 != 0);
+                            
                         }
+                        break;
+                            } catch (IllegalArgumentException e){
+                            System.out.println("Σφάλμα" + e.getMessage());
+                            } catch (Exception e) {
+                            System.out.println("Πρέπει να δώσεις αριθμό");
+                            scanner2.nextLine(); //καθάρισμα εισόδου
+                            }
+                            }
+                            if (choice8 == 0) {
+                                System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
+                                System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τους μέσους όρους της Ευρωζώνης");
+                                System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
+                                System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
+                                System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
+                                System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+                                System.out.println("0 για έξοδο");
+                            }
+                        } while (choice8 !=0);
+                    }
+                break;
                     } catch (IllegalArgumentException e){
                         System.out.println("Σφάλμα" + e.getMessage());
                     } catch (Exception e) {
@@ -439,6 +512,7 @@ import java.util.Scanner;
         
             } while (choice != 0);
         }
+    
 
         // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
         static String[][] readCsv(String path) {

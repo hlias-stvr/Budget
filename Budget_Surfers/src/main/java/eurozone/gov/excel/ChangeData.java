@@ -91,20 +91,20 @@ public class ChangeData {
     }
     public static long[] newAmountPerRegion(long[] budgetLong, String[][] budget) {
         Scanner input = new Scanner(System.in);
-        int sum = 0;
+        long sum = 0;
         for (int i = 0; i < budgetLong.length; i++) {
             sum += budgetLong[i];
         }
         System.out.println("Αυτός είναι ο πίνακας με τα αρχικά ποσά δαπανών ανά περιφέρεια");
         for (int i = 0; i < budgetLong.length; i++) {
             System.out.print((i + 1) + " " + budget[i + 25][1] + " " + budgetLong[i]);
-            System.out.println(" που αντιστοιχεί στο " + (Math.round(((budgetLong[i] / sum) * 100.0) * 100.0) / 100.0)
+            System.out.println(" που αντιστοιχεί στο " + (Math.round(((budgetLong[i] /(double) sum) * 100) * 100.0) / 100.0)
             + "% των συνολικών δαπανών για περιφέρειες");
         }
         int input3 = 1;
         do {
             int input1 = -1;
-            int input2 = -1;
+            long input2 = -10000000000L;
             while (true) {
                 try {
                     System.out.println("Μπορείς να μεταβάλλεις το ποσό οποιασδήποτε περιφέρειας θέλεις, όμως " +
@@ -137,15 +137,15 @@ public class ChangeData {
             System.out.println("Δώσε το νέο ποσό για την περιφέρεια " + budget[input1 + 25][1]);
             while (true) {
                 try {
-                    input2 = input.nextInt();
+                    input2 = input.nextLong();
                     if (input2 <= 0) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι μεγαλύτερη από 0.");
                     }
-                    sum = (int) (sum + input2 - budgetLong[input1 - 1]);
+                    sum = sum + input2 - budgetLong[input1 - 1];
                     budgetLong[input1 - 1] = input2;
                     System.out.println("Ο νέος πίνακας είναι ο εξής:");
                     for (int i = 0; i < budgetLong.length; i++) {
-                            System.out.println(i + 1 + " "+ budget[i + 25] + " " + budgetLong[i]);
+                            System.out.println((i + 1) + " "+ budget[i + 25][1] + " " + budgetLong[i]);
                     }
                     if (sum != 79592000) {
                         System.out.println("Το συνολικό ποσοστό δεν είναι ίσο με το αρχικό ποσοστό, " +
