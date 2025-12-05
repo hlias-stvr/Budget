@@ -19,6 +19,11 @@ public class ChangeData {
                     "το συνολικό ποσοστό πρέπει να μείνει ίσο με το αρχικό.");
                     System.out.println("Αρχικό συνολικό ποσοστό: " + startsumpercent + "%");
                     System.out.println("Νέο συνολικό ποσοστό: " + grpercent[10] + "%");
+                     if (grpercent[10] < startsumpercent) {
+                        System.out.println("Μένει να πρσθέσεις " + Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0 + " σε κάποιον/ους τομέα/εις");
+                        } else if (grpercent[10] > startsumpercent) {
+                        System.out.println("Μένει να αφαιρέσεις " + Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0 + " από κάποιον/ους τομέα/εις");
+                        }
                     System.out.println("Διάλεξε τον αριθμό του τομέα του οποίου " +
                     "την ποσοστιαία δαπάνη θέλεις να αλλάξεις.");
                     System.out.println("Επιλέγοντας τον αριθμό για τον " + 
@@ -51,11 +56,7 @@ public class ChangeData {
                     if (grpercent[10] != startsumpercent) {
                         System.out.println("Το συνολικό ποσοστό δεν είναι ίσο με το αρχικό ποσοστό, " +
                         "άρα θα πρέπει να μεταβάλλεις ποσοστά και άλλου/ων τομέα/ων");
-                        if (grpercent[10] < startsumpercent) {
-                        System.out.println("Μένει να πρσθέσεις " + Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0 + " σε κάποιον τομέα");
-                        } else if (grpercent[10] > startsumpercent) {
-                        System.out.println("Μένει να αφαιρέσεις " + Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0 + " από κάποιον τομέα");
-                        }
+                        
                     }
                     break;
                 } catch (IllegalArgumentException e){
