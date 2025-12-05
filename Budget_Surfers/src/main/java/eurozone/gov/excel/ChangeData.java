@@ -123,8 +123,8 @@ public class ChangeData {
                     System.out.println("Επιλέγοντας τον αριθμό για την " +
                     "συγκεκριμένη περιφέρεια θα σου ζητηθεί να εισάγεις το νέο ποσό.");
                     input1 = input.nextInt();
-                    if (input1 < 1 || input1 > 10) {
-                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 1 μέχρι 9.");
+                    if (input1 < 1 || input1 > 7) {
+                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 1 μέχρι 7.");
                     }
                     break;
                 } catch (IllegalArgumentException e){
@@ -134,7 +134,7 @@ public class ChangeData {
                         input.nextLine();
                 }
             }
-            System.out.println("Δώσε το νέο ποσό για την περιφέρεια " + budget[input1 + 25][1]);
+            System.out.println("Δώσε το νέο ποσό για την περιφέρεια " + budget[input1 + 25 - 1][1]);
             while (true) {
                 try {
                     input2 = input.nextLong();
