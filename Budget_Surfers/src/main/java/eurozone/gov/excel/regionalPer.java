@@ -9,7 +9,7 @@ public class regionalPer {
         }
         return budgetlong;
     }
-    public static double[] calcBudgetPerPerson(long []budgetlong) { 
+    public static double[] calcBudgetPerPerson(long[] budgetlong) { 
         double[] perperson = new double[7];
         long[] population = new long[7];
         population[0] = 3814064;
