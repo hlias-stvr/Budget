@@ -8,7 +8,7 @@ public class avgeurozone {
         return grministr;
     }
     public static double [] ministrDiv(long[] grministr) {
-        final long GTP = 257100000000L;
+        final long GTP = 206000000000L;
         long publicserv = grministr[0] + grministr[16] + grministr[1] + grministr[7];
         long def = grministr[2];
         long pubordsaf = grministr[18] + grministr[4] + (long) (0.78 * grministr[19]);
