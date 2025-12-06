@@ -17,5 +17,18 @@ public class Testeuzlivingstandard {
                 assertTrue(testarray2[i][j] > 0);
             }
         }    
+    }
+    @Test
+    void testfindStandLiving() {
+        String[][] gdppop = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\Gdp_population_euz.csv");
+        long[][] testarray2 = EuzLivingStandard.compareToLong(gdppop);
+        long[] testarray3 = EuzLivingStandard.findStandLiving(testarray2);
+        final int GRAVGGDP = 25300;
+        double testsum = EuzLivingStandard.findStandLiving(sum);
+        assertNotNull(testarray3);
+        assertEquals(20,testarray3.length);
+        for (int j = 0 ; j < testarray3.length ; j++) {
+            assertTrue(testarray2[j][1] > 300000);
+        }
     } 
 }
