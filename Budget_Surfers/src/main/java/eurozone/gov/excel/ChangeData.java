@@ -145,7 +145,9 @@ public class ChangeData {
                     budgetLong[input1 - 1] = input2;
                     System.out.println("Ο νέος πίνακας είναι ο εξής:");
                     for (int i = 0; i < budgetLong.length; i++) {
-                            System.out.println((i + 1) + " "+ budget[i + 25][1] + " " + budgetLong[i]);
+                            System.out.print((i + 1) + " "+ budget[i + 25][1] + " " + budgetLong[i]);
+                            System.out.println(" που αντιστοιχεί στο " + (Math.round(((budgetLong[i] /(double) sum) * 100) * 100.0) / 100.0)
+                            + "% των συνολικών δαπανών για περιφέρειες");
                     }
                     if (sum != 79592000) {
                         System.out.println("Το συνολικό ποσοστό δεν είναι ίσο με το αρχικό ποσοστό, " +
