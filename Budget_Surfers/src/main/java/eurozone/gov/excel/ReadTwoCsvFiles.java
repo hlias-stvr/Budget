@@ -24,14 +24,15 @@ public class ReadTwoCsvFiles {
             System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
             System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
             System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
-            System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+            System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
+            System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
             System.out.println("0 για έξοδο");
             Scanner scanner2 = new Scanner(System.in);
             while (true) {
                 try {
                     choice = scanner2.nextInt(); 
-                    if (choice < 0 || choice > 6) {
-                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 0 μέχρι 6");
+                    if (choice < 0 || choice > 7) {
+                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 0 μέχρι 7");
                     }
                     if (choice == 0) {
                         System.out.println("Έξοδος από το πρόγραμμα");
@@ -46,7 +47,8 @@ public class ReadTwoCsvFiles {
                         System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
                         System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
                         System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
-                        System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+                        System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
+                        System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
                         System.out.println("0 για έξοδο");
                     } else if (choice == 2) {
                         long [] A = avgeurozone.convertToLong(budget);
@@ -95,7 +97,8 @@ public class ReadTwoCsvFiles {
                                 System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
                                 System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
                                 System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
-                                System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+                                System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
+                                System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
                                 System.out.println("0 για έξοδο");
                             }
                     } else if (choice == 3) {
@@ -240,7 +243,8 @@ public class ReadTwoCsvFiles {
                                 System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
                                 System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
                                 System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
-                                System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+                                System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
+                                System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
                                 System.out.println("0 για έξοδο");
                             }
                         } while (choice3 != 0);
@@ -312,7 +316,8 @@ public class ReadTwoCsvFiles {
                                 System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
                                 System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
                                 System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
-                                System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+                                System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
+                                System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
                                 System.out.println("0 για έξοδο");
                             }                
                         } while (choice5!=0);  
@@ -355,11 +360,23 @@ public class ReadTwoCsvFiles {
                                 System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
                                 System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
                                 System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
-                                System.out.println("6 για επεξεργασία στοιχείων προϋπολογισμού");
+                                System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
+                                System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
                                 System.out.println("0 για έξοδο");
                             }
                         } while(choice6 !=0);
                     } else if (choice == 6) {
+                        long[][] LongData = percent.converterToLong(revenue, 14, 2);
+                        CompareEuxTaxes.Calculation(LongData);
+                        System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
+                        System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τους μέσους όρους της Ευρωζώνης");
+                        System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
+                        System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
+                        System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
+                        System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
+                        System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
+                        System.out.println("0 για έξοδο");
+                    } else if (choice == 7) {
                         int choice8 = -1;            
                         do{
                             System.out.println("Γράψε\n1 Για να μεταβάλλεις τις δαπάνες ανά τομέα");
