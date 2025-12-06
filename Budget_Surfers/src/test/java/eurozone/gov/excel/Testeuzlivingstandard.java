@@ -22,13 +22,16 @@ public class Testeuzlivingstandard {
     void testfindStandLiving() {
         String[][] gdppop = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\Gdp_population_euz.csv");
         long[][] testarray2 = EuzLivingStandard.compareToLong(gdppop);
-        long[] testarray3 = EuzLivingStandard.findStandLiving(testarray2);
-        final int GRAVGGDP = 25300;
-        double testsum = EuzLivingStandard.findStandLiving(sum);
+        double[] testarray3 = EuzLivingStandard.findStandLiving(testarray2);
+        assertNotNull(testarray2);
+        assertEquals(19,testarray2.length);
         assertNotNull(testarray3);
         assertEquals(20,testarray3.length);
-        for (int j = 0 ; j < testarray3.length ; j++) {
-            assertTrue(testarray2[j][1] > 300000);
+        for (int j = 0 ; j < testarray2.length ; j++) {
+            assertTrue(testarray2[j][1] > 560000);
+            assertTrue(testarray2[j][0] > 7703840000L);
+            assertTrue(testarray3[j] > 10000);
         }
+        assertTrue(testarray3[19] > 10000);
     } 
 }
