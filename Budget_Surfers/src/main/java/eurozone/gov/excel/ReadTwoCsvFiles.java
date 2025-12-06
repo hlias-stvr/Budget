@@ -331,7 +331,7 @@ public class ReadTwoCsvFiles {
                         } while(choice6 !=0);
                     } else if (choice == 6) {
                         long[][] LongData = percent.converterToLong(revenue, 14, 2);
-                        CompareEuxTaxes.Calculation(LongData);
+                        CompareEuzTaxes.Calculation(LongData);
                         System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
                         System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τους μέσους όρους της Ευρωζώνης");
                         System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
@@ -345,13 +345,14 @@ public class ReadTwoCsvFiles {
                         do{
                             System.out.println("Γράψε\n1 Για να μεταβάλλεις τις δαπάνες ανά τομέα");
                             System.out.println("2 Για να μεταβάλλεις τις δαπάνες ανά περιφέρεια");
+                            System.out.println("3 για να μεταβάλλεις τα έσοδα");
                             System.out.println("0 Για πίσω");
                             Scanner scanner9 = new Scanner(System.in);    
                             while(true) {
                                 try{
                                     choice8 = scanner9.nextInt();
-                                    if (choice8 < 0 || choice8 > 2) {
-                                        throw new IllegalArgumentException("Η επιλογή πρέπει να είναι 0 ή 1 ή 2");
+                                    if (choice8 < 0 || choice8 > 3) {
+                                        throw new IllegalArgumentException("Η επιλογή πρέπει να είναι από 0 μέχρι 3");
                                     }
                                     if (choice8 == 1) {
                                         long [] A = avgeurozone.convertToLong(budget);
@@ -429,6 +430,23 @@ public class ReadTwoCsvFiles {
                                                 }
                                             }
                                         } while(choice9 != 0);                            
+                                    } else if (choice8 == 3) {
+                                        long[][] LongData = percent.converterToLong(revenue, 14, 2);
+                                        long[] LongData25 = new long[LongData.length];
+                                        for (int i = 0; i < LongData25.length; i++) {
+                                            LongData25[i] = LongData[i][0];
+                                        }
+                                        long[] newLongData= ChangeData.newRevenue(LongData25, revenue);
+                                        System.out.println("Ακολουθεί η σύγκριση των νέων φορολογικών εσόδων με τον μέσο όρο της Ευρωζώνης");
+                                        CompareEuzTaxes.Calculation(LongData);
+                                        System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
+                                        System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τους μέσους όρους της Ευρωζώνης");
+                                        System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
+                                        System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
+                                        System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
+                                        System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
+                                        System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
+                                        System.out.println("0 για έξοδο");
                                     }
                                     break;
                                 } catch (IllegalArgumentException e){
