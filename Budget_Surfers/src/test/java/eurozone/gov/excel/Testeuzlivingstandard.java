@@ -1,9 +1,7 @@
 package eurozone.gov.excel;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 public class Testeuzlivingstandard {
     @Test
     void testcompareToLong() {
@@ -34,6 +32,5 @@ public class Testeuzlivingstandard {
         }
         assertTrue(testarray3[19] > 10000);
     }
-
     // The 3rd method does not return any value to be tested, it's just println
 }
