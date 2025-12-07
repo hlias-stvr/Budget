@@ -20,7 +20,8 @@ public class regionalPer {
         population[5] = 624408;
         population[6] = 2357870;
         for (int l = 0 ; l < 7 ; l++) {
-            perperson[l] = Math.round((budgetlong[l] / (double) population[l]) * 10.0) / 10.0;
+            perperson[l] =
+            Math.round((budgetlong[l] / (double) population[l]) * 10.0) / 10.0;
         }
         return perperson;
     }
@@ -31,7 +32,8 @@ public class regionalPer {
             sum = sum + budgetlong[i];
         }
         for (int j = 0 ; j < 7 ; j++) {
-            perregion[j] = Math.round(((budgetlong[j] / (double) sum) * 100) * 10.0) / 10.0;
+            perregion[j] =
+            Math.round(((budgetlong[j] / (double) sum) * 100) * 10.0) / 10.0;
         }
         return perregion;
     }
