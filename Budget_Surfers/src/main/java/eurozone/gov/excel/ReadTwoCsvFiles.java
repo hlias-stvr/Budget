@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ReadTwoCsvFiles {
@@ -42,14 +41,6 @@ public class ReadTwoCsvFiles {
                         printFirstRows(revenue, 33);
                         System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
                         printFirstRows(budget,35);     
-                        System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
-                        System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τους μέσους όρους της Ευρωζώνης");
-                        System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
-                        System.out.println("4 για σύγκριση βιοτικού επιπέδου της Ελλάδας με άλλες χώρες της Ευρωζώνης");
-                        System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
-                        System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
-                        System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
-                        System.out.println("0 για έξοδο");
                     } else if (choice == 2) {
                         long [] A = avgeurozone.convertToLong(budget);
                         double [] B = avgeurozone.ministrDiv(A);
