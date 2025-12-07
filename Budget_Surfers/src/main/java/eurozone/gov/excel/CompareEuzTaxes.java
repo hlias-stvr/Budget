@@ -2,7 +2,8 @@ package eurozone.gov.excel;
 public class CompareEuzTaxes {
     public static void Calculation(long LongData[]) {
         final long GTP = 206000000000L;
-        double grtax = Math.round((((LongData[1] + LongData[2]) / (double) GTP) * 100) * 10.0) / 10.0;
+        double grtax = Math.round((((LongData[1] + LongData[2]) /
+        (double) GTP) * 100) * 10.0) / 10.0;
         double avgeuztax = Math.round(40.9 * 10.0) / 10.0;
         double dif = Math.round((Math.abs((grtax - avgeuztax))) * 10.0) / 10.0;
         if (grtax > avgeuztax) {
