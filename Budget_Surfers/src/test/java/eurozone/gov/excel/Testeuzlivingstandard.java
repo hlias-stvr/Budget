@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Testeuzlivingstandard {
     @Test
     void testcompareToLong() {
-        String[][] gdppop = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\Gdp_population_euz.csv");
+        String[][] gdppop =
+        ReadTwoCsvFiles.readCsv("src\\main\\resourses\\Gdp_population_euz.csv");
         long[][] testarray2 = EuzLivingStandard.compareToLong(gdppop);
         assertNotNull(testarray2);
         assertEquals(19,testarray2.length);
@@ -18,7 +19,8 @@ public class Testeuzlivingstandard {
     }
     @Test
     void testfindStandLiving() {
-        String[][] gdppop = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\Gdp_population_euz.csv");
+        String[][] gdppop =
+        ReadTwoCsvFiles.readCsv("src\\main\\resourses\\Gdp_population_euz.csv");
         long[][] testarray2 = EuzLivingStandard.compareToLong(gdppop);
         double[] testarray3 = EuzLivingStandard.findStandLiving(testarray2);
         assertNotNull(testarray2);
