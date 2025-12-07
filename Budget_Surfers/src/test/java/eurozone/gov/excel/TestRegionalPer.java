@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestRegionalPer {
     @Test
     void testTransformToLong() {
-        String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
+        String[][] budget =
+        ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
         long[] testarray1 = regionalPer.transformToLong(budget);
         assertNotNull(testarray1);
         assertEquals(7,testarray1.length);
@@ -17,7 +18,8 @@ public class TestRegionalPer {
     }
     @Test
     void testCalcBudgetPerPerson() {
-        String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
+        String[][] budget =
+        ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
         long[] testarray1 = regionalPer.transformToLong(budget);
         double[] testarray2 = regionalPer.calcBudgetPerPerson(testarray1);
         assertNotNull(testarray2);
@@ -28,7 +30,8 @@ public class TestRegionalPer {
     }
     @Test
     void testCalcBudgetPerRegion() {
-        String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
+        String[][] budget =
+        ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
         long[] testarray1 = regionalPer.transformToLong(budget);
         double[] testarray2 = regionalPer.calcBudgetPerRegion(testarray1);
         assertNotNull(testarray2);
@@ -37,4 +40,4 @@ public class TestRegionalPer {
             assertTrue(testarray2[i] > 0);
         }
     }
-}    
+}
