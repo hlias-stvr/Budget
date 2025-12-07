@@ -16,7 +16,7 @@ public class Testeuzlivingstandard {
             for (int j = 0 ; j < testarray2[0].length ; j++) {
                 assertTrue(testarray2[i][j] > 0);
             }
-        }    
+        }
     }
     @Test
     void testfindStandLiving() {
@@ -33,5 +33,7 @@ public class Testeuzlivingstandard {
             assertTrue(testarray3[j] > 10000);
         }
         assertTrue(testarray3[19] > 10000);
-    } 
+    }
+
+    // The 3rd method does not return any value to be tested, it's just println
 }
