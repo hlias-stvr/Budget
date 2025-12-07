@@ -5,11 +5,11 @@ public class regionalPer {
     public static long[] transformToLong(String[][] budget) {
         long[] budgetlong = new long[7];
         for (int i = 25 ; i < 32 ; i++) {
-            budgetlong[i - 25] = Long.parseLong(budget[i][2]); 
+            budgetlong[i - 25] = Long.parseLong(budget[i][2]);
         }
         return budgetlong;
     }
-    public static double[] calcBudgetPerPerson(long[] budgetlong) { 
+    public static double[] calcBudgetPerPerson(long[] budgetlong) {
         double[] perperson = new double[7];
         long[] population = new long[7];
         population[0] = 3814064;
@@ -34,5 +34,5 @@ public class regionalPer {
             perregion[j] = Math.round(((budgetlong[j] / (double) sum) * 100) * 10.0) / 10.0;
         }
         return perregion;
-    } 
+    }
 }
