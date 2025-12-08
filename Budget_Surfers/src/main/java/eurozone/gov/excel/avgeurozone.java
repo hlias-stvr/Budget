@@ -1,5 +1,6 @@
 package eurozone.gov.excel;
 public class avgeurozone {
+
     public static long[] convertToLong(String[][] budget) {
         long[] grministr = new long[20];
         for (int i = 4; i < 24; i++) {
@@ -7,6 +8,7 @@ public class avgeurozone {
         }
         return grministr;
     }
+
     public static double [] ministrDiv(long[] grministr) {
         final long GTP = 257100000000L;
         long publicserv = grministr[0] + grministr[16] + grministr[1] + grministr[7];
@@ -27,6 +29,7 @@ public class avgeurozone {
         }
         return grpercent;
     }
+    
     public static double [] compareGrToEurozone(double[] grpercent) {
         double [] euzpercent = {6.0, 1.2, 1.7, 5.7, 0.9, 1.2, 7.4, 1.1, 4.6, 19.8, 49.5};
         double [] diffgreuz = new double[11];
