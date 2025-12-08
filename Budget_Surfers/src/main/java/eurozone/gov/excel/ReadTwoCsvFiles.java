@@ -83,12 +83,12 @@ public class ReadTwoCsvFiles {
                             }
                         } while (choice2 != 0);
                     } else if (choice == 3) {
-                        long[][] s = percent.converterToLong(revenue, 14,2);
-                        long[][] f = percent.converterToLong(revenue, 16, 16);
-                        double[][] g = percent.percentual(s);
-                        double[][] h = percent.percentual(f);
-                        long[][] n = percent.amount(s);
-                        long[][] m = percent.amount(f);
+                        long[][] s = Percent.converterToLong(revenue, 14,2);
+                        long[][] f = Percent.converterToLong(revenue, 16, 16);
+                        double[][] g = Percent.percentual(s);
+                        double[][] h = Percent.percentual(f);
+                        long[][] n = Percent.amount(s);
+                        long[][] m = Percent.amount(f);
                         int choice3 = -1;
                         System.out.println("Γράψε 1 για σύγκριση εσόδων");
                         System.out.println("Γράψε 2 για σύγκριση εξόδων");
@@ -321,7 +321,7 @@ public class ReadTwoCsvFiles {
                             }
                         } while(choice6 !=0);
                     } else if (choice == 6) {
-                        long[][] LongData = percent.converterToLong(revenue, 14, 2);
+                        long[][] LongData = Percent.converterToLong(revenue, 14, 2);
                         long[] LongData25 = new long[LongData.length];
                         for (int i = 0; i < LongData.length; i++) {
                             LongData25[i] = LongData[i][0];
@@ -418,7 +418,7 @@ public class ReadTwoCsvFiles {
                                             }
                                         } while(choice9 != 0);                            
                                     } else if (choice8 == 3) {
-                                        long[][] LongData = percent.converterToLong(revenue, 14, 2);
+                                        long[][] LongData = Percent.converterToLong(revenue, 14, 2);
                                         long[] LongData25 = new long[LongData.length];
                                         for (int i = 0; i < LongData25.length; i++) {
                                             LongData25[i] = LongData[i][0];

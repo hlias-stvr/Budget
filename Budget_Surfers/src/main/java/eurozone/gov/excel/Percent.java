@@ -1,6 +1,6 @@
 package eurozone.gov.excel;
     
-public class percent {
+public class Percent {
     public static long[][] converterToLong(String[][] revenue,int k, int a) {
         /*k how many lines and a the line of excel where the
         copy of the other array begin*/
