@@ -42,10 +42,10 @@ public class ReadTwoCsvFiles {
                         System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
                         printFirstRows(budget,35);     
                     } else if (choice == 2) {
-                        long [] A = avgeurozone.convertToLong(budget);
-                        double [] B = avgeurozone.ministrDiv(A);
-                        double [] C = avgeurozone.compareGrToEurozone(B);
-                        String[] grSectors = avgeurozone.sectors();
+                        long [] A = AvgEurozone.convertToLong(budget);
+                        double [] B = AvgEurozone.ministrDiv(A);
+                        double [] C = AvgEurozone.compareGrToEurozone(B);
+                        String[] grSectors = AvgEurozone.sectors();
                         int choice2 = -1;
                         do {
                             System.out.println("Επίλεξε 1 για να δείς τις ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
@@ -342,11 +342,11 @@ public class ReadTwoCsvFiles {
                                         throw new IllegalArgumentException("Η επιλογή πρέπει να είναι από 0 μέχρι 3");
                                     }
                                     if (choice8 == 1) {
-                                        long [] A = avgeurozone.convertToLong(budget);
-                                        double [] grpercent = avgeurozone.ministrDiv(A);
-                                        String[] grSectors = avgeurozone.sectors();
+                                        long [] A = AvgEurozone.convertToLong(budget);
+                                        double [] grpercent = AvgEurozone.ministrDiv(A);
+                                        String[] grSectors = AvgEurozone.sectors();
                                         double[] newgrPercent = ChangeData.newGrPercent(grpercent, grSectors);
-                                        double [] newCompareAvgEurz = avgeurozone.compareGrToEurozone(newgrPercent);    
+                                        double [] newCompareAvgEurz = AvgEurozone.compareGrToEurozone(newgrPercent);    
                                         int choice7 = -1;                     
                                         do {
                                             System.out.println("Επίλεξε\n1 για να δείς τις νέες ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");

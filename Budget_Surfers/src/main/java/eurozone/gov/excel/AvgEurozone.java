@@ -1,5 +1,5 @@
 package eurozone.gov.excel;
-public class avgeurozone {
+public class AvgEurozone {
     public static long[] convertToLong(String[][] budget) {
         long[] grministr = new long[20];
         for (int i = 4; i < 24; i++) {
