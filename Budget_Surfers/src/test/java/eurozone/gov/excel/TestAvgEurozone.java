@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Testavgeurozone {
+public class TestAvgEurozone {
     @Test
     void testconvertToLong() {
         String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
-        long[] testarray1 = avgeurozone.convertToLong(budget);
+        long[] testarray1 = AvgEurozone.convertToLong(budget);
         assertNotNull(testarray1);
         assertEquals(20,testarray1.length);
         for (int i = 0; i < testarray1.length; i++) {
@@ -18,8 +18,8 @@ public class Testavgeurozone {
     @Test
     void testministrDiv() {
         String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
-        long[] testarray1 = avgeurozone.convertToLong(budget);
-        double[] testarray2 = avgeurozone.ministrDiv(testarray1);
+        long[] testarray1 = AvgEurozone.convertToLong(budget);
+        double[] testarray2 = AvgEurozone.ministrDiv(testarray1);
         double sumgrministrpercent = 0.0;
         long sumgrministr = 0;
         final long GTP = 257100000000L;
