@@ -1,6 +1,6 @@
 package eurozone.gov.excel;
 
-public class regionalPer {
+public class RegionalPer {
     
     public static long[] transformToLong(String[][] budget) {
         long[] budgetlong = new long[7];

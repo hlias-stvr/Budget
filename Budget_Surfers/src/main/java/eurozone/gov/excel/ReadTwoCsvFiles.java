@@ -284,12 +284,12 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
                                     scanner2.nextLine(); //καθάρισμα εισόδου
                                 }
-                            }               
-                        } while (choice5!=0);  
+                            }  
+                        } while (choice5!=0);
                     } else if (choice == 5) {
-                        long budgetLong[] = regionalPer.transformToLong(budget);
-                        double perPerson[] = regionalPer.calcBudgetPerPerson(budgetLong);
-                        double perRegion[] = regionalPer.calcBudgetPerRegion(budgetLong);
+                        long budgetLong[] = RegionalPer.transformToLong(budget);
+                        double perPerson[] = RegionalPer.calcBudgetPerPerson(budgetLong);
+                        double perRegion[] = RegionalPer.calcBudgetPerRegion(budgetLong);
                         int choice6 = -1;
                         do {
                             System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
@@ -384,12 +384,12 @@ public class ReadTwoCsvFiles {
                                         } while(choice7 !=0);
                                         break;
                                     } else if (choice8 == 2) {
-                                        long[] longBudget = regionalPer.transformToLong(budget);
+                                        long[] longBudget = RegionalPer.transformToLong(budget);
                                         long[] newLongBudget = ChangeData.newAmountPerRegion(longBudget,  budget);
                                         int choice9 = -1;
                                         do {
-                                            double perPerson[] = regionalPer.calcBudgetPerPerson(newLongBudget);
-                                            double perRegion[] = regionalPer.calcBudgetPerRegion(newLongBudget);
+                                            double perPerson[] = RegionalPer.calcBudgetPerPerson(newLongBudget);
+                                            double perRegion[] = RegionalPer.calcBudgetPerRegion(newLongBudget);
                                             System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
                                             System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
                                             System.out.println("0 για πίσω");
