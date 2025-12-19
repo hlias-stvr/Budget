@@ -15,7 +15,7 @@ public class ReadTwoCsvFiles {
         String[][] revenue = readCsv(file1);   
         String[][] budget = readCsv(file2);
         String[][] gdppop = readCsv(file3);   
-
+        Scanner scanner = new Scanner(System.in);
         int choice = -1;
         do {
             System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
@@ -26,10 +26,10 @@ public class ReadTwoCsvFiles {
             System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
             System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
             System.out.println("0 για έξοδο");
-            Scanner scanner2 = new Scanner(System.in);
+            
             while (true) {
                 try {
-                    choice = scanner2.nextInt(); 
+                    choice = scanner.nextInt(); 
                     if (choice < 0 || choice > 7) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 0 μέχρι 7");
                     }
@@ -51,10 +51,10 @@ public class ReadTwoCsvFiles {
                             System.out.println("Επίλεξε 1 για να δείς τις ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
                             System.out.println("2 για να τις συγκρίνεις με τους τομείς της Ευρωζώνης");
                             System.out.println("0 για πίσω");
-                            Scanner scanner3 = new Scanner(System.in);
+                            
                             while (true) {
                                 try {
-                                    choice2 = scanner3.nextInt();
+                                    choice2 = scanner.nextInt();
                                     if (choice2 < 0 || choice2 > 2) {
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                                     }
@@ -78,7 +78,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner3.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
                         } while (choice2 != 0);
@@ -94,10 +94,9 @@ public class ReadTwoCsvFiles {
                         System.out.println("Γράψε 2 για σύγκριση εξόδων");
                         System.out.println("0 για πίσω");
                         do {           
-                            Scanner scanner4 = new Scanner(System.in);
                             while(true) {
                                 try {
-                                    choice3 = scanner4.nextInt();
+                                    choice3 = scanner.nextInt();
                                     if (choice3 < 0 || choice3 > 2){
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                     }
@@ -108,9 +107,8 @@ public class ReadTwoCsvFiles {
                                             System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
                                             System.out.println("0 για πίσω");
                                             while(true) {
-                                                Scanner scanner5 = new Scanner(System.in);
                                                 try {
-                                                    choice4 = scanner5.nextInt();
+                                                    choice4 = scanner.nextInt();
                                                     if (choice4 < 0 || choice4 > 2) {
                                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                                                     }
@@ -146,7 +144,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Σφάλμα" + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner5.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                             if (choice4 == 0) {
@@ -161,10 +159,9 @@ public class ReadTwoCsvFiles {
                                             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
                                             System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
                                             System.out.println("0 για πίσω");
-                                            Scanner scanner5 = new Scanner(System.in);
                                             while(true){
                                                 try {
-                                                    choice4 = scanner5.nextInt();
+                                                    choice4 = scanner.nextInt();
                                                     if (choice4 < 0 || choice4 > 2) {
                                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                                     }
@@ -200,7 +197,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Σφάλμα" + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner5.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                             if (choice4 == 0) {
@@ -215,7 +212,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner4.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
                         } while (choice3 != 0);
@@ -229,8 +226,7 @@ public class ReadTwoCsvFiles {
                             System.out.println("0 για πίσω");                                        
                             while (true) {
                                 try {
-                                    Scanner scanner6 = new Scanner(System.in);
-                                    choice5 = scanner6.nextInt();
+                                    choice5 = scanner.nextInt();
                                     if (choice5 < 0 || choice5 > 2) {
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                     }
@@ -243,7 +239,6 @@ public class ReadTwoCsvFiles {
                                             }
                                         }
                                     } else if (choice5 == 2) {
-                                        Scanner scanner1 = new Scanner(System.in);
                                         int a = -1;
                                         System.out.println("Γράψε\n 1 για Αυστρία\n 2 για Βέλγιο\n 3 για Κροατία\n"
                                         +" 4 για Κύπρο\n 5 για Εσθονία\n 6 για Φινλανδία\n 7 για Γαλλία\n 8 για Γερμανία\n" 
@@ -254,7 +249,7 @@ public class ReadTwoCsvFiles {
                                             while (true) { //μέχρι να δώσει ο χρήστης σωστή τιμή
                                                 try {
                                                     System.out.println("Δώσε αριθμό για την χώρα που θες να συγκρίνεις με την Ελλάδα ή 0 για πίσω");
-                                                    a = scanner1.nextInt();
+                                                    a = scanner.nextInt();
                                                     if (a < 0 || a > 20) {
                                                         throw new IllegalArgumentException(" Ο αριθμός πρέπει να είναι από 1 μέχρι 20");
                                                     }
@@ -272,7 +267,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Πρόβλημα με τον πίνακα: " + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner1.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                         } while (a!= 0);
@@ -282,7 +277,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }  
                         } while (choice5!=0);
@@ -297,8 +292,7 @@ public class ReadTwoCsvFiles {
                             System.out.println("0 για πίσω");
                             while (true) {
                                 try {
-                                    Scanner scanner7 = new Scanner(System.in);
-                                    choice6 = scanner7.nextInt();
+                                    choice6 = scanner.nextInt();
                                     if (choice6 < 0 || choice6 > 2) {
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                     }
@@ -316,7 +310,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
                         } while(choice6 !=0);
@@ -333,11 +327,10 @@ public class ReadTwoCsvFiles {
                             System.out.println("Γράψε\n1 Για να μεταβάλλεις τις δαπάνες ανά τομέα");
                             System.out.println("2 Για να μεταβάλλεις τις δαπάνες ανά περιφέρεια");
                             System.out.println("3 για να μεταβάλλεις τα έσοδα");
-                            System.out.println("0 Για πίσω");
-                            Scanner scanner9 = new Scanner(System.in);    
+                            System.out.println("0 Για πίσω");   
                             while(true) {
                                 try{
-                                    choice8 = scanner9.nextInt();
+                                    choice8 = scanner.nextInt();
                                     if (choice8 < 0 || choice8 > 3) {
                                         throw new IllegalArgumentException("Η επιλογή πρέπει να είναι από 0 μέχρι 3");
                                     }
@@ -354,7 +347,7 @@ public class ReadTwoCsvFiles {
                                             System.out.println("0 για πίσω");
                                             while (true) {
                                                 try {
-                                                    choice7 = scanner9.nextInt();
+                                                    choice7 = scanner.nextInt();
                                                     if (choice7 < 0 || choice7 > 2) {
                                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                                                     }
@@ -378,7 +371,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Σφάλμα" + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner9.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                         } while(choice7 !=0);
@@ -395,7 +388,7 @@ public class ReadTwoCsvFiles {
                                             System.out.println("0 για πίσω");
                                             while (true) {
                                                 try {
-                                                    choice9 = scanner9.nextInt();
+                                                    choice9 = scanner.nextInt();
                                                     if (choice9 < 0 || choice9 > 2) {
                                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                                     }
@@ -413,7 +406,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Σφάλμα" + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                         } while(choice9 != 0);                            
@@ -433,7 +426,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
                         } while (choice8 !=0);
@@ -443,10 +436,11 @@ public class ReadTwoCsvFiles {
                     System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                     System.out.println("Πρέπει να δώσεις αριθμό");
-                    scanner2.nextLine(); //καθάρισμα εισόδου
+                    scanner.nextLine(); //καθάρισμα εισόδου
                 }
-            }        
+            }
         } while (choice != 0);
+        scanner.close();
     }
     // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
     static String[][] readCsv(String path) {
