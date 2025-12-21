@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestAvgEurozone {
     @Test
     void testconvertToLong() {
-        String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
+        String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
         long[] testarray1 = AvgEurozone.convertToLong(budget);
         assertNotNull(testarray1);
         assertEquals(20,testarray1.length);
@@ -17,7 +17,7 @@ public class TestAvgEurozone {
     }
     @Test
     void testministrDiv() {
-        String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_ministy_25.csv");
+        String[][] budget = ReadTwoCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
         long[] testarray1 = AvgEurozone.convertToLong(budget);
         double[] testarray2 = AvgEurozone.ministrDiv(testarray1);
         double sumgrministrpercent = 0.0;
