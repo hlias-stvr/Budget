@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class ReadTwoCsvFiles {
     public static void main(String[] args) {
-        String file1 = "src\\main\\resourses\\gr_revenue_expenses_25.csv";
-        String file2 = "src\\main\\resourses\\gr_ministy_25.csv";
-        String file3 = "src\\main\\resourses\\Gdp_population_euz.csv";
+        String file1 = "src\\main\\resources\\gr_revenue_expenses_25.csv";
+        String file2 = "src\\main\\resources\\gr_ministy_25.csv";
+        String file3 = "src\\main\\resources\\Gdp_population_euz.csv";
 
         String[][] revenue = readCsv(file1);   
         String[][] budget = readCsv(file2);
