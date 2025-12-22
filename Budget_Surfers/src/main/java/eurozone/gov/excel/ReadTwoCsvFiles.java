@@ -2,20 +2,16 @@ package eurozone.gov.excel;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+ 
 public class ReadTwoCsvFiles {
     public static void main(String[] args) {
-        String file1 = "src\\main\\resources\\gr_revenue_expenses_25.csv";
-        String file2 = "src\\main\\resources\\gr_ministy_25.csv";
-        String file3 = "src\\main\\resources\\Gdp_population_euz.csv";
-
-        String[][] revenue = readCsv(file1);   
-        String[][] budget = readCsv(file2);
-        String[][] gdppop = readCsv(file3);   
-
+        String[][] revenue = readCsv("/gr_revenue_expenses_25.csv");
+        String[][] budget  = readCsv("/gr_ministy_25.csv");
+        String[][] gdppop  = readCsv("/Gdp_population_euz.csv");
         int choice = -1;
         do {
             System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
@@ -449,26 +445,25 @@ public class ReadTwoCsvFiles {
         } while (choice != 0);
     }
     // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
-    static String[][] readCsv(String path) {
+    static String[][] readCsv(String resourcePath) {
         var rows = new ArrayList<String[]>();
-        try (var br = new BufferedReader(new FileReader(path, StandardCharsets.UTF_8))) {
+        try (var is = ReadTwoCsvFiles.class.getResourceAsStream(resourcePath);
+            var br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
             br.readLine(); // Παραλείπει header
             String line;
             while ((line = br.readLine()) != null) {
-                if (line.trim().isEmpty())
-                    continue; // Παραλείπει κενές γραμμές
-                String[] parts = line.split(";", -1); // Χωρίζει με ;
+                if (line.trim().isEmpty()) continue;
+                String[] parts = line.split(";", -1);
                 for (int i = 0; i < parts.length; i++) {
-                    parts[i] = parts[i].trim().replace("\"", ""); // Καθαρίζει
+                    parts[i] = parts[i].trim().replace("\"", "");
                 }
                 rows.add(parts);
             }
         } catch (Exception e) {
-            System.out.println("Σφάλμα στο " + path + ": " + e.getMessage());
+            System.out.println("Σφάλμα στο " + resourcePath + ": " + e.getMessage());
         }
         return rows.toArray(new String[0][]);
     }
-
     // --- ΕΚΤΥΠΩΣΗ ΠΡΩΤΩΝ ΓΡΑΜΜΩΝ ---
     static void printFirstRows(String[][] data, int n) {
         for (int i = 0; i < Math.min(n, data.length); i++) {
