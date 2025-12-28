@@ -6,14 +6,16 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
- 
+
 public class ReadTwoCsvFiles {
     public static void main(String[] args) {
         String[][] revenue = readCsv("/gr_revenue_expenses_25.csv");
         String[][] budget  = readCsv("/gr_ministy_25.csv");
-        String[][] gdppop  = readCsv("/Gdp_population_euz.csv");
+        String[][] gdppop  = readCsv("/Gdp_population_euz.csv"); 
+
+        Scanner scanner = new Scanner(System.in);
         int choice = -1;
-        do {
+        do { // βασικό μενού επιλογών
             System.out.println("Επίλεξε:\n1 για προβολή στοιχείων κρατικού προϋπολογισμού");
             System.out.println("2 για σύγκριση ποσοστιαίων δαπανών ανά τομέα με τους μέσους όρους της Ευρωζώνης");
             System.out.println("3 για σύγκριση του προϋπολογισμού τα τελευτάια 5 έτη");
@@ -22,14 +24,14 @@ public class ReadTwoCsvFiles {
             System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
             System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
             System.out.println("0 για έξοδο");
-            Scanner scanner2 = new Scanner(System.in);
-            while (true) {
+            
+            while (true) { // μεχρι ο χρηστης να δώσει σωστή τιμή
                 try {
-                    choice = scanner2.nextInt(); 
-                    if (choice < 0 || choice > 7) {
+                    choice = scanner.nextInt(); 
+                    if (choice < 0 || choice > 7) { // έλεγχος για τις βασικές επιλογές 
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 0 μέχρι 7");
                     }
-                    if (choice == 0) {
+                    if (choice == 0) { 
                         System.out.println("Έξοδος από το πρόγραμμα");
                         break;
                     } else if (choice == 1) {        
@@ -43,15 +45,16 @@ public class ReadTwoCsvFiles {
                         double [] C = AvgEurozone.compareGrToEurozone(B);
                         String[] grSectors = AvgEurozone.sectors();
                         int choice2 = -1;
-                        do {
+                        do { 
                             System.out.println("Επίλεξε 1 για να δείς τις ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
                             System.out.println("2 για να τις συγκρίνεις με τους τομείς της Ευρωζώνης");
                             System.out.println("0 για πίσω");
-                            Scanner scanner3 = new Scanner(System.in);
+                            // υποεπιλογές για την επιλογή 2 
                             while (true) {
+                                // μέχρι να δωθεί έγκυρη τιμή
                                 try {
-                                    choice2 = scanner3.nextInt();
-                                    if (choice2 < 0 || choice2 > 2) {
+                                    choice2 = scanner.nextInt();
+                                    if (choice2 < 0 || choice2 > 2) { //έλεγχος για τις υποεπιλογές 
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                                     }
                                     if (choice2 == 1) {
@@ -74,10 +77,11 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner3.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
                         } while (choice2 != 0);
+                        // μέχρι να δωθεί το 0 για πίσω
                     } else if (choice == 3) {
                         long[][] s = Percent.converterToLong(revenue, 14,2);
                         long[][] f = Percent.converterToLong(revenue, 16, 16);
@@ -86,14 +90,16 @@ public class ReadTwoCsvFiles {
                         long[][] n = Percent.amount(s);
                         long[][] m = Percent.amount(f);
                         int choice3 = -1;
+                        // υποεπιλογές για την επιλογή 3 
                         System.out.println("Γράψε 1 για σύγκριση εσόδων");
                         System.out.println("Γράψε 2 για σύγκριση εξόδων");
                         System.out.println("0 για πίσω");
                         do {           
-                            Scanner scanner4 = new Scanner(System.in);
+                            // μέχρι να δωθεί έγκυρη τιμή
                             while(true) {
                                 try {
-                                    choice3 = scanner4.nextInt();
+                                    choice3 = scanner.nextInt();
+                                    // έλεγχος για τις υποεπιλογές 
                                     if (choice3 < 0 || choice3 > 2){
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                     }
@@ -103,15 +109,16 @@ public class ReadTwoCsvFiles {
                                             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
                                             System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
                                             System.out.println("0 για πίσω");
-                                            while(true) {
-                                                Scanner scanner5 = new Scanner(System.in);
+                                            while(true) { // έλεγχος για τις υποεπιλογές 
                                                 try {
-                                                    choice4 = scanner5.nextInt();
-                                                    if (choice4 < 0 || choice4 > 2) {
+                                                    // υπο επιλογές για τις υποεπιλογές 
+                                                    choice4 = scanner.nextInt();
+                                                    if (choice4 < 0 || choice4 > 2) { // έλεγχος για αυτές τις υποεπιλογές 
                                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                                                     }
                                                     if (choice4 == 1) {
                                                         System.out.println("Η διαφορά των ποσοστών των εσόδων ανά έτος είναι:");
+                                                        System.out.println("Έτη:  24-25, 23-24, 22-23, 21-22");
                                                         for(int i = 0; i < g.length; i++) {
                                                             for(int j = 0; j < 4; j++) {
                                                                 if (j == 0) {
@@ -125,6 +132,7 @@ public class ReadTwoCsvFiles {
                                                         }
                                                     } else if (choice4 == 2) {
                                                         System.out.println("η διαφορά των ποσών των εσόδων ανά έτος είναι:");
+                                                        System.out.println("Έτη:   24-25,      23-24,      22-23,      21-22");
                                                         for(int i = 0; i < n.length; i++) {
                                                             for(int j = 0; j < 4; j++) {
                                                                 if (j == 0) {
@@ -142,10 +150,11 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Σφάλμα" + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner5.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
-                                            if (choice4 == 0) {
+                                            if (choice4 == 0) { 
+                                                // ξαναεμφανίζει τις προηγούμενες υπο επιλογές αν ο χρήστης επιλέξει το 0
                                                 System.out.println("Γράψε 1 για σύγκριση εσόδων");
                                                 System.out.println("Γράψε 2 για σύγκριση εξόδων");
                                                 System.out.println("0 για πίσω");
@@ -157,19 +166,20 @@ public class ReadTwoCsvFiles {
                                             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
                                             System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
                                             System.out.println("0 για πίσω");
-                                            Scanner scanner5 = new Scanner(System.in);
                                             while(true){
+                                                // άλλες υπο επιλογές για την δεύτερη υπο επιλογή
                                                 try {
-                                                    choice4 = scanner5.nextInt();
+                                                    choice4 = scanner.nextInt();
                                                     if (choice4 < 0 || choice4 > 2) {
                                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                                     }
                                                     if (choice4 == 1) {
                                                         System.out.println("Η διαφορά των ποσοστών ανά έτος είναι:");
+                                                        System.out.println("Έτη:  24-25, 23-24, 22-23, 21-22");
                                                         for(int i = 0; i < h.length; i++) {
                                                             for(int j = 0; j < 4; j++) {
                                                                 if (j == 0) {
-                                                                    System.out.print(revenue[i][1]+" "+h[i][j]+"% ");
+                                                                    System.out.print(revenue[i+14][1]+" "+h[i][j]+"% ");
                                                                 } else if (j == 1 || j ==2) {
                                                                     System.out.print(h[i][j]+"% ");
                                                                 } else if (j == 3) {
@@ -179,10 +189,11 @@ public class ReadTwoCsvFiles {
                                                         }
                                                     } else if (choice4 == 2) {
                                                         System.out.println("Η διαφορά των ποσών ανά έτος είναι:");
+                                                        System.out.println("Έτη:   24-25,      23-24,      22-23,      21-22");
                                                         for(int i = 0; i < m.length; i++) {
                                                             for(int j = 0; j < 4; j++) {
                                                                 if (j == 0) {
-                                                                    System.out.print(revenue[i][1]+" "+m[i][j]);
+                                                                    System.out.print(revenue[i+14][1]+" "+m[i][j]);
                                                                 } else if (j == 1 || j ==2) {
                                                                     System.out.print(" "+m[i][j]);
                                                                 } else if (j == 3) {
@@ -196,7 +207,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Σφάλμα" + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner5.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                             if (choice4 == 0) {
@@ -211,7 +222,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner4.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
                         } while (choice3 != 0);
@@ -223,10 +234,10 @@ public class ReadTwoCsvFiles {
                             System.out.println("Γράψε 1 για να δεις τα ΚΚΑΕΠ των χωρών της Ευρωζώνης");
                             System.out.println("2 για να συγκρίνεις το βιοτικό επίπεδο της Ελλάδας με άλλες χώρες");
                             System.out.println("0 για πίσω");                                        
-                            while (true) {
+                            while (true) { //  μέχρι να δωθεί σωστή τιμή
                                 try {
-                                    Scanner scanner6 = new Scanner(System.in);
-                                    choice5 = scanner6.nextInt();
+                                    choice5 = scanner.nextInt();
+                                    // υπο επιλογές
                                     if (choice5 < 0 || choice5 > 2) {
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                     }
@@ -239,7 +250,6 @@ public class ReadTwoCsvFiles {
                                             }
                                         }
                                     } else if (choice5 == 2) {
-                                        Scanner scanner1 = new Scanner(System.in);
                                         int a = -1;
                                         System.out.println("Γράψε\n 1 για Αυστρία\n 2 για Βέλγιο\n 3 για Κροατία\n"
                                         +" 4 για Κύπρο\n 5 για Εσθονία\n 6 για Φινλανδία\n 7 για Γαλλία\n 8 για Γερμανία\n" 
@@ -250,7 +260,7 @@ public class ReadTwoCsvFiles {
                                             while (true) { //μέχρι να δώσει ο χρήστης σωστή τιμή
                                                 try {
                                                     System.out.println("Δώσε αριθμό για την χώρα που θες να συγκρίνεις με την Ελλάδα ή 0 για πίσω");
-                                                    a = scanner1.nextInt();
+                                                    a = scanner.nextInt();
                                                     if (a < 0 || a > 20) {
                                                         throw new IllegalArgumentException(" Ο αριθμός πρέπει να είναι από 1 μέχρι 20");
                                                     }
@@ -268,7 +278,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Πρόβλημα με τον πίνακα: " + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner1.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                         } while (a!= 0);
@@ -278,7 +288,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }  
                         } while (choice5!=0);
@@ -291,10 +301,10 @@ public class ReadTwoCsvFiles {
                             System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
                             System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
                             System.out.println("0 για πίσω");
-                            while (true) {
+                            while (true) { // μέχρι να δωθεί σωστή τιμή
                                 try {
-                                    Scanner scanner7 = new Scanner(System.in);
-                                    choice6 = scanner7.nextInt();
+                                    // υποεπιλογές 
+                                    choice6 = scanner.nextInt();
                                     if (choice6 < 0 || choice6 > 2) {
                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                     }
@@ -312,7 +322,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
                         } while(choice6 !=0);
@@ -329,11 +339,11 @@ public class ReadTwoCsvFiles {
                             System.out.println("Γράψε\n1 Για να μεταβάλλεις τις δαπάνες ανά τομέα");
                             System.out.println("2 Για να μεταβάλλεις τις δαπάνες ανά περιφέρεια");
                             System.out.println("3 για να μεταβάλλεις τα έσοδα");
-                            System.out.println("0 Για πίσω");
-                            Scanner scanner9 = new Scanner(System.in);    
-                            while(true) {
+                            System.out.println("0 Για πίσω");   
+                            while(true) { // μέχρι να δωθεί σωστή τιμή 
                                 try{
-                                    choice8 = scanner9.nextInt();
+                                    // υποεπιλογές
+                                    choice8 = scanner.nextInt();
                                     if (choice8 < 0 || choice8 > 3) {
                                         throw new IllegalArgumentException("Η επιλογή πρέπει να είναι από 0 μέχρι 3");
                                     }
@@ -343,14 +353,17 @@ public class ReadTwoCsvFiles {
                                         String[] grSectors = AvgEurozone.sectors();
                                         double[] newgrPercent = ChangeData.newGrPercent(grpercent, grSectors);
                                         double [] newCompareAvgEurz = AvgEurozone.compareGrToEurozone(newgrPercent);    
-                                        int choice7 = -1;                     
+                                        int choice7 = -1;
+                                        // αν αλλάξει τα δεδομένα της επιλογής 1           
                                         do {
+                                            // ξανακαλεί τις μεθόδους που έχουν να κάνουν με αυτά που άλλαξε
+                                            // για να δει την διαφορά
                                             System.out.println("Επίλεξε\n1 για να δείς τις νέες ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
                                             System.out.println("2 για να τις συγκρίνεις τα νέα ποσοστά με τους τομείς της Ευρωζώνης");
                                             System.out.println("0 για πίσω");
                                             while (true) {
                                                 try {
-                                                    choice7 = scanner9.nextInt();
+                                                    choice7 = scanner.nextInt();
                                                     if (choice7 < 0 || choice7 > 2) {
                                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                                                     }
@@ -374,7 +387,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Σφάλμα" + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner9.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                         } while(choice7 !=0);
@@ -383,15 +396,18 @@ public class ReadTwoCsvFiles {
                                         long[] longBudget = RegionalPer.transformToLong(budget);
                                         long[] newLongBudget = ChangeData.newAmountPerRegion(longBudget,  budget);
                                         int choice9 = -1;
+                                        // αν αλλάξει τα δεδομένα της επιλογής 2
                                         do {
                                             double perPerson[] = RegionalPer.calcBudgetPerPerson(newLongBudget);
                                             double perRegion[] = RegionalPer.calcBudgetPerRegion(newLongBudget);
+                                            // ξανακαλεί τις μεθόδους που έχουν να κάνουν με αυτά που άλλαξε
+                                            // για να δει την διαφορά
                                             System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
                                             System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
                                             System.out.println("0 για πίσω");
                                             while (true) {
                                                 try {
-                                                    choice9 = scanner9.nextInt();
+                                                    choice9 = scanner.nextInt();
                                                     if (choice9 < 0 || choice9 > 2) {
                                                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                                                     }
@@ -409,7 +425,7 @@ public class ReadTwoCsvFiles {
                                                     System.out.println("Σφάλμα" + e.getMessage());
                                                 } catch (Exception e) {
                                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                                    scanner.nextLine(); //καθάρισμα εισόδου
                                                 }
                                             }
                                         } while(choice9 != 0);                            
@@ -429,7 +445,7 @@ public class ReadTwoCsvFiles {
                                     System.out.println("Σφάλμα" + e.getMessage());
                                 } catch (Exception e) {
                                     System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner2.nextLine(); //καθάρισμα εισόδου
+                                    scanner.nextLine(); //καθάρισμα εισόδου
                                 }
                             }
                         } while (choice8 !=0);
@@ -439,10 +455,11 @@ public class ReadTwoCsvFiles {
                     System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                     System.out.println("Πρέπει να δώσεις αριθμό");
-                    scanner2.nextLine(); //καθάρισμα εισόδου
+                    scanner.nextLine(); //καθάρισμα εισόδου
                 }
-            }        
+            }
         } while (choice != 0);
+        scanner.close();
     }
     // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
     static String[][] readCsv(String resourcePath) {
