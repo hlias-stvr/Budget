@@ -240,7 +240,7 @@ public class ChangeData {
                     }
                     LongData[0] = LongData[0] + input2 - LongData[input1];
                     LongData[input1] = input2;
-                    ChangesHistory.addChange(revenue[input1][1], input2);
+                    ChangesHistory.addChange(revenue[input1][1], (double) input2);
                     System.out.println("Ο νέος πίνακας είναι ο εξής:");
                     System.out.println("ΣΥΝΟΛΙΚΑ " + revenue[0][1] + " " + LongData[0]);
                     for (int i = 1; i < LongData.length; i++) {
