@@ -9,6 +9,6 @@ public class BudgetChange {
     }
     @Override
     public String toString() {
-        return name + ": " + amount + "€";
+        return name + ": " + amount;
     }
 }
