@@ -40,9 +40,29 @@
             </body>
             </html>
             """;
-            
+
              @Override
         public void handle(HttpExchange exchange) throws IOException {
             sendHtml(exchange, HTML);
+        }
+    }
+
+     // ================= ΥΠΟΜΕΝΟΥ & ΑΠΟΤΕΛΕΣΜΑΤΑ =================
+    static class SubMenuHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            String query = exchange.getRequestURI().getQuery();
+            int main = parseParam(query, "main", 0);
+            int sub = parseParam(query, "sub", 0);
+ 
+            if (sub == 0 && (main == 1 || main == 6)) {
+                String result = executeChoice(main, 0);
+                sendHtml(exchange, resultPage(result, main));
+            } else if (sub == 0) {
+                sendHtml(exchange, getSubMenuPage(main));
+            } else {
+                String result = executeChoice(main, sub);
+                sendHtml(exchange, resultPage(result, main));
+            }
         }
     }
