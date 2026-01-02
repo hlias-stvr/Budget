@@ -40,3 +40,9 @@
             </body>
             </html>
             """;
+            
+             @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            sendHtml(exchange, HTML);
+        }
+    }
