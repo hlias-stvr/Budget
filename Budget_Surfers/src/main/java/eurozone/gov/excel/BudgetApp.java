@@ -66,7 +66,7 @@
             }
         }
     }
-    
+
     // ================= INTERACTIVE ΕΠΕΞΕΡΓΑΣΙΑ 7 =================
     static class EditHandler implements HttpHandler {
     @Override
@@ -131,5 +131,33 @@
         // Fallback
         exchange.getResponseHeaders().set("Location", "/");
         exchange.sendResponseHeaders(302, -1);
+    }
+}
+
+private static void processEdit(Map<String, Object> session, Map<String, String> params) {
+    if (params.containsKey("index") && params.containsKey("value")) {
+        try {
+            int idx = Integer.parseInt(params.get("index")) - 1;
+            double newVal = Double.parseDouble(params.get("value"));
+            double[] data = (double[]) session.get("data");
+            String type = (String) session.get("editType");
+ 
+            if (idx >= 0 && idx < data.length && newVal >= 0) {
+                data[idx] = newVal;
+ 
+                // ΕΝΗΜΕΡΩΝΟΥΜΕ ΑΜΕΣΩΣ ΤΙΣ GLOBAL ΜΕΤΑΒΛΗΤΕΣ
+                if ("sectors".equals(type)) {
+                    modifiedSectorPercents = new double[10];
+                    System.arraycopy(data, 0, modifiedSectorPercents, 0, 10);
+                } else if ("regions".equals(type)) {
+                    modifiedRegionAmounts = new double[7];
+                    System.arraycopy(data, 0, modifiedRegionAmounts, 0, 7);
+                } else if ("revenues".equals(type)) {
+                    modifiedRevenueAmounts = Arrays.copyOf(data, data.length);
+                }
+            }
+        } catch (Exception ignored) {
+            // Ignore invalid input
+        }
     }
 }
