@@ -66,3 +66,70 @@
             }
         }
     }
+    
+    // ================= INTERACTIVE ΕΠΕΞΕΡΓΑΣΙΑ 7 =================
+    static class EditHandler implements HttpHandler {
+    @Override
+    public void handle(HttpExchange exchange) throws IOException {
+        String method = exchange.getRequestMethod();
+        String path = exchange.getRequestURI().getPath();
+        String sessionId = getSessionId(exchange);
+        Map<String, Object> session = sessions.computeIfAbsent(sessionId, k -> new HashMap<>());
+ 
+        if ("GET".equals(method)) {
+            if ("/edit".equals(path)) {
+                sendHtml(exchange, getEditMenu());
+                return;
+            } else if (path.startsWith("/edit/")) {
+                String type = path.substring(6);
+                session.put("editType", type);
+                session.put("originalSum", calculateOriginalSum(type));
+                session.put("data", initializeData(type));
+                sendHtml(exchange, getEditPage(session,false));
+                return;
+            }
+        } else if ("POST".equals(method)) {
+            String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+            Map<String, String> params = parseParams(body);
+ 
+            String action = params.get("action");
+ 
+            if ("cancel".equals(action)) {
+                session.clear();
+                exchange.getResponseHeaders().set("Location", "/");
+                exchange.sendResponseHeaders(302, -1);
+                return;
+            }
+ 
+            if ("finish".equals(action)) {
+                String type = (String) session.get("editType");
+                double[] data = (double[]) session.get("data");
+ 
+                // ΑΠΟΘΗΚΕΥΣΗ GLOBAL
+                if ("sectors".equals(type)) {
+                    modifiedSectorPercents = Arrays.copyOf(data, 10);
+                } else if ("regions".equals(type)) {
+                    modifiedRegionAmounts = Arrays.copyOf(data, 7);
+                } else if ("revenues".equals(type)) {
+                    modifiedRevenueAmounts = Arrays.copyOf(data, data.length);
+                }
+ 
+                session.clear();
+ 
+                // ΕΜΦΑΝΙΣΗ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ΜΕΤΑ ΤΗΝ ΑΠΟΘΗΚΕΥΣΗ
+                String resultsHtml = getResultsAfterEdit(type);
+                sendHtml(exchange, resultPageWithTitle("Αποτελέσματα μετά την αποθήκευση αλλαγών", resultsHtml));
+                return;
+            }
+ 
+            // Κανονική αλλαγή τιμής
+            processEdit(session, params);
+            sendHtml(exchange, getEditPage(session, false));
+            return;
+        }
+ 
+        // Fallback
+        exchange.getResponseHeaders().set("Location", "/");
+        exchange.sendResponseHeaders(302, -1);
+    }
+}
