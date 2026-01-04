@@ -348,3 +348,35 @@ private static String resultPageWithTitle(String title, String content) {
         }
         return 0;
     }
+private static double[] initializeData(String type) {
+        if ("sectors".equals(type)) {
+        long[] A = AvgEurozone.convertToLong(budget);
+        double[] B = AvgEurozone.ministrDiv(A); // Παράγει 11 στοιχεία
+        
+        double[] copy = new double[11];
+        // Αν το B έχει 11 στοιχεία, τα παίρνουμε. Αν έχει 10, γεμίζουμε τα υπόλοιπα.
+        System.arraycopy(B, 0, copy, 0, Math.min(B.length, 11));
+        
+        copy[10] = 50.69; /* Η 11η θέση που "ικανοποιεί" την AvgEurozone
+                            λίγο magic number αλλά its okay :D
+                             */ 
+        return copy;
+    
+        } else if ("regions".equals(type)) {
+            long[] lData = RegionalPer.transformToLong(budget);
+            double[] dData = new double[lData.length];
+            for (int i = 0; i < lData.length; i++) dData[i] = lData[i];
+            return dData;
+        } else if ("revenues".equals(type)) {
+            long[][] full = Percent.converterToLong(revenue, 14, 2);
+            // Διασφαλίζουμε ότι ο πίνακας έχει το μήκος που περιμένει η Calculation (π.χ. 13)
+            double[] dData = new double[13]; 
+            for (int i = 0; i < 13; i++) {
+                
+                dData[i] = (double)full[i + 1][0];
+                
+            }
+            return dData;
+        }
+        return new double[0];
+    }
