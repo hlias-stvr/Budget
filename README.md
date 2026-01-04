@@ -26,40 +26,39 @@ java -cp target/classes eurozone.gov.excel.ReadTwoCsvFiles
 - **0**: Έξοδος από την εφαρμογή
 
 ## Παρουσίαση της δομής των περιεχομένων του αποθετηρίου
-
 * Budget_Surfers/
-    * .vscode/
-        * settings.json
-    * src/
-        * main/
-            * java/
-                * eurozone/gov/excel/
-                    * AvgEurozone.java
-                    * ButtonsGUI.java
-                    * ChangeData.java
-                    * CompareEuzTaxes.java
-                    * EuzLivingStandard.java
-                    * Percent.java
-                    * ReadTwoCsvFiles.java
-                    * RegionalPer.java
-                * ojavaszei/
-                    * App.java
-            * resources/
-                * Gdp_population_euz.csv
-                * Gdp_population_euz.xlsx
-                * averageeurozone.xlsx
-                * budget25.xlsx
-                * gr_ministy_25.csv
-                * gr_revenue_expenses_25.csv
-                * ~$budget25.xlsx
-        * test/java/
-            * eurozone/gov/excel/
-                * TestAvgEurozone.java
-            * ojavaszei/
-                * AppTest.java
-    * .gitignore
-    * pom.xml
-    * README.md
+    * └── .vscode/
+        * └── settings.json
+    * └── src/
+        * └── main/
+            * └── java/
+                * └── eurozone/gov/excel/
+                    * ├── AvgEurozone.java
+                    * ├── ButtonsGUI.java
+                    * ├── ChangeData.java
+                    * ├── CompareEuzTaxes.java
+                    * ├── EuzLivingStandard.java
+                    * ├── Percent.java
+                    * ├── ReadTwoCsvFiles.java
+                    * └── RegionalPer.java
+                * └── ojavaszei/
+                    * └── App.java
+            * └── resources/
+                * ├── Gdp_population_euz.csv
+                * ├── Gdp_population_euz.xlsx
+                * ├── averageeurozone.xlsx
+                * ├── budget25.xlsx
+                * ├── gr_ministy_25.csv
+                * ├── gr_revenue_expenses_25.csv
+                * └── ~$budget25.xlsx
+        * └── test/java/
+            * ├── eurozone/gov/excel/
+            * │   └── TestAvgEurozone.java
+            * └── ojavaszei/
+                * └── AppTest.java
+    * ├── .gitignore
+    * ├── pom.xml
+    * └── README.md
 
 ## Διάγραμμα UML σχετικά με το σχεδιασμό του κώδικα
 
