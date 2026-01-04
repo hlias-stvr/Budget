@@ -380,3 +380,66 @@ private static double[] initializeData(String type) {
         }
         return new double[0];
     }
+   private static String getEditPage(Map<String, Object> session, boolean afterSave) {
+    if (afterSave) {
+        return getResultsAfterEdit((String) session.get("editType"));
+    }
+    String type = (String) session.getOrDefault("editType", "sectors");
+    double[] data = (double[]) session.getOrDefault("data", new double[0]);
+    double originalSum = (double) session.getOrDefault("originalSum", 0.0);
+
+    // Ορίζουμε το εσωτερικό μήκος και το μήκος που θα εμφανίζεται στον χρήστη
+    int dataLength = data.length; 
+    int displayLimit = (type.equals("sectors")) ? 10 : dataLength;
+
+    double currentSum = 0;
+    // Το άθροισμα υπολογίζεται μόνο για τα στοιχεία που βλέπει ο χρήστης
+    for (int i = 0; i < displayLimit; i++) {
+        currentSum += data[i];
+    }
+
+    StringBuilder html = new StringBuilder();
+    html.append("<!DOCTYPE html><html lang='el'><head><meta charset='UTF-8'><title>Επεξεργασία ").append(type).append("</title>");
+    html.append("<style>body{font-family:Arial;padding:20px;background:#f0f9f9;}table{border-collapse:collapse;width:100%;}th,td{border:1px solid #ddd;padding:12px;text-align:left;}th{background:#e9ecef;}input{padding:8px;margin:5px;}button{padding:10px 20px;margin:5px;border:none;border-radius:5px;cursor:pointer;}</style></head><body>");
+
+    html.append("<h2>Επεξεργασία ").append(switch (type) {
+        case "sectors" -> "ποσοστιαίων δαπανών ανά τομέα";
+        case "regions" -> "δαπανών ανά περιφέρεια";
+        case "revenues" -> "εσόδων";
+        default -> "";
+    }).append("</h2>");
+
+    html.append("<p><strong>Αρχικό σύνολο (προς εξισορρόπηση):</strong> ").append(String.format("%.2f", originalSum)).append(type.equals("sectors") ? "%" : " €").append("</p>");
+
+    html.append("<table><tr><th>#</th><th>Κατηγορία</th><th>Τιμή</th></tr>");
+    String[] labels = getLabels(type);
+    
+    // Εμφανίζουμε μόνο τις 10 πρώτες κατηγορίες για τους sectors
+    for (int i = 0; i < displayLimit; i++) {
+        html.append("<tr><td>").append(i+1).append("</td><td>").append(labels[i]).append("</td><td>").append(String.format("%.2f", data[i])).append("</td></tr>");
+    }
+    
+    html.append("<tr style='background:#d4edda;font-weight:bold'><td colspan='2'>Τρέχον σύνολο (επεξεργασμένων)</td><td>").append(String.format("%.2f", currentSum)).append("</td></tr></table>");
+
+    // Η 11η τιμή (50.69) υπάρχει στο background αλλά δεν επηρεάζει τον έλεγχο ισορροπίας του χρήστη
+    double diff = currentSum - originalSum;
+    if (Math.abs(diff) > 0.01) {
+        html.append("<p style='color:red;font-weight:bold'>Μένει να ").append(diff > 0 ? "αφαιρέσεις" : "προσθέσεις").append(" ").append(String.format("%.2f", Math.abs(diff))).append("</p>");
+    } else {
+        html.append("<p style='color:green;font-weight:bold'>Ισορροπημένο! Οι αλλαγές θα εφαρμοστούν στους υπολογισμούς.</p>");
+    }
+
+    html.append("<form method='post'>");
+    html.append("Κατηγορία (1-").append(displayLimit).append("): <input type='number' name='index' min='1' max='").append(displayLimit).append("' required><br>");
+    html.append("Νέα τιμή: <input type='number' name='value' step='0.01' required><br>");
+    html.append("<button type='submit' style='background:#007bff;color:white'>Εφάρμοσε αλλαγή</button></form>");
+
+    // Το κουμπί αποθήκευσης εμφανίζεται όταν το άθροισμα των 10 είναι σωστό
+    if (Math.abs(diff) < 0.01) {
+        html.append("<form method='post'><button name='action' value='finish' style='background:green;color:white;margin-top:20px'>Τέλος - Αποθήκευση & Εμφάνιση Αποτελεσμάτων</button></form>");
+    }
+
+    html.append("<form method='post'><button name='action' value='cancel' style='background:#dc3545;color:white;margin-top:20px'>Άκυρο - Επιστροφή</button></form>");
+    html.append("</body></html>");
+    return html.toString();
+}
