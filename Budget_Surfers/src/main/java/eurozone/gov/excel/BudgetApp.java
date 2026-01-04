@@ -303,3 +303,26 @@ private static String resultPageWithTitle(String title, String content) {
         </html>
         """.formatted(title, title, content);
 }
+    
+    private static String getEditMenu() {
+        return """
+            <!DOCTYPE html>
+            <html lang="el">
+            <head><meta charset="UTF-8"><title>Επεξεργασία</title>
+            <style>
+                body {font-family: Arial; background: #f0f8ff; text-align: center; padding: 50px;}
+                button {width: 80%; max-width: 600px; padding: 20px; margin: 15px; font-size: 18px; border: none; border-radius: 10px; color: white;}
+                .blue {background: #007bff;}
+                .red {background: #dc3545;}
+            </style></head>
+            <body>
+                <h1>Επεξεργασία Στοιχείων</h1>
+                <button class="blue" onclick="location.href='/edit/sectors'">1 - Μεταβολή δαπανών ανά τομέα</button>
+                <button class="blue" onclick="location.href='/edit/regions'">2 - Μεταβολή δαπανών ανά περιφέρεια</button>
+                <button class="blue" onclick="location.href='/edit/revenues'">3 - Μεταβολή εσόδων</button>
+                <br><br>
+                <button class="red" onclick="location.href='/'">Πίσω στο κύριο μενού</button>
+            </body>
+            </html>
+            """;
+    }
