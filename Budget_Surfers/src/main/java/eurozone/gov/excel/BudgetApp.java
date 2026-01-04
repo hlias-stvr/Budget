@@ -276,4 +276,30 @@ private static String getResultsAfterEdit(String type) {
     sb.append("</div>");
     return sb.toString();
 }
-  
+
+private static String resultPageWithTitle(String title, String content) {
+    return """
+        <!DOCTYPE html>
+        <html lang="el">
+        <head>
+            <meta charset="UTF-8">
+            <title>%s</title>
+            <style>
+                body {font-family: Arial, sans-serif; background: #f0f8ff; padding: 40px; text-align: center;}
+                .content {max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);}
+                h1 {color: #003366; margin-bottom: 30px;}
+                h3 {color: #007bff;}
+                button {padding: 18px 40px; font-size: 18px; background: #dc3545; color: white; border: none; border-radius: 10px; cursor: pointer; margin-top: 40px;}
+                button:hover {background: #c82333;}
+            </style>
+        </head>
+        <body>
+            <div class="content">
+                <h1>%s</h1>
+                %s
+                <button onclick="location.href='/'">Επιστροφή στο κύριο μενού</button>
+            </div>
+        </body>
+        </html>
+        """.formatted(title, title, content);
+}
