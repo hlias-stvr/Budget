@@ -326,3 +326,25 @@ private static String resultPageWithTitle(String title, String content) {
             </html>
             """;
     }
+    private static double calculateOriginalSum(String type) {
+        if ("sectors".equals(type)) {
+            long[] A = AvgEurozone.convertToLong(budget);
+            double[] B = AvgEurozone.ministrDiv(A);
+            double sum = 0;
+            for (int i = 0; i < 10; i++) sum += B[i];
+            return Math.round(sum * 100.0) / 100.0;
+        } else if ("regions".equals(type)) {
+            long[] data = RegionalPer.transformToLong(budget);
+            long sum = 0;
+            for (long l : data) sum += l;
+            return sum;
+        } else if ("revenues".equals(type)) {
+            long[][] full = Percent.converterToLong(revenue, 14, 2);
+            long sum = 0;
+            for (int i = 1; i < 14; i++) {
+                sum += full[i][0];
+            }
+            return sum;
+        }
+        return 0;
+    }
