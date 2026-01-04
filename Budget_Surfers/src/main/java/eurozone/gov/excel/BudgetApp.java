@@ -30,6 +30,7 @@
                     <button class="blue" onclick="go(5)">5 - Ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια</button>
                     <button class="blue" onclick="go(6)">6 - Σύγκριση φορολογικών εσόδων με Ευρωζώνη</button>
                     <button class="green" onclick="location.href='/edit'">7 - Επεξεργασία στοιχείων προϋπολογισμού (Interactive!)</button>
+                    <button class="green" onclick="go(8)">8 - Επεξεργασία στοιχείων προϋπολογισμού (Interactive!)</button>
                     <button class="red" onclick="if(confirm('Έξοδος;')) window.close()">0 - Έξοδος</button>
                 </div>
                 <script>
@@ -55,7 +56,7 @@
             int main = parseParam(query, "main", 0);
             int sub = parseParam(query, "sub", 0);
  
-            if (sub == 0 && (main == 1 || main == 6)) {
+            if (sub == 0 && (main == 1 || main == 6 || main == 8)) {
                 String result = executeChoice(main, 0);
                 sendHtml(exchange, resultPage(result, main));
             } else if (sub == 0) {
