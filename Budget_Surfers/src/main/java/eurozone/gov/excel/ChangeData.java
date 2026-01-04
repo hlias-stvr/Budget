@@ -88,6 +88,7 @@ public class ChangeData {
                 }
             }
         } while ((grpercent[10] != startsumpercent) || (input3 == 1));
+        input.close();
         return grpercent;
     }
     public static long[] newAmountPerRegion(long[] budgetLong, String[][] budget) {
@@ -182,6 +183,7 @@ public class ChangeData {
                 }
             }
         } while ((sum != 79592000) || (input3 == 1));
+        input.close();
          return budgetLong;
     }
     public static long[] newRevenue(long[] LongData, String[][] revenue) {
@@ -279,6 +281,7 @@ public class ChangeData {
                 }
             }
         } while ((LongData[0] != startsum) || (input3 == 1));
+        input.close();
         return LongData;
     }
 }
