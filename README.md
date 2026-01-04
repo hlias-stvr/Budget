@@ -26,7 +26,7 @@ java -cp target/classes eurozone.gov.excel.ReadTwoCsvFiles
 - **0**: Έξοδος από την εφαρμογή
 
 ## Παρουσίαση της δομής των περιεχομένων του αποθετηρίου
-΄΄΄Budget_Surfers/
+Budget_Surfers/
 ├── .vscode/
 │   └── settings.json
 ├── src/
@@ -58,7 +58,7 @@ java -cp target/classes eurozone.gov.excel.ReadTwoCsvFiles
 │           └── AppTest.java
 ├── .gitignore
 ├── pom.xml
-└── README.md΄΄΄
+└── README.md
 
 ## Διάγραμμα UML σχετικά με το σχεδιασμό του κώδικα
 
