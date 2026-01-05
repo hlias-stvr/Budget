@@ -15,7 +15,7 @@ public class BudgetChange {
     @Override
     public String toString() {
         if (amount2 == 0) {
-            return name + ": " + amount1;
+            return name + ": " + amount1 + "%";
         } else {
             return name + ": " + amount2;
         }

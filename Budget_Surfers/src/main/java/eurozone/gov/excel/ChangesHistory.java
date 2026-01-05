@@ -11,7 +11,7 @@ public class ChangesHistory {
     }
     public static void printAll() {
         if (changes.isEmpty()) {
-            System.out.println("Η λίστα είναι κενή.");
+            System.out.println("Η λίστα αλλαγών είναι κενή.");
         } else {
             System.out.println("Οι αλλαγές που έχουν γίνει είναι:");
             System.out.println("Κατηγορία      Νέα Τιμή");

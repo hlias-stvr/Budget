@@ -398,8 +398,8 @@ public class ReadTwoCsvFiles {
                                             double perRegion[] = RegionalPer.calcBudgetPerRegion(newLongBudget);
                                             // ξανακαλεί τις μεθόδους που έχουν να κάνουν με αυτά που άλλαξε
                                             // για να δει την διαφορά
-                                            System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
-                                            System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
+                                            System.out.println("Γράψε\n1 για να δεις την νέα δαπάνη ανά πολίτη");
+                                            System.out.println("2 για να δεις την νέα ποσοστιαία δαπάνη ανά περιφέρεια");
                                             System.out.println("0 για πίσω");
                                             while (true) {
                                                 try {
