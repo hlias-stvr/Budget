@@ -27,26 +27,27 @@ public class Main {
                     if (choice < 0 || choice > 8) { // έλεγχος για τις βασικές επιλογές 
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 0 μέχρι 8");
                     }
-                    if (choice == 0) { 
-                        System.out.println("Έξοδος από το πρόγραμμα");
-                        break;
-                    } else if (choice == 1) {        
-                        ch.mainChoice1(revenue, budget);
-                    } else if (choice == 2) {
-                        ch.mainChoice2(budget, scanner);
-                    } else if (choice == 3) {
-                        ch.mainChoice3(revenue, scanner);
-                    } else if (choice == 4) {
-                        ch.mainChoice4(gdppop, scanner);
-                    } else if (choice == 5) {
-                        ch.mainChoice5(budget, scanner);
-                    } else if (choice == 6) {
-                        ch.mainChoice6(revenue);
-                    } else if (choice == 7) {
-                        ch.mainChoice7(revenue, budget, scanner);
-                    } else if (choice == 8) {
-                        ChangesHistory.printAll();
-                    }
+                    switch (choice) {
+                        case 0: 
+                            System.out.println("Έξοδος από το πρόγραμμα");
+                            break;
+                        case 1:         
+                            ch.mainChoice1(revenue, budget);
+                        case 2:
+                            ch.mainChoice2(budget, scanner);
+                        case 3:
+                            ch.mainChoice3(revenue, scanner);
+                        case 4:
+                            ch.mainChoice4(gdppop, scanner);
+                        case 5:
+                            ch.mainChoice5(budget, scanner);
+                        case 6:
+                            ch.mainChoice6(revenue);
+                        case 7:
+                            ch.mainChoice7(revenue, budget, scanner);
+                        case 8:
+                            ChangesHistory.printAll();
+                        }
                     break;
                 } catch (IllegalArgumentException e){
                     System.out.println("Σφάλμα" + e.getMessage());

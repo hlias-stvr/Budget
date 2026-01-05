@@ -27,9 +27,10 @@ public class Choices {
                     if (choice2 < 0 || choice2 > 2) { //έλεγχος για τις υποεπιλογές 
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                     }
-                    if (choice2 == 1) {
-                        sub.subchoice2a(B, grSectors);
-                    } else if (choice2 == 2) {
+                    switch(choice2) {
+                        case 1:
+                            sub.subchoice2a(B, grSectors);
+                        case 2:
                         sub.subchoice2b(C, grSectors);
                     }
                     break;
@@ -64,10 +65,11 @@ public class Choices {
                     if (choice3 < 0 || choice3 > 2){
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                     }
-                    if(choice3 ==1) {
-                        sub.subchoice3a(g, revenue, n, scanner);
-                    } else if (choice3 == 2) {
-                        sub.subchoice3b(h, revenue, m, scanner);
+                    switch(choice3) {
+                        case 1:
+                            sub.subchoice3a(g, revenue, n, scanner);
+                        case 2:
+                            sub.subchoice3b(h, revenue, m, scanner);
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -94,10 +96,11 @@ public class Choices {
                     if (choice5 < 0 || choice5 > 2) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                     }
-                    if (choice5 == 1) {
-                        sub.subchoice4a(E, gdppop);
-                    } else if (choice5 == 2) {
-                        sub.subchoice4b(gdppop, E, scanner);
+                    switch(choice5) {
+                        case 1:
+                            sub.subchoice4a(E, gdppop);
+                        case 2:
+                            sub.subchoice4b(gdppop, E, scanner);
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -125,10 +128,11 @@ public class Choices {
                     if (choice6 < 0 || choice6 > 2) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                     }
-                    if (choice6 == 1) {
-                        sub.subchoice5a(perPerson, budget);
-                    } else if (choice6 == 2) {
-                        sub.subchoice5b(perRegion, budget);
+                    switch(choice6) {
+                        case 1:
+                            sub.subchoice5a(perPerson, budget);
+                        case 2:
+                            sub.subchoice5b(perRegion, budget);
                     }
                     break;
                 } catch (IllegalArgumentException e){
@@ -162,13 +166,14 @@ public class Choices {
                     if (choice8 < 0 || choice8 > 3) {
                         throw new IllegalArgumentException("Η επιλογή πρέπει να είναι από 0 μέχρι 3");
                     }
-                    if (choice8 == 1) {
-                        sub.subchoice7a(budget, scanner);
-                        break;
-                    } else if (choice8 == 2) {
-                        sub.subchoice7b(budget, scanner);                            
-                    } else if (choice8 == 3) {
-                        sub.subchoice7c(revenue, scanner);
+                    switch(choice8) {
+                        case 1:
+                            sub.subchoice7a(budget, scanner);
+                            break;
+                        case 2:
+                            sub.subchoice7b(budget, scanner);                            
+                        case 3:
+                            sub.subchoice7c(revenue, scanner);
                     }
                     break;
                 } catch (IllegalArgumentException e){
