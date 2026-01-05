@@ -139,5 +139,39 @@ public class Subchoises {
             }
         }
     }
+    public void subchoice4b(String[][] gdppop, double[] E, Scanner scanner) {
+        int a = -1;
+                        System.out.println("Γράψε\n 1 για Αυστρία\n 2 για Βέλγιο\n 3 για Κροατία\n"
+                        +" 4 για Κύπρο\n 5 για Εσθονία\n 6 για Φινλανδία\n 7 για Γαλλία\n 8 για Γερμανία\n" 
+                        +" 9 για Ιρλανδία\n 10 για Ιταλία\n 11 για Λετονία\n 12 για Λιθουανία\n" 
+                        +" 13 για Λουξεμβούργο\n 14 για Μάλτα\n 15 για Ολλανδία\n 16 για Πορτογαλία\n" 
+                        +" 17 για Σλοβακία\n 18 για Σλοβενία\n 19 για Ισπανία\n 20 για ΜΟ Ευρωζώνης ");
+                        do {
+                            while (true) { //μέχρι να δώσει ο χρήστης σωστή τιμή
+                                try {
+                                    System.out.println("Δώσε αριθμό για την χώρα που θες να συγκρίνεις με την Ελλάδα ή 0 για πίσω");
+                                    a = scanner.nextInt();
+                                    if (a < 0 || a > 20) {
+                                        throw new IllegalArgumentException(" Ο αριθμός πρέπει να είναι από 1 μέχρι 20");
+                                    }
+                                    if (a == 0) {
+                                        break;
+                                    }
+                                    if (a != 20) {
+                                    System.out.println("Έβαλες την χώρα " + gdppop[a-1][0]);
+                                    }
+                                    EuzLivingStandard.compareStdLive(a,E,gdppop );
+                                    break;
+                                } catch (IllegalArgumentException e) { 
+                                    System.out.println("Σφάλμα" + e.getMessage());
+                                } catch (ArrayIndexOutOfBoundsException e) {
+                                    System.out.println("Πρόβλημα με τον πίνακα: " + e.getMessage());
+                                } catch (Exception e) {
+                                    System.out.println("Πρέπει να δώσεις αριθμό");
+                                    scanner.nextLine(); //καθάρισμα εισόδου
+                                }
+                            }
+                        } while (a!= 0);
+    }
 }
 
