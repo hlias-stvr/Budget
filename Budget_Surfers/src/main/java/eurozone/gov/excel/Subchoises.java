@@ -161,19 +161,9 @@ public class Subchoises {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                     }
                     if (choice7 == 1) {
-                        for(int i = 0; i < 11; i++) {
-                            System.out.println("Η Ελλάδα δαπανά " + newgrPercent[i] + "%" + " στον τομέα " + grSectors[i]);
-                        }
+                       child.childChoice7a1(newgrPercent, grSectors);
                     } else if (choice7 == 2) {
-                        for(int i = 0; i < 11; i++) {
-                            if(newCompareAvgEurz[i] > 0) {
-                                System.out.println("Η Ελλάδα δαπανά "+ newCompareAvgEurz[i] + "% λιγότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
-                            } else if(newCompareAvgEurz[i] < 0) {
-                                System.out.println("Η Ελλάδα δαπανά "+ Math.abs(newCompareAvgEurz[i]) + "% περισσότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
-                            } else {
-                                System.out.println("Η Ελλάδα δαπανά το ίδιο ποσοστό στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
-                            }
-                        }
+                       child.childChoice7a2(newCompareAvgEurz, grSectors);
                     }
                     break;
                 } catch (IllegalArgumentException e) {
