@@ -13,6 +13,7 @@ public class Choices {
         double [] B = AvgEurozone.ministrDiv(A);
         double [] C = AvgEurozone.compareGrToEurozone(B);
         String[] grSectors = AvgEurozone.sectors();
+        Subchoises sub = new Subchoises();
         int choice2 = -1;
         do { 
             System.out.println("Επίλεξε 1 για να δείς τις ποσοστιάιες δαπάνες της Ελλάδας ανά τομέα");
@@ -27,9 +28,7 @@ public class Choices {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                     }
                     if (choice2 == 1) {
-                        for(int i = 0; i < 11; i++) {
-                            System.out.println("Η Ελλάδα δαπανά " + B[i] + "%" + " στον τομέα " + grSectors[i]);
-                        }
+                        sub.subchoice2a(B, grSectors);
                     } else if (choice2 == 2) {
                         for(int i = 0; i < 11; i++) {
                             if(C[i] > 0) {
