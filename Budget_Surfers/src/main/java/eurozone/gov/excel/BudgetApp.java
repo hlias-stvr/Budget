@@ -729,4 +729,12 @@ private static double[] initializeData(String type) {
         }
         return map;
     }
-    
+    private static void sendHtml(HttpExchange e, String html) throws IOException {
+        byte[] b = html.getBytes(StandardCharsets.UTF_8);
+        e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
+        e.sendResponseHeaders(200, b.length);
+        try (OutputStream os = e.getResponseBody()) {
+            os.write(b);
+        }
+    }
+}
