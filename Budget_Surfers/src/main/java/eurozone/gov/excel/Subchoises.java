@@ -173,5 +173,15 @@ public class Subchoises {
                             }
                         } while (a!= 0);
     }
+    public void subchoice5a(double[] perPerson, String[][] budget) {
+        for (int i = 0; i < perPerson.length; i++) {
+            System.out.println(budget[i+25][1]+ " " + perPerson[i]);
+        }
+    }
+    public void subchoice5b(double[] perRegion, String[][] budget) {
+        for (int i = 0; i < perRegion.length; i++) {
+            System.out.println(budget[i+25][1]+ " " + perRegion[i] + "%");
+        }
+    }
 }
 

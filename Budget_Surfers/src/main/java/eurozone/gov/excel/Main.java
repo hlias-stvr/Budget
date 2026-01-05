@@ -31,19 +31,19 @@ public class Main {
                         System.out.println("Έξοδος από το πρόγραμμα");
                         break;
                     } else if (choice == 1) {        
-                        ch.choice1(revenue, budget);
+                        ch.mainChoice1(revenue, budget);
                     } else if (choice == 2) {
-                        ch.choice2(budget, scanner);
+                        ch.mainChoice2(budget, scanner);
                     } else if (choice == 3) {
-                        ch.choice3(revenue, scanner);
+                        ch.mainChoice3(revenue, scanner);
                     } else if (choice == 4) {
-                        ch.choice4(gdppop, scanner);
+                        ch.mainChoice4(gdppop, scanner);
                     } else if (choice == 5) {
-                        ch.choice5(budget, scanner);
+                        ch.mainChoice5(budget, scanner);
                     } else if (choice == 6) {
-                        ch.choice6(revenue);
+                        ch.mainChoice6(revenue);
                     } else if (choice == 7) {
-                        ch.choice7(revenue, budget, scanner);
+                        ch.mainChoice7(revenue, budget, scanner);
                     } else if (choice == 8) {
                         ChangesHistory.printAll();
                     }

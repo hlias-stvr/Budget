@@ -3,13 +3,13 @@ import java.util.Scanner;
 
 public class Choices {
     Subchoises sub = new Subchoises();
-    public void choice1(String[][] revenue, String[][] budget) {
+    public void mainChoice1(String[][] revenue, String[][] budget) {
         System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
         ReadTwoCsvFiles.printFirstRows(revenue, 33);
         System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
         ReadTwoCsvFiles.printFirstRows(budget,35);           
     }
-    public void choice2(String[][] budget, Scanner scanner) {
+    public void mainChoice2(String[][] budget, Scanner scanner) {
         long [] A = AvgEurozone.convertToLong(budget);
         double [] B = AvgEurozone.ministrDiv(A);
         double [] C = AvgEurozone.compareGrToEurozone(B);
@@ -43,7 +43,7 @@ public class Choices {
         } while (choice2 != 0);
         // μέχρι να δωθεί το 0 για πίσω    
     }
-    public void choice3(String[][] revenue, Scanner scanner) {
+    public void mainChoice3(String[][] revenue, Scanner scanner) {
         long[][] s = Percent.converterToLong(revenue, 14,2);
         long[][] f = Percent.converterToLong(revenue, 16, 16);
         double[][] g = Percent.percentual(s);
@@ -79,7 +79,7 @@ public class Choices {
             }
         } while (choice3 != 0);
     }
-    public void choice4(String[][] gdppop, Scanner scanner) {
+    public void mainChoice4(String[][] gdppop, Scanner scanner) {
         long [][] D = EuzLivingStandard.compareToLong(gdppop);
         double [] E = EuzLivingStandard.findStandLiving(D);        
         int choice5 = -1;     
@@ -109,7 +109,7 @@ public class Choices {
             }  
         } while (choice5!=0);
     }
-    public void choice5(String[][] budget, Scanner scanner) {
+    public void mainChoice5(String[][] budget, Scanner scanner) {
         long budgetLong[] = RegionalPer.transformToLong(budget);
         double perPerson[] = RegionalPer.calcBudgetPerPerson(budgetLong);
         double perRegion[] = RegionalPer.calcBudgetPerRegion(budgetLong);
@@ -126,13 +126,9 @@ public class Choices {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                     }
                     if (choice6 == 1) {
-                        for (int i = 0; i < perPerson.length; i++) {
-                            System.out.println(budget[i+25][1]+ " " + perPerson[i]);
-                        }
+                        sub.subchoice5a(perPerson, budget);
                     } else if (choice6 == 2) {
-                        for (int i = 0; i < perRegion.length; i++) {
-                            System.out.println(budget[i+25][1]+ " " + perRegion[i] + "%");
-                        }
+                        sub.subchoice5b(perRegion, budget);
                     }
                     break;
                 } catch (IllegalArgumentException e){
@@ -144,7 +140,7 @@ public class Choices {
             }
         } while(choice6 !=0);
     }
-    public void choice6(String[][] revenue) {
+    public void mainChoice6(String[][] revenue) {
         long[][] LongData = Percent.converterToLong(revenue, 14, 2);
         long[] LongData25 = new long[LongData.length];
         for (int i = 0; i < LongData.length; i++) {
@@ -152,7 +148,7 @@ public class Choices {
         }
         CompareEuzTaxes.Calculation(LongData25);
     }
-    public void choice7(String[][] revenue, String[][] budget, Scanner scanner) {
+    public void mainChoice7(String[][] revenue, String[][] budget, Scanner scanner) {
         int choice8 = -1;            
         do{
             System.out.println("Γράψε\n1 Για να μεταβάλλεις τις δαπάνες ανά τομέα");
