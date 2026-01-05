@@ -705,4 +705,17 @@ private static double[] initializeData(String type) {
             sb.append("\n");
         }
     }
+    private static String getSessionId(HttpExchange exchange) {
+        List<String> cookies = exchange.getRequestHeaders().get("Cookie");
+        if (cookies != null) {
+            for (String cookie : cookies) {
+                if (cookie.contains("session=")) {
+                    return cookie.split("session=")[1].split(";")[0];
+                }
+            }
+        }
+        String newId = UUID.randomUUID().toString().substring(0, 8);
+        exchange.getResponseHeaders().add("Set-Cookie", "session=" + newId + "; Path=/");
+        return newId;
+    }
     
