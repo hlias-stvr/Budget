@@ -506,4 +506,24 @@ private static double[] initializeData(String type) {
             </html>
             """.formatted(title, title, buttons);
     }
-    
+    // ================= ΣΕΛΙΔΑ ΑΠΟΤΕΛΕΣΜΑΤΟΣ =================
+    private static String resultPage(String result, int main) {
+        return """
+            <!DOCTYPE html>
+            <html lang="el">
+            <head><meta charset="UTF-8"><title>Αποτέλεσμα</title>
+            <style>
+                body {font-family: Arial; background: #f9f9f9; padding: 20px;}
+                pre {background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); white-space: pre-wrap; font-family: monospace;}
+                button {padding: 15px 30px; margin: 20px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer;}
+                .blue {background: #007bff; color: white;}
+                .red {background: #dc3545; color: white;}
+            </style></head>
+            <body>
+                <pre>%s</pre>
+                <button class="blue" onclick="location.href='/submenu?main=%d'">Πίσω στο υπομενού</button>
+                <button class="red" onclick="location.href='/'">Κύριο μενού</button>
+            </body>
+            </html>
+            """.formatted(result, main);
+    }
