@@ -72,4 +72,14 @@ public class ChildChoices {
             }
         }
     }
+    public void childChoice7b1(double[] perPerson, String[][] budget) {
+        for (int i = 0; i < perPerson.length; i++) {
+            System.out.println(budget[i+25][1]+ " " + perPerson[i]);
+        }
+    }
+    public void childChoice7b2(String[][] budget, double[] perRegion) {
+        for (int i = 0; i < perRegion.length; i++) {
+            System.out.println(budget[i+25][1]+ " " + perRegion[i] + "%");
+        }
+    }
 }

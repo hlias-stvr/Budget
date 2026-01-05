@@ -195,13 +195,9 @@ public class Subchoises {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                     }
                     if (choice9 == 1) {
-                        for (int i = 0; i < perPerson.length; i++) {
-                            System.out.println(budget[i+25][1]+ " " + perPerson[i]);
-                        }
+                        child.childChoice7b1(perPerson, budget);
                     } else if (choice9 == 2) {
-                        for (int i = 0; i < perRegion.length; i++) {
-                            System.out.println(budget[i+25][1]+ " " + perRegion[i] + "%");
-                        }
+                        child.childChoice7b2(budget, perRegion);
                     }
                     break;
                 } catch (IllegalArgumentException e){
