@@ -6,6 +6,7 @@ public class Main {
         String[][] revenue = ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         String[][] budget  = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
         String[][] gdppop  = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv"); 
+        Choices ch = new Choices();
 
         Scanner scanner = new Scanner(System.in);
         int choice = -1;
@@ -30,10 +31,7 @@ public class Main {
                         System.out.println("Έξοδος από το πρόγραμμα");
                         break;
                     } else if (choice == 1) {        
-                        System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===" );
-                        ReadTwoCsvFiles.printFirstRows(revenue, 33);
-                        System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
-                        ReadTwoCsvFiles.printFirstRows(budget,35);     
+                        ch.choice1(revenue, budget);
                     } else if (choice == 2) {
                         long [] A = AvgEurozone.convertToLong(budget);
                         double [] B = AvgEurozone.ministrDiv(A);
