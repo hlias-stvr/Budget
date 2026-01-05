@@ -718,4 +718,15 @@ private static double[] initializeData(String type) {
         exchange.getResponseHeaders().add("Set-Cookie", "session=" + newId + "; Path=/");
         return newId;
     }
+    private static Map<String, String> parseParams(String body) {
+        Map<String, String> map = new HashMap<>();
+        if (body == null || body.isEmpty()) return map;
+        for (String pair : body.split("&")) {
+            String[] parts = pair.split("=", 2);
+            if (parts.length == 2) {
+                map.put(parts[0], java.net.URLDecoder.decode(parts[1], StandardCharsets.UTF_8));
+            }
+        }
+        return map;
+    }
     
