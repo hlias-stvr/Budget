@@ -30,15 +30,7 @@ public class Choices {
                     if (choice2 == 1) {
                         sub.subchoice2a(B, grSectors);
                     } else if (choice2 == 2) {
-                        for(int i = 0; i < 11; i++) {
-                            if(C[i] > 0) {
-                                System.out.println("Η Ελλάδα δαπανά "+ C[i] + "% λιγότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
-                            } else if(C[i] < 0) {
-                                System.out.println("Η Ελλάδα δαπανά "+ Math.abs(C[i]) + "% περισσότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
-                            } else {
-                                System.out.println("Η Ελλάδα δαπανά το ίδιο ποσοστό στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
-                            }
-                        }
+                        sub.subchoice2b(C, grSectors);
                     }
                     break;
                 } catch (IllegalArgumentException e) {
