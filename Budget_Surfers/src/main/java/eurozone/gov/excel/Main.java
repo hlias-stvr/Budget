@@ -37,71 +37,7 @@ public class Main {
                     } else if (choice == 3) {
                         ch.choice3(revenue, scanner);
                     } else if (choice == 4) {
-                        long [][] D = EuzLivingStandard.compareToLong(gdppop);
-                        double [] E = EuzLivingStandard.findStandLiving(D);        
-                        int choice5 = -1;     
-                        do {       
-                            System.out.println("Γράψε 1 για να δεις τα ΚΚΑΕΠ των χωρών της Ευρωζώνης");
-                            System.out.println("2 για να συγκρίνεις το βιοτικό επίπεδο της Ελλάδας με άλλες χώρες");
-                            System.out.println("0 για πίσω");                                        
-                            while (true) { //  μέχρι να δωθεί σωστή τιμή
-                                try {
-                                    choice5 = scanner.nextInt();
-                                    // υπο επιλογές
-                                    if (choice5 < 0 || choice5 > 2) {
-                                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
-                                    }
-                                    if (choice5 == 1) {
-                                        for (int i = 0; i<E.length; i++) {
-                                            if (i < 19) {
-                                                System.out.println("Τα ΚΚΑΕΠ της χώρας "+gdppop[i][0]+" είναι "+E[i]);
-                                            } else if (i == 19) {
-                                                System.out.println("Τα ΚΚΑΕΠ του ΜΟ της Ευρωζώνης είναι "+E[i]);
-                                            }
-                                        }
-                                    } else if (choice5 == 2) {
-                                        int a = -1;
-                                        System.out.println("Γράψε\n 1 για Αυστρία\n 2 για Βέλγιο\n 3 για Κροατία\n"
-                                        +" 4 για Κύπρο\n 5 για Εσθονία\n 6 για Φινλανδία\n 7 για Γαλλία\n 8 για Γερμανία\n" 
-                                        +" 9 για Ιρλανδία\n 10 για Ιταλία\n 11 για Λετονία\n 12 για Λιθουανία\n" 
-                                        +" 13 για Λουξεμβούργο\n 14 για Μάλτα\n 15 για Ολλανδία\n 16 για Πορτογαλία\n" 
-                                        +" 17 για Σλοβακία\n 18 για Σλοβενία\n 19 για Ισπανία\n 20 για ΜΟ Ευρωζώνης ");
-                                        do {
-                                            while (true) { //μέχρι να δώσει ο χρήστης σωστή τιμή
-                                                try {
-                                                    System.out.println("Δώσε αριθμό για την χώρα που θες να συγκρίνεις με την Ελλάδα ή 0 για πίσω");
-                                                    a = scanner.nextInt();
-                                                    if (a < 0 || a > 20) {
-                                                        throw new IllegalArgumentException(" Ο αριθμός πρέπει να είναι από 1 μέχρι 20");
-                                                    }
-                                                    if (a == 0) {
-                                                        break;
-                                                    }
-                                                    if (a != 20) {
-                                                    System.out.println("Έβαλες την χώρα " + gdppop[a-1][0]);
-                                                    }
-                                                    EuzLivingStandard.compareStdLive(a,E,gdppop );
-                                                    break;
-                                                } catch (IllegalArgumentException e) { 
-                                                    System.out.println("Σφάλμα" + e.getMessage());
-                                                } catch (ArrayIndexOutOfBoundsException e) {
-                                                    System.out.println("Πρόβλημα με τον πίνακα: " + e.getMessage());
-                                                } catch (Exception e) {
-                                                    System.out.println("Πρέπει να δώσεις αριθμό");
-                                                    scanner.nextLine(); //καθάρισμα εισόδου
-                                                }
-                                            }
-                                        } while (a!= 0);
-                                    } 
-                                    break;
-                                } catch (IllegalArgumentException e){
-                                    System.out.println("Σφάλμα" + e.getMessage());
-                                } catch (Exception e) {
-                                    System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner.nextLine(); //καθάρισμα εισόδου
-                                }
-                            }  
-                        } while (choice5!=0);
+                        ch.choice4(gdppop, scanner);
                     } else if (choice == 5) {
                         long budgetLong[] = RegionalPer.transformToLong(budget);
                         double perPerson[] = RegionalPer.calcBudgetPerPerson(budgetLong);
