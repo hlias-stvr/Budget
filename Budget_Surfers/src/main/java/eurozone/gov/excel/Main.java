@@ -41,12 +41,7 @@ public class Main {
                     } else if (choice == 5) {
                         ch.choice5(budget, scanner);
                     } else if (choice == 6) {
-                        long[][] LongData = Percent.converterToLong(revenue, 14, 2);
-                        long[] LongData25 = new long[LongData.length];
-                        for (int i = 0; i < LongData.length; i++) {
-                            LongData25[i] = LongData[i][0];
-                        }
-                        CompareEuzTaxes.Calculation(LongData25);
+                        ch.choice6(revenue);
                     } else if (choice == 7) {
                         int choice8 = -1;            
                         do{

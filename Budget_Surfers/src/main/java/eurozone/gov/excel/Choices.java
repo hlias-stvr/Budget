@@ -295,4 +295,12 @@ public class Choices {
             }
         } while(choice6 !=0);
     }
+    public void choice6(String[][] revenue) {
+        long[][] LongData = Percent.converterToLong(revenue, 14, 2);
+        long[] LongData25 = new long[LongData.length];
+        for (int i = 0; i < LongData.length; i++) {
+            LongData25[i] = LongData[i][0];
+        }
+        CompareEuzTaxes.Calculation(LongData25);
+    }
 }
