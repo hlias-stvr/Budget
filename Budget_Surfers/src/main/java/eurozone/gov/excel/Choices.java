@@ -30,8 +30,10 @@ public class Choices {
                     switch(choice2) {
                         case 1:
                             sub.subchoice2a(B, grSectors);
+                            break;
                         case 2:
-                        sub.subchoice2b(C, grSectors);
+                            sub.subchoice2b(C, grSectors);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -68,8 +70,10 @@ public class Choices {
                     switch(choice3) {
                         case 1:
                             sub.subchoice3a(g, revenue, n, scanner);
+                            break;
                         case 2:
                             sub.subchoice3b(h, revenue, m, scanner);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -99,8 +103,10 @@ public class Choices {
                     switch(choice5) {
                         case 1:
                             sub.subchoice4a(E, gdppop);
+                            break;
                         case 2:
                             sub.subchoice4b(gdppop, E, scanner);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -131,8 +137,10 @@ public class Choices {
                     switch(choice6) {
                         case 1:
                             sub.subchoice5a(perPerson, budget);
+                            break;
                         case 2:
                             sub.subchoice5b(perRegion, budget);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e){
@@ -171,9 +179,11 @@ public class Choices {
                             sub.subchoice7a(budget, scanner);
                             break;
                         case 2:
-                            sub.subchoice7b(budget, scanner);                            
+                            sub.subchoice7b(budget, scanner);    
+                            break;                        
                         case 3:
                             sub.subchoice7c(revenue, scanner);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e){

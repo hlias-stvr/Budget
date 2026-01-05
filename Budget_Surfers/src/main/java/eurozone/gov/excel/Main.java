@@ -33,20 +33,28 @@ public class Main {
                             break;
                         case 1:         
                             ch.mainChoice1(revenue, budget);
+                            break;
                         case 2:
                             ch.mainChoice2(budget, scanner);
+                            break;
                         case 3:
                             ch.mainChoice3(revenue, scanner);
+                            break;
                         case 4:
                             ch.mainChoice4(gdppop, scanner);
+                            break;
                         case 5:
                             ch.mainChoice5(budget, scanner);
+                            break;
                         case 6:
                             ch.mainChoice6(revenue);
+                            break;
                         case 7:
                             ch.mainChoice7(revenue, budget, scanner);
+                            break;
                         case 8:
                             ChangesHistory.printAll();
+                            break;
                         }
                     break;
                 } catch (IllegalArgumentException e){

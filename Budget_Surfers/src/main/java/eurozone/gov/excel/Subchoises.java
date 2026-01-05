@@ -36,8 +36,10 @@ public class Subchoises {
                     switch(choice4) {
                         case 1:
                             child.childChoice3a1(g, revenue);
+                            break;
                         case 2:
                             child.childChoice3a2(revenue, n);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -71,8 +73,10 @@ public class Subchoises {
                     switch(choice4) {
                         case 1:
                             child.childChoice3b1(revenue, h);
+                            break;
                         case 2:
                             child.childChoice3b2(revenue, m);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -165,8 +169,10 @@ public class Subchoises {
                     switch(choice7) {
                         case 1:
                             child.childChoice7a1(newgrPercent, grSectors);
+                            break;
                         case 2:
                             child.childChoice7a2(newCompareAvgEurz, grSectors);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -200,8 +206,10 @@ public class Subchoises {
                     switch(choice9) {
                         case 1:
                             child.childChoice7b1(perPerson, budget);
+                            break;
                         case 2:
                             child.childChoice7b2(budget, perRegion);
+                            break;
                     }
                     break;
                 } catch (IllegalArgumentException e){
