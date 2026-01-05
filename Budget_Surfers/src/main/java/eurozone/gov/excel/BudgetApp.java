@@ -443,3 +443,17 @@ private static double[] initializeData(String type) {
     html.append("</body></html>");
     return html.toString();
 }
+    private static String[] getLabels(String type) {
+        if ("sectors".equals(type)) return AvgEurozone.sectors();
+        if ("regions".equals(type)) return new String[]{"Αττική",
+        "Κεντρική Μακεδονία", "Δυτική Ελλάδα", "Κρήτη", "Α.Μ.Θ.",
+        "Ήπειρος", "Θεσσαλία"};
+        if ("revenues".equals(type)) {
+            String[] labels = new String[13];
+            for (int i = 0; i < 13; i++) {
+                labels[i] = revenue[i+1][1]; // από γραμμή 1 και μετά (0 είναι σύνολο)
+            }
+            return labels;
+        }
+        return new String[0];
+    }
