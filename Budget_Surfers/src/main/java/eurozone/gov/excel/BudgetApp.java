@@ -696,4 +696,13 @@ private static double[] initializeData(String type) {
         }
         return def;
     }
+    private static void appendFirstRows(StringBuilder sb, String[][] data, int n) {
+        for (int i = 0; i < Math.min(n, data.length); i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                sb.append(data[i][j]);
+                if (j < data[i].length - 1) sb.append(" | ");
+            }
+            sb.append("\n");
+        }
+    }
     
