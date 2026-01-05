@@ -130,5 +130,14 @@ public class Subchoises {
                             }
                         }while (choice4!=0);
     }
+    public void subchoice4a(double[] E, String[][] gdppop) {
+        for (int i = 0; i<E.length; i++) {
+            if (i < 19) {
+                System.out.println("Τα ΚΚΑΕΠ της χώρας "+gdppop[i][0]+" είναι "+E[i]);
+            } else if (i == 19) {
+                System.out.println("Τα ΚΚΑΕΠ του ΜΟ της Ευρωζώνης είναι "+E[i]);
+            }
+        }
+    }
 }
 

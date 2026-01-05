@@ -95,13 +95,7 @@ public class Choices {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                     }
                     if (choice5 == 1) {
-                        for (int i = 0; i<E.length; i++) {
-                            if (i < 19) {
-                                System.out.println("Τα ΚΚΑΕΠ της χώρας "+gdppop[i][0]+" είναι "+E[i]);
-                            } else if (i == 19) {
-                                System.out.println("Τα ΚΚΑΕΠ του ΜΟ της Ευρωζώνης είναι "+E[i]);
-                            }
-                        }
+                        sub.subchoice4a(E, gdppop);
                     } else if (choice5 == 2) {
                         int a = -1;
                         System.out.println("Γράψε\n 1 για Αυστρία\n 2 για Βέλγιο\n 3 για Κροατία\n"
