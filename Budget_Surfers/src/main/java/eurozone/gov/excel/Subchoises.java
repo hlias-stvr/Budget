@@ -3,6 +3,7 @@ package eurozone.gov.excel;
 import java.util.Scanner;
 
 public class Subchoises {
+    ChildChoices child = new ChildChoices();
     public void subchoice2a(double[] B, String[] grSectors) {
         for(int i = 0; i < 11; i++) {
             System.out.println("Η Ελλάδα δαπανά " + B[i] + "%" + " στον τομέα " + grSectors[i]);
@@ -33,31 +34,9 @@ public class Subchoises {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
                     }
                     if (choice4 == 1) {
-                        System.out.println("Η διαφορά των ποσοστών των εσόδων ανά έτος είναι:");
-                        for(int i = 0; i < g.length; i++) {
-                            for(int j = 0; j < 4; j++) {
-                                if (j == 0) {
-                                    System.out.print(revenue[i][1]+" "+g[i][j]+"% ");
-                                } else if (j == 1 || j ==2) {
-                                    System.out.print(g[i][j]+"% ");
-                                } else if (j == 3) {
-                                    System.out.println(g[i][j]+"%");
-                                }
-                            }
-                        }
+                        child.childChoice3a1(g, revenue);
                     } else if (choice4 == 2) {
-                        System.out.println("η διαφορά των ποσών των εσόδων ανά έτος είναι:");
-                        for(int i = 0; i < n.length; i++) {
-                            for(int j = 0; j < 4; j++) {
-                                if (j == 0) {
-                                    System.out.print(revenue[i][1]+" "+n[i][j]);
-                                } else if (j == 1 || j ==2) {
-                                    System.out.print(" "+n[i][j]);
-                                } else if (j == 3) {
-                                    System.out.println(" "+n[i][j]);
-                                }
-                            }
-                        }
+                        child.childChoice3a2(revenue, n);
                     }
                     break;
                 } catch (IllegalArgumentException e) {
@@ -89,31 +68,9 @@ public class Subchoises {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
                     }
                     if (choice4 == 1) {
-                        System.out.println("Η διαφορά των ποσοστών ανά έτος είναι:");
-                        for(int i = 0; i < h.length; i++) {
-                            for(int j = 0; j < 4; j++) {
-                                if (j == 0) {
-                                    System.out.print(revenue[i][1]+" "+h[i][j]+"% ");
-                                } else if (j == 1 || j ==2) {
-                                    System.out.print(h[i][j]+"% ");
-                                } else if (j == 3) {
-                                    System.out.println(h[i][j]+"% ");
-                                }
-                            }
-                        }
+                        child.childChoice3b1(revenue, h);
                     } else if (choice4 == 2) {
-                        System.out.println("Η διαφορά των ποσών ανά έτος είναι:");
-                        for(int i = 0; i < m.length; i++) {
-                            for(int j = 0; j < 4; j++) {
-                                if (j == 0) {
-                                    System.out.print(revenue[i][1]+" "+m[i][j]);
-                                } else if (j == 1 || j ==2) {
-                                    System.out.print(" "+m[i][j]);
-                                } else if (j == 3) {
-                                    System.out.println(" "+m[i][j]);
-                                }  
-                            }
-                        }
+                        child.childChoice3b2(revenue, m);
                     }
                     break;
                 } catch (IllegalArgumentException e) {
