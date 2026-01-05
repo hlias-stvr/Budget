@@ -52,4 +52,145 @@ public class Choices {
         } while (choice2 != 0);
         // μέχρι να δωθεί το 0 για πίσω    
     }
+    public void choice3(String[][] revenue, Scanner scanner) {
+        long[][] s = Percent.converterToLong(revenue, 14,2);
+        long[][] f = Percent.converterToLong(revenue, 16, 16);
+        double[][] g = Percent.percentual(s);
+        double[][] h = Percent.percentual(f);
+        long[][] n = Percent.amount(s);
+        long[][] m = Percent.amount(f);
+        int choice3 = -1;
+        // υποεπιλογές για την επιλογή 3 
+        System.out.println("Γράψε 1 για σύγκριση εσόδων");
+        System.out.println("Γράψε 2 για σύγκριση εξόδων");
+        System.out.println("0 για πίσω");
+        do {           
+            // μέχρι να δωθεί έγκυρη τιμή
+            while(true) {
+                try {
+                    choice3 = scanner.nextInt();
+                    // έλεγχος για τις υποεπιλογές 
+                    if (choice3 < 0 || choice3 > 2){
+                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
+                    }
+                    if(choice3 ==1) {
+                        int choice4 = -1;
+                        do {
+                            System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
+                            System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
+                            System.out.println("0 για πίσω");
+                            while(true) { // έλεγχος για τις υποεπιλογές 
+                                try {
+                                    // υπο επιλογές για τις υποεπιλογές 
+                                    choice4 = scanner.nextInt();
+                                    if (choice4 < 0 || choice4 > 2) { // έλεγχος για αυτές τις υποεπιλογές 
+                                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2 ή 0");
+                                    }
+                                    if (choice4 == 1) {
+                                        System.out.println("Η διαφορά των ποσοστών των εσόδων ανά έτος είναι:");
+                                        for(int i = 0; i < g.length; i++) {
+                                            for(int j = 0; j < 4; j++) {
+                                                if (j == 0) {
+                                                    System.out.print(revenue[i][1]+" "+g[i][j]+"% ");
+                                                } else if (j == 1 || j ==2) {
+                                                    System.out.print(g[i][j]+"% ");
+                                                } else if (j == 3) {
+                                                    System.out.println(g[i][j]+"%");
+                                                }
+                                            }
+                                        }
+                                    } else if (choice4 == 2) {
+                                        System.out.println("η διαφορά των ποσών των εσόδων ανά έτος είναι:");
+                                        for(int i = 0; i < n.length; i++) {
+                                            for(int j = 0; j < 4; j++) {
+                                                if (j == 0) {
+                                                    System.out.print(revenue[i][1]+" "+n[i][j]);
+                                                } else if (j == 1 || j ==2) {
+                                                    System.out.print(" "+n[i][j]);
+                                                } else if (j == 3) {
+                                                    System.out.println(" "+n[i][j]);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+                                } catch (IllegalArgumentException e) {
+                                    System.out.println("Σφάλμα" + e.getMessage());
+                                } catch (Exception e) {
+                                    System.out.println("Πρέπει να δώσεις αριθμό");
+                                    scanner.nextLine(); //καθάρισμα εισόδου
+                                }
+                            }
+                            if (choice4 == 0) { 
+                                // ξαναεμφανίζει τις προηγούμενες υπο επιλογές αν ο χρήστης επιλέξει το 0
+                                System.out.println("Γράψε 1 για σύγκριση εσόδων");
+                                System.out.println("Γράψε 2 για σύγκριση εξόδων");
+                                System.out.println("0 για πίσω");
+                            }
+                        }while (choice4!= 0);
+                    } else if (choice3 == 2) {
+                        int choice4 = -1;  
+                        do {
+                            System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
+                            System.out.println("Επίλεξε 2 για να δεις τα ποσά ανά έτος");
+                            System.out.println("0 για πίσω");
+                            while(true){
+                                // άλλες υπο επιλογές για την δεύτερη υπο επιλογή
+                                try {
+                                    choice4 = scanner.nextInt();
+                                    if (choice4 < 0 || choice4 > 2) {
+                                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
+                                    }
+                                    if (choice4 == 1) {
+                                        System.out.println("Η διαφορά των ποσοστών ανά έτος είναι:");
+                                        for(int i = 0; i < h.length; i++) {
+                                            for(int j = 0; j < 4; j++) {
+                                                if (j == 0) {
+                                                    System.out.print(revenue[i][1]+" "+h[i][j]+"% ");
+                                                } else if (j == 1 || j ==2) {
+                                                    System.out.print(h[i][j]+"% ");
+                                                } else if (j == 3) {
+                                                    System.out.println(h[i][j]+"% ");
+                                                }
+                                            }
+                                        }
+                                    } else if (choice4 == 2) {
+                                        System.out.println("Η διαφορά των ποσών ανά έτος είναι:");
+                                        for(int i = 0; i < m.length; i++) {
+                                            for(int j = 0; j < 4; j++) {
+                                                if (j == 0) {
+                                                    System.out.print(revenue[i][1]+" "+m[i][j]);
+                                                } else if (j == 1 || j ==2) {
+                                                    System.out.print(" "+m[i][j]);
+                                                } else if (j == 3) {
+                                                    System.out.println(" "+m[i][j]);
+                                                }  
+                                            }
+                                        }
+                                    }
+                                    break;
+                                } catch (IllegalArgumentException e) {
+                                    System.out.println("Σφάλμα" + e.getMessage());
+                                } catch (Exception e) {
+                                    System.out.println("Πρέπει να δώσεις αριθμό");
+                                    scanner.nextLine(); //καθάρισμα εισόδου
+                                }
+                            }
+                            if (choice4 == 0) {
+                                System.out.println("Γράψε 1 για σύγκριση εσόδων");
+                                System.out.println("Γράψε 2 για σύγκριση εξόδων");
+                                System.out.println("0 για πίσω");
+                            }
+                        }while (choice4!=0);
+                    }
+                    break;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Σφάλμα" + e.getMessage());
+                } catch (Exception e) {
+                    System.out.println("Πρέπει να δώσεις αριθμό");
+                    scanner.nextLine(); //καθάρισμα εισόδου
+                }
+            }
+        } while (choice3 != 0);
+    }
 }
