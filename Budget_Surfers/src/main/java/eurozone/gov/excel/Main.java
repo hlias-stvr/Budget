@@ -39,39 +39,7 @@ public class Main {
                     } else if (choice == 4) {
                         ch.choice4(gdppop, scanner);
                     } else if (choice == 5) {
-                        long budgetLong[] = RegionalPer.transformToLong(budget);
-                        double perPerson[] = RegionalPer.calcBudgetPerPerson(budgetLong);
-                        double perRegion[] = RegionalPer.calcBudgetPerRegion(budgetLong);
-                        int choice6 = -1;
-                        do {
-                            System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
-                            System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
-                            System.out.println("0 για πίσω");
-                            while (true) { // μέχρι να δωθεί σωστή τιμή
-                                try {
-                                    // υποεπιλογές 
-                                    choice6 = scanner.nextInt();
-                                    if (choice6 < 0 || choice6 > 2) {
-                                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι 1 ή 2");
-                                    }
-                                    if (choice6 == 1) {
-                                        for (int i = 0; i < perPerson.length; i++) {
-                                            System.out.println(budget[i+25][1]+ " " + perPerson[i]);
-                                        }
-                                    } else if (choice6 == 2) {
-                                        for (int i = 0; i < perRegion.length; i++) {
-                                            System.out.println(budget[i+25][1]+ " " + perRegion[i] + "%");
-                                        }
-                                    }
-                                    break;
-                                } catch (IllegalArgumentException e){
-                                    System.out.println("Σφάλμα" + e.getMessage());
-                                } catch (Exception e) {
-                                    System.out.println("Πρέπει να δώσεις αριθμό");
-                                    scanner.nextLine(); //καθάρισμα εισόδου
-                                }
-                            }
-                        } while(choice6 !=0);
+                        ch.choice5(budget, scanner);
                     } else if (choice == 6) {
                         long[][] LongData = Percent.converterToLong(revenue, 14, 2);
                         long[] LongData25 = new long[LongData.length];
