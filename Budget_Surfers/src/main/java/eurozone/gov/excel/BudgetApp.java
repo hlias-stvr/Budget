@@ -457,3 +457,53 @@ private static double[] initializeData(String type) {
         }
         return new String[0];
     }
+    // ================= ΥΠΟΜΕΝΟΥ ΣΕΛΙΔΑ =================
+    private static String getSubMenuPage(int main) {
+        String title = switch (main) {
+            case 2 -> "Σύγκριση ποσοστιαίων δαπανών ανά τομέα με Ευρωζώνη";
+            case 3 -> "Σύγκριση προϋπολογισμού τελευταία 5 έτη";
+            case 4 -> "Σύγκριση βιοτικού επιπέδου της Ελλάδας";
+            case 5 -> "Ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια";
+            default -> "Υπομενού";
+        };
+         String buttons = switch (main) {
+            case 2 -> """
+                <button class="blue" onclick="location.href='/submenu?main=2&sub=1'">1 - Ποσοστιαίες δαπάνες Ελλάδας ανά τομέα</button>
+                <button class="blue" onclick="location.href='/submenu?main=2&sub=2'">2 - Σύγκριση με Μ.Ο. Ευρωζώνης</button>
+                """;
+            case 3 -> """
+                <button class="blue" onclick="location.href='/submenu?main=3&sub=1'">1 - Σύγκριση εσόδων</button>
+                <button class="blue" onclick="location.href='/submenu?main=3&sub=2'">2 - Σύγκριση δαπανών</button>
+                """;
+            case 4 -> """
+                <button class="blue" onclick="location.href='/submenu?main=4&sub=1'">1 - ΚΚΑΕΠ όλων των χωρών</button>
+                <button class="blue" onclick="location.href='/submenu?main=4&sub=2'">2 - Σύγκριση Ελλάδας με άλλες χώρες</button>
+                """;
+            case 5 -> """
+                <button class="blue" onclick="location.href='/submenu?main=5&sub=1'">1 - Δαπάνη ανά πολίτη</button>
+                <button class="blue" onclick="location.href='/submenu?main=5&sub=2'">2 - Ποσοστιαία δαπάνη ανά περιφέρεια</button>
+                """;
+            default -> "";
+        };
+
+        return """
+            <!DOCTYPE html>
+            <html lang="el">
+            <head><meta charset="UTF-8"><title>%s</title>
+            <style>
+                body {font-family: Arial; background: #f0f8ff; text-align: center; padding: 40px;}
+                button {width: 80%%; max-width: 600px; padding: 18px; margin: 15px auto; font-size: 18px; border: none; border-radius: 10px; color: white; cursor: pointer;}
+                .blue {background: #007bff;}
+                .blue:hover {background: #0056b3;}
+                .red {background: #dc3545;}
+            </style></head>
+            <body>
+                <h1>%s</h1>
+                %s
+                <br><br>
+               <button class="red" onclick="location.href='/'">0 - Πίσω στο κύριο μενού</button>
+            </body>
+            </html>
+            """.formatted(title, title, buttons);
+    }
+    
