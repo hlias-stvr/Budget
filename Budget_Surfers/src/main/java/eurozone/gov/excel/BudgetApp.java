@@ -1,3 +1,62 @@
+package eurozone.gov.excel;
+
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+
+import java.awt.Desktop;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.concurrent.Executors;
+
+public class BudgetApp {
+
+    private static String[][] revenue;
+    private static String[][] budget;
+    private static String[][] gdppop;
+    private static double[] modifiedSectorPercents = null;
+    private static double[] modifiedRegionAmounts = null;
+    private static double[] modifiedRevenueAmounts = null;
+
+    private static final Map<String, Map<String, Object>> sessions = new HashMap<>();
+
+    public static void main(String[] args) {
+        revenue = ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+        budget  = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
+        gdppop  = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
+
+        try {
+            HttpServer server = HttpServer.create(new InetSocketAddress(0), 0);
+            server.createContext("/", new MainMenuHandler());
+            server.createContext("/submenu", new SubMenuHandler());
+            server.createContext("/edit", new EditHandler());
+            server.setExecutor(Executors.newFixedThreadPool(10));
+            server.start();
+
+            int port = server.getAddress().getPort();
+            String url = "http://localhost:" + port;
+
+            System.out.println("=================================================");
+            System.out.println("ΕΦΑΡΜΟΓΗ ΠΡΟΫΠΟΛΟΓΙΣΜΟΥ");
+            System.out.println("Άνοιξε το μενού στο: " + url);
+            System.out.println("=================================================");
+
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI(url));
+                } catch (Exception e) {
+                    System.out.println("Άνοιξε χειροκίνητα: " + url);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 // ================= ΚΥΡΙΟ ΜΕΝΟΥ =================
     static class MainMenuHandler implements HttpHandler {
         private static final String HTML = """
@@ -29,8 +88,8 @@
                     <button class="blue" onclick="go(4)">4 - Σύγκριση βιοτικού επιπέδου της Ελλάδας</button>
                     <button class="blue" onclick="go(5)">5 - Ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια</button>
                     <button class="blue" onclick="go(6)">6 - Σύγκριση φορολογικών εσόδων με Ευρωζώνη</button>
-                    <button class="green" onclick="location.href='/edit'">7 - Επεξεργασία στοιχείων προϋπολογισμού (Interactive!)</button>
-                    <button class="green" onclick="go(8)">8 - Επεξεργασία στοιχείων προϋπολογισμού (Interactive!)</button>
+                    <button class="green" onclick="location.href='/edit'">7 - Επεξεργασία στοιχείων προϋπολογισμού</button>
+                    <button class="green" onclick="go(8)">8 - Προβολή ιστορικού αλλαγών</button>
                     <button class="red" onclick="if(confirm('Έξοδος;')) window.close()">0 - Έξοδος</button>
                 </div>
                 <script>
@@ -108,7 +167,7 @@
  
                 // ΑΠΟΘΗΚΕΥΣΗ GLOBAL
                 if ("sectors".equals(type)) {
-                    modifiedSectorPercents = Arrays.copyOf(data, 10);
+                    modifiedSectorPercents = Arrays.copyOf(data, 11);
                 } else if ("regions".equals(type)) {
                     modifiedRegionAmounts = Arrays.copyOf(data, 7);
                 } else if ("revenues".equals(type)) {
@@ -149,7 +208,7 @@ private static void processEdit(Map<String, Object> session, Map<String, String>
                 // ΕΝΗΜΕΡΩΝΟΥΜΕ ΑΜΕΣΩΣ ΤΙΣ GLOBAL ΜΕΤΑΒΛΗΤΕΣ
                 if ("sectors".equals(type)) {
                     modifiedSectorPercents = new double[10];
-                    System.arraycopy(data, 0, modifiedSectorPercents, 0, 10);
+                    System.arraycopy(data, 0, modifiedSectorPercents, 0, 11);
                 } else if ("regions".equals(type)) {
                     modifiedRegionAmounts = new double[7];
                     System.arraycopy(data, 0, modifiedRegionAmounts, 0, 7);
@@ -162,7 +221,7 @@ private static void processEdit(Map<String, Object> session, Map<String, String>
         }
     }
 }
-// Εδώ αρχίζει ο Άγγελος
+
 private static String getResultsAfterEdit(String type) {
     StringBuilder sb = new StringBuilder();
     sb.append("<div style='background:#f4f9ff; padding:25px; border-radius:12px; border-left:6px solid #28a745; text-align:left;'>");
@@ -221,7 +280,7 @@ private static String getResultsAfterEdit(String type) {
 
         // --- ΕΣΟΔΑ (REVENUES) ---
         else if ("revenues".equals(type) && modifiedRevenueAmounts != null) {
-    sb.append("<h3 style='color:#003366;'>3. Νέα Σύγκριση Φορολογικών Εσόδων με Ευρωζώνη</h3>");
+            sb.append("<h3 style='color:#003366;'>3. Νέα Σύγκριση Φορολογικών Εσόδων με Ευρωζώνη</h3>");
 
     try {
         // Διασφάλιση ότι ο πίνακας έχει τουλάχιστον 3 στοιχεία για να βρούμε τους φόρους (index 1 και 2)
@@ -357,9 +416,7 @@ private static double[] initializeData(String type) {
         // Αν το B έχει 11 στοιχεία, τα παίρνουμε. Αν έχει 10, γεμίζουμε τα υπόλοιπα.
         System.arraycopy(B, 0, copy, 0, Math.min(B.length, 11));
         
-        copy[10] = 50.69; /* Η 11η θέση που "ικανοποιεί" την AvgEurozone
-                            λίγο magic number αλλά its okay :D
-                             */ 
+        copy[10] = 50.69; /* Η 11η θέση που "ικανοποιεί" την AvgEurozone */ 
         return copy;
     
         } else if ("regions".equals(type)) {
@@ -506,27 +563,7 @@ private static double[] initializeData(String type) {
             </html>
             """.formatted(title, title, buttons);
     }
-    // ================= ΣΕΛΙΔΑ ΑΠΟΤΕΛΕΣΜΑΤΟΣ =================
-    private static String resultPage(String result, int main) {
-        return """
-            <!DOCTYPE html>
-            <html lang="el">
-            <head><meta charset="UTF-8"><title>Αποτέλεσμα</title>
-            <style>
-                body {font-family: Arial; background: #f9f9f9; padding: 20px;}
-                pre {background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); white-space: pre-wrap; font-family: monospace;}
-                button {padding: 15px 30px; margin: 20px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer;}
-                .blue {background: #007bff; color: white;}
-                .red {background: #dc3545; color: white;}
-            </style></head>
-            <body>
-                <pre>%s</pre>
-                <button class="blue" onclick="location.href='/submenu?main=%d'">Πίσω στο υπομενού</button>
-                <button class="red" onclick="location.href='/'">Κύριο μενού</button>
-            </body>
-            </html>
-            """.formatted(result, main);
-    }
+
      // ================= ΣΕΛΙΔΑ ΑΠΟΤΕΛΕΣΜΑΤΟΣ =================
     private static String resultPage(String result, int main) {
         return """
@@ -549,12 +586,7 @@ private static double[] initializeData(String type) {
             """.formatted(result, main);
     }
 
-                 }
-                } else if (sub == 2) {
-                    sb.append("ΣΥΓΚΡΙΣΗ ΔΑΠΑΝΩΝ ΤΕΛΕΥΤΑΙΑ 5 ΕΤΗ\n\n");
-                    sb.append("Ποσοστιαίες διαφορές (%):\n");
-                    for (int i = 0; i < h.length; i++) {
-                        sb.append(String.format("%-40s", revenue[i+14][1]));
+             
          // ================= ΕΚΤΕΛΕΣΗ ΕΠΙΛΟΓΩΝ =================
     private static String executeChoice(int main, int sub) {
         StringBuilder sb = new StringBuilder();
@@ -606,7 +638,14 @@ private static double[] initializeData(String type) {
                         sb.append(String.format("%-40s", revenue[i][1]));
                         for (int j = 0; j < 4; j++) sb.append(String.format(" %,12d", n[i][j]));
                         sb.append("\n");
-                      for (int j = 0; j < 4; j++) sb.append(String.format(" %8.2f%%", h[i][j]));
+                    }
+                } else if (sub == 2) {
+                    sb.append("ΣΥΓΚΡΙΣΗ ΔΑΠΑΝΩΝ ΤΕΛΕΥΤΑΙΑ 5 ΕΤΗ\n\n");
+                    sb.append("Ποσοστιαίες διαφορές (%):\n");
+                    sb.append("Έτη: 24-25 | 23-24 | 22-23 | 21-22\n");
+                    for (int i = 0; i < h.length; i++) {
+                        sb.append(String.format("%-40s", revenue[i+14][1]));
+                        for (int j = 0; j < 4; j++) sb.append(String.format(" %8.2f%%", h[i][j]));
                         sb.append("\n");
                     }
                     sb.append("\nΠοσά διαφορές:\n");
@@ -615,7 +654,8 @@ private static double[] initializeData(String type) {
                         for (int j = 0; j < 4; j++) sb.append(String.format(" %,12d", m[i][j]));
                         sb.append("\n");
                     }
-                }
+
+                } 
             }
             case 4 -> {
                 long[][] D = EuzLivingStandard.compareToLong(gdppop);
@@ -738,3 +778,4 @@ private static double[] initializeData(String type) {
         }
     }
 }
+                
