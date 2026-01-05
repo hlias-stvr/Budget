@@ -682,3 +682,18 @@ private static double[] initializeData(String type) {
         }
         return sb.toString();
     }
+    // ================= ΒΟΗΘΗΤΙΚΕΣ =================
+    private static int parseParam(String query, String param, int def) {
+        if (query == null) return def;
+        for (String p : query.split("&")) {
+            if (p.startsWith(param + "=")) {
+                try {
+                    return Integer.parseInt(p.substring(param.length() + 1));
+                } catch (Exception e) {
+                    return def;
+                }
+            }
+        }
+        return def;
+    }
+    
