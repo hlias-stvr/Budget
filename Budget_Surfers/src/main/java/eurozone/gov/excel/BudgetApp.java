@@ -117,7 +117,10 @@ public class BudgetApp {
                     <button class="blue" onclick="go(6)">6 - Σύγκριση φορολογικών εσόδων με Ευρωζώνη</button>
                     <button class="green" onclick="location.href='/edit'">7 - Επεξεργασία στοιχείων προϋπολογισμού</button>
                     <button class="green" onclick="go(8)">8 - Προβολή ιστορικού αλλαγών</button>
-                    <button class="red" onclick="if(confirm('Έξοδος;')) window.close()">0 - Έξοδος</button>
+                    <button class="red" onclick="if(confirm('Έξοδος;')) {
+                    window.open('', '_self', '');
+                    window.close();
+                    }">0 - Έξοδος</button>
                 </div>
                 <script>
                     function go(choice) {
