@@ -3,8 +3,7 @@ package eurozone.gov.excel;
 import java.util.Scanner;
 
 public class ChangeData {
-    public static double[] newGrPercent(double[] grpercent, String[] grSectors) {
-        Scanner input = new Scanner(System.in);
+    public static double[] newGrPercent(double[] grpercent, String[] grSectors, Scanner scanner) {
         double startsumpercent = grpercent[10];
         System.out.println("Αυτός είναι ο πίνακας με τις αρχικές ποσοστιαίες δαπάνες ανά τομέα.");
         for (int i = 0; i < grpercent.length; i++) {
@@ -21,37 +20,38 @@ public class ChangeData {
                     System.out.println("Αρχικό συνολικό ποσοστό: " + startsumpercent + "%");
                     System.out.println("Νέο συνολικό ποσοστό: " + grpercent[10] + "%");
                     if (grpercent[10] < startsumpercent) {
-                        System.out.println("Μένει να πρσθέσεις " + Math.round(((startsumpercent - grpercent[10]) * 100.0) / 100.0)
+                        System.out.println("Μένει να πρσθέσεις " + Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0
                         + "% σε κάποιον/ους τομέα/εις");
-                        } else if (grpercent[10] > startsumpercent) {
-                        System.out.println("Μένει να αφαιρέσεις " + Math.abs(Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0)
+                    } else if (grpercent[10] > startsumpercent) {
+                        System.out.println("Μένει να αφαιρέσεις " + Math.abs(Math.round(startsumpercent - grpercent[10]) * 100.0) / 100.0
                         + "% από κάποιον/ους τομέα/εις");
-                        }
+                    }
                     System.out.println("Διάλεξε τον αριθμό του τομέα του οποίου " +
                     "την ποσοστιαία δαπάνη θέλεις να αλλάξεις.");
                     System.out.println("Επιλέγοντας τον αριθμό για τον " + 
                     "συγκεκριμένο τομέα θα σου ζητηθεί να εισάγεις το νέο ποσοστό.");
-                    input1 = input.nextInt();
+                    input1 = scanner.nextInt();
                     if (input1 < 1 || input1 > 10) {
-                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 1 μέχρι 9.");
+                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 1 μέχρι 10.");
                     }
                     break;
                 } catch (IllegalArgumentException e){
                         System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                         System.out.println("Πρέπει να δώσεις αριθμό");
-                        input.nextLine();
+                        scanner.nextLine();
                 }
             }
             System.out.println("Δώσε το νέο ποσοστό για τον τομέα (χωρίς το σύμβολο %)" + grSectors[input1 - 1]);
             while (true) {
                 try {
-                    input2 = input.nextDouble();
+                    input2 = scanner.nextDouble();
                     if (input2 <= 0.0) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι μεγαλύτερη από 0.");
                     }
                     grpercent[10] = Math.round((grpercent[10] + input2 - grpercent[input1 - 1]) * 100.0) / 100.0;
                     grpercent[input1 - 1] = input2;
+                    ChangesHistory.addChangeDouble(grSectors[input1 -1], input2);
                     System.out.println("Ο νέος πίνακας είναι ο εξής:");
                     for (int i = 0; i < grpercent.length; i++) {
                             System.out.println(i + 1 + " "+ grSectors[i] + " " + grpercent[i] + "%");
@@ -65,7 +65,7 @@ public class ChangeData {
                         System.out.println("1 Αν θέλεις να συνεχίσεις την μετατροπή των ποσοστών");
                         while (true) {
                             try {
-                                input3 = input.nextInt();
+                                input3 = scanner.nextInt();
                                 if (input3 < 0 || input3 > 1) {
                                     throw new IllegalArgumentException("Η επιλογή πρέπει να είναι 0 ή 1");
                                 }
@@ -74,7 +74,7 @@ public class ChangeData {
                                 System.out.println("Σφάλμα" + e.getMessage());
                             } catch (Exception e) {
                                 System.out.println("Πρέπει να δώσεις αριθμό");
-                                input.nextLine();
+                                scanner.nextLine();
                             }
                         }   
                     }
@@ -83,14 +83,13 @@ public class ChangeData {
                         System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                         System.out.println("Πρέπει να δώσεις αριθμό");
-                        input.nextLine();
+                        scanner.nextLine();
                 }
             }
         } while ((grpercent[10] != startsumpercent) || (input3 == 1));
         return grpercent;
     }
-    public static long[] newAmountPerRegion(long[] budgetLong, String[][] budget) {
-        Scanner input = new Scanner(System.in);
+    public static long[] newAmountPerRegion(long[] budgetLong, String[][] budget, Scanner scanner) {
         long sum = 0;
         for (int i = 0; i < budgetLong.length; i++) {
             sum += budgetLong[i];
@@ -98,7 +97,7 @@ public class ChangeData {
         System.out.println("Αυτός είναι ο πίνακας με τα αρχικά ποσά δαπανών ανά περιφέρεια");
         for (int i = 0; i < budgetLong.length; i++) {
             System.out.print((i + 1) + " " + budget[i + 25][1] + " " + budgetLong[i]);
-            System.out.println(" που αντιστοιχεί στο " + (Math.round(((budgetLong[i] /(double) sum) * 100) * 100.0) / 100.0)
+            System.out.println(" που αντιστοιχεί στο " + Math.round(((budgetLong[i] /(double) sum) * 100) * 100.0) / 100.0
             + "% των συνολικών δαπανών για περιφέρειες");
         }
         int input3 = 1;
@@ -122,7 +121,7 @@ public class ChangeData {
                     "την δαπάνη θέλεις να αλλάξεις.");
                     System.out.println("Επιλέγοντας τον αριθμό για την " +
                     "συγκεκριμένη περιφέρεια θα σου ζητηθεί να εισάγεις το νέο ποσό.");
-                    input1 = input.nextInt();
+                    input1 = scanner.nextInt();
                     if (input1 < 1 || input1 > 7) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 1 μέχρι 7.");
                     }
@@ -131,22 +130,23 @@ public class ChangeData {
                         System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                         System.out.println("Πρέπει να δώσεις αριθμό");
-                        input.nextLine();
+                        scanner.nextLine();
                 }
             }
             System.out.println("Δώσε το νέο ποσό για την περιφέρεια " + budget[input1 + 25 - 1][1]);
             while (true) {
                 try {
-                    input2 = input.nextLong();
+                    input2 = scanner.nextLong();
                     if (input2 <= 0) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι μεγαλύτερη από 0.");
                     }
                     sum = sum + input2 - budgetLong[input1 - 1];
                     budgetLong[input1 - 1] = input2;
+                    ChangesHistory.addChangeLong(budget[input1 + 25 -1][1], input2);
                     System.out.println("Ο νέος πίνακας είναι ο εξής:");
                     for (int i = 0; i < budgetLong.length; i++) {
                             System.out.print((i + 1) + " "+ budget[i + 25][1] + " " + budgetLong[i]);
-                            System.out.println(" που αντιστοιχεί στο " + (Math.round(((budgetLong[i] /(double) sum) * 100) * 100.0) / 100.0)
+                            System.out.println(" που αντιστοιχεί στο " + Math.round(((budgetLong[i] /(double) sum) * 100) * 100.0) / 100.0
                             + "% των συνολικών δαπανών για περιφέρειες");
                     }
                     if (sum != 79592000) {
@@ -158,7 +158,7 @@ public class ChangeData {
                         System.out.println("1 Αν θέλεις να συνεχίσεις την μετατροπή των ποσών");
                         while (true) {
                             try {
-                                input3 = input.nextInt();
+                                input3 = scanner.nextInt();
                                 if (input3 < 0 || input3 > 1) {
                                     throw new IllegalArgumentException("Η επιλογή πρέπει να είναι 0 ή 1");
                                 }
@@ -167,7 +167,7 @@ public class ChangeData {
                                 System.out.println("Σφάλμα" + e.getMessage());
                             } catch (Exception e) {
                                 System.out.println("Πρέπει να δώσεις αριθμό");
-                                input.nextLine();
+                                scanner.nextLine();
                             }
                         }   
                     }
@@ -176,20 +176,19 @@ public class ChangeData {
                         System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                         System.out.println("Πρέπει να δώσεις αριθμό");
-                        input.nextLine();
+                        scanner.nextLine();
                 }
             }
         } while ((sum != 79592000) || (input3 == 1));
          return budgetLong;
     }
-    public static long[] newRevenue(long[] LongData, String[][] revenue) {
-        Scanner input = new Scanner(System.in);
+    public static long[] newRevenue(long[] LongData, String[][] revenue, Scanner scanner) {
         long startsum = LongData[0];
         System.out.println("Αυτός είναι ο πίνακας με τα αρχικά αναλυτικά έσοδα");
         System.out.println("ΣΥΝΟΛΙΚΑ " + revenue[0][1] + " " + LongData[0]);
         for (int i = 1; i < LongData.length; i++) {
             System.out.print(i + " " + revenue[i][1] + " " + LongData[i]);
-            System.out.println(" που αντιστοιχεί στο " + (Math.round(((LongData[i] /(double) startsum) * 100) * 100.0) / 100.0)
+            System.out.println(" που αντιστοιχεί στο " + Math.round(((LongData[i] /(double) startsum) * 100) * 100.0) / 100.0
             + "% των συνολικών εσόδων");
         }
         int input3 = 1;
@@ -217,7 +216,7 @@ public class ChangeData {
                     "το ποσό θέλεις να αλλάξεις.");
                     System.out.println("Επιλέγοντας τον αριθμό για την " +
                     "συγκεκριμένη κατηγορία θα σου ζητηθεί να εισάγεις το νέο ποσό.");
-                    input1 = input.nextInt();
+                    input1 = scanner.nextInt();
                     if (input1 < 1 || input1 > 13) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 1 μέχρι 13.");
                     }
@@ -226,23 +225,24 @@ public class ChangeData {
                         System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                         System.out.println("Πρέπει να δώσεις αριθμό");
-                        input.nextLine();
+                        scanner.nextLine();
                 }
             }
             System.out.println("Δώσε το νέο ποσό για την κατηγορία " + revenue[input1][1]);
             while (true) {
                 try {
-                    input2 = input.nextLong();
+                    input2 = scanner.nextLong();
                     if (input2 <= 0) {
                         throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι μεγαλύτερη από 0.");
                     }
                     LongData[0] = LongData[0] + input2 - LongData[input1];
                     LongData[input1] = input2;
+                    ChangesHistory.addChangeLong(revenue[input1][1], input2);
                     System.out.println("Ο νέος πίνακας είναι ο εξής:");
                     System.out.println("ΣΥΝΟΛΙΚΑ " + revenue[0][1] + " " + LongData[0]);
                     for (int i = 1; i < LongData.length; i++) {
                             System.out.print(i + " "+ revenue[i][1] + " " + LongData[i]);
-                            System.out.println(" που αντιστοιχεί στο " + (Math.round(((LongData[i] /(double) LongData[0]) * 100) * 100.0) / 100.0)
+                            System.out.println(" που αντιστοιχεί στο " + Math.round(((LongData[i] /(double) LongData[0]) * 100) * 100.0) / 100.0
                             + "% των συνολικών εσόδων");
                     }
                     if (LongData[0] != startsum) {
@@ -254,7 +254,7 @@ public class ChangeData {
                         System.out.println("1 Αν θέλεις να συνεχίσεις την μετατροπή των ποσών");
                         while (true) {
                             try {
-                                input3 = input.nextInt();
+                                input3 = scanner.nextInt();
                                 if (input3 < 0 || input3 > 1) {
                                     throw new IllegalArgumentException("Η επιλογή πρέπει να είναι 0 ή 1");
                                 }
@@ -263,7 +263,7 @@ public class ChangeData {
                                 System.out.println("Σφάλμα" + e.getMessage());
                             } catch (Exception e) {
                                 System.out.println("Πρέπει να δώσεις αριθμό");
-                                input.nextLine();
+                                scanner.nextLine();
                             }
                         }   
                     }
@@ -272,7 +272,7 @@ public class ChangeData {
                         System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
                         System.out.println("Πρέπει να δώσεις αριθμό");
-                        input.nextLine();
+                        scanner.nextLine();
                 }
             }
         } while ((LongData[0] != startsum) || (input3 == 1));

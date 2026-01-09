@@ -23,13 +23,14 @@ public class ReadTwoCsvFiles {
             System.out.println("5 για ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια" );
             System.out.println("6 για σύγκριση φορολογικών εσόδων αναλογικά με τον μέσο όρο της Ευρωζώνης");
             System.out.println("7 για επεξεργασία στοιχείων προϋπολογισμού");
+            System.out.println("8 για προβολή ιστορικού αλλαγών");
             System.out.println("0 για έξοδο");
             
             while (true) { // μεχρι ο χρηστης να δώσει σωστή τιμή
                 try {
                     choice = scanner.nextInt(); 
-                    if (choice < 0 || choice > 7) { // έλεγχος για τις βασικές επιλογές 
-                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 0 μέχρι 7");
+                    if (choice < 0 || choice > 8) { // έλεγχος για τις βασικές επιλογές 
+                        throw new IllegalArgumentException(" Η επιλογή πρέπει να είναι από 0 μέχρι 8");
                     }
                     if (choice == 0) { 
                         System.out.println("Έξοδος από το πρόγραμμα");
@@ -351,7 +352,7 @@ public class ReadTwoCsvFiles {
                                         long [] A = AvgEurozone.convertToLong(budget);
                                         double [] grpercent = AvgEurozone.ministrDiv(A);
                                         String[] grSectors = AvgEurozone.sectors();
-                                        double[] newgrPercent = ChangeData.newGrPercent(grpercent, grSectors);
+                                        double[] newgrPercent = ChangeData.newGrPercent(grpercent, grSectors, scanner);
                                         double [] newCompareAvgEurz = AvgEurozone.compareGrToEurozone(newgrPercent);    
                                         int choice7 = -1;
                                         // αν αλλάξει τα δεδομένα της επιλογής 1           
@@ -394,7 +395,7 @@ public class ReadTwoCsvFiles {
                                         break;
                                     } else if (choice8 == 2) {
                                         long[] longBudget = RegionalPer.transformToLong(budget);
-                                        long[] newLongBudget = ChangeData.newAmountPerRegion(longBudget,  budget);
+                                        long[] newLongBudget = ChangeData.newAmountPerRegion(longBudget,  budget, scanner);
                                         int choice9 = -1;
                                         // αν αλλάξει τα δεδομένα της επιλογής 2
                                         do {
@@ -402,8 +403,8 @@ public class ReadTwoCsvFiles {
                                             double perRegion[] = RegionalPer.calcBudgetPerRegion(newLongBudget);
                                             // ξανακαλεί τις μεθόδους που έχουν να κάνουν με αυτά που άλλαξε
                                             // για να δει την διαφορά
-                                            System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
-                                            System.out.println("2 για να δεις την ποσοστιαία δαπάνη ανά περιφέρεια");
+                                            System.out.println("Γράψε\n1 για να δεις την νέα δαπάνη ανά πολίτη");
+                                            System.out.println("2 για να δεις την νέα ποσοστιαία δαπάνη ανά περιφέρεια");
                                             System.out.println("0 για πίσω");
                                             while (true) {
                                                 try {
@@ -435,7 +436,7 @@ public class ReadTwoCsvFiles {
                                         for (int i = 0; i < LongData25.length; i++) {
                                             LongData25[i] = LongData[i][0];
                                         }
-                                        long[] newLongData= ChangeData.newRevenue(LongData25, revenue);
+                                        long[] newLongData= ChangeData.newRevenue(LongData25, revenue, scanner);
                                         System.out.println("Ακολουθεί η σύγκριση των νέων φορολογικών εσόδων με τον μέσο όρο της Ευρωζώνης");
                                         CompareEuzTaxes.Calculation(newLongData);
                                         
@@ -449,6 +450,8 @@ public class ReadTwoCsvFiles {
                                 }
                             }
                         } while (choice8 !=0);
+                    } else if (choice == 8) {
+                        ChangesHistory.printAll();
                     }
                     break;
                 } catch (IllegalArgumentException e){
