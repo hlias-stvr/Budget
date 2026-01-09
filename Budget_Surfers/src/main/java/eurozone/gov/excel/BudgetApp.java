@@ -1,9 +1,7 @@
 package eurozone.gov.excel;
-
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-
 import java.awt.Desktop;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,7 +12,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.Executors;
-
 public class BudgetApp {
 
     private static String[][] revenue;
@@ -44,6 +41,7 @@ public class BudgetApp {
             server.createContext("/", new MainMenuHandler());
             server.createContext("/submenu", new SubMenuHandler());
             server.createContext("/edit", new EditHandler());
+            server.createContext("/exit", new ExitHandler());
             server.setExecutor(Executors.newFixedThreadPool(10));
             server.start();
 
@@ -117,10 +115,7 @@ public class BudgetApp {
                     <button class="blue" onclick="go(6)">6 - Σύγκριση φορολογικών εσόδων με Ευρωζώνη</button>
                     <button class="green" onclick="location.href='/edit'">7 - Επεξεργασία στοιχείων προϋπολογισμού</button>
                     <button class="green" onclick="go(8)">8 - Προβολή ιστορικού αλλαγών</button>
-                    <button class="red" onclick="if(confirm('Έξοδος;')) {
-                    window.open('', '_self', '');
-                    window.close();
-                    }">0 - Έξοδος</button>
+                    <button class="red" onclick="if(confirm('Έξοδος;')) location.href='/exit'">0 - Έξοδος</button>
                 </div>
                 <script>
                     function go(choice) {
@@ -330,9 +325,9 @@ private static String getResultsAfterEdit(String type) {
             sb.append("<hr>");
 
             if (grPct > avg) {
-                sb.append("<p style='color:#d9534f; font-weight:bold; font-size:18px;'>⚠️ Η Ελλάδα υπερβαίνει τον Μ.Ο. κατά ").append(String.format("%.2f", diff)).append(" ποσοστιαίες μονάδες.</p>");
+                sb.append("<p style='color:#d9534f; font-weight:bold; font-size:18px;'> Η Ελλάδα υπερβαίνει τον Μ.Ο. κατά ").append(String.format("%.2f", diff)).append(" ποσοστιαίες μονάδες.</p>");
             } else if (grPct < avg) {
-                sb.append("<p style='color:#5cb85c; font-weight:bold; font-size:18px;'>✅ Η Ελλάδα υστερεί κατά ").append(String.format("%.2f", diff)).append(" ποσοστιαίες μονάδες.</p>");
+                sb.append("<p style='color:#5cb85c; font-weight:bold; font-size:18px;'> Η Ελλάδα υστερεί κατά ").append(String.format("%.2f", diff)).append(" ποσοστιαίες μονάδες.</p>");
             } else {
                 sb.append("<p style='color:#5cb85c; font-weight:bold; font-size:18px;'>Το ποσοστό είναι ακριβώς ίσο με τον Μ.Ο. της Ευρωζώνης.</p>");
             }
@@ -595,6 +590,8 @@ private static double[] initializeData(String type) {
 
      // ================= ΣΕΛΙΔΑ ΑΠΟΤΕΛΕΣΜΑΤΟΣ =================
     private static String resultPage(String result, int main) {
+        boolean hasNoSubMenu = (main == 1 || main == 6 || main == 8);
+        String subMenuButtonStyle = hasNoSubMenu ? "display:none;" : "display:inline-block;";
         return """
             <!DOCTYPE html>
             <html lang="el">
@@ -608,11 +605,11 @@ private static double[] initializeData(String type) {
             </style></head>
             <body>
                 <pre>%s</pre>
-                <button class="blue" onclick="location.href='/submenu?main=%d'">Πίσω στο υπομενού</button>
+                <button class="blue" style="%s" onclick="location.href='/submenu?main=%d'">Πίσω στο υπομενού</button>
                 <button class="red" onclick="location.href='/'">Κύριο μενού</button>
             </body>
             </html>
-            """.formatted(result, main);
+            """.formatted(result,subMenuButtonStyle, main);
     }
 
              
@@ -845,5 +842,26 @@ private static double[] initializeData(String type) {
             os.write(b);
         }
     }
+    static class ExitHandler implements HttpHandler {
+    @Override
+    public void handle(HttpExchange exchange) throws IOException {
+        String response = """
+            <!DOCTYPE html>
+            <html lang="el">
+            <head><meta charset="UTF-8"></head>
+            <body style="font-family: Arial; text-align: center; padding-top: 100px;">
+                <h1>Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή Budget Surfers!</h1>
+                <p>Μπορείτε τώρα να κλείσετε αυτή την καρτέλα του browser.</p>
+            </body>
+            </html>
+            """;
+        byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
+        exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
+        exchange.sendResponseHeaders(200, bytes.length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(bytes);
+        }
+    }
+}
 }
                 
