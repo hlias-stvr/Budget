@@ -287,7 +287,7 @@ private static String getResultsAfterEdit(String type) {
         if (modifiedRevenueAmounts.length >= 3) {
             
             // Υπολογισμός Φόρων (π.χ. Άμεσοι + Έμμεσοι Φόροι)
-            long grTaxes = (long) modifiedRevenueAmounts[1] + (long) modifiedRevenueAmounts[2];
+            long grTaxes = (long) modifiedRevenueAmounts[0] + (long) modifiedRevenueAmounts[1];
             
             // Υπολογισμός ποσοστού επί του ΑΕΠ (206 δις)
             double grPct = (grTaxes / 206000000000.0) * 100;
