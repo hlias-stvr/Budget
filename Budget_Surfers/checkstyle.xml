@@ -29,13 +29,26 @@
             <property name="severity" value="warning"/>
         </module>
         
+        <!-- Space after comma and semicolon -->
         <module name="WhitespaceAfter">
             <property name="tokens" value="COMMA,SEMI"/>
             <property name="severity" value="warning"/>
         </module>
         
+        <!-- No space before semicolon -->
         <module name="NoWhitespaceBefore">
-            <property name="tokens" value="SEMI,POST_DEC,POST_INC"/>
+            <property name="tokens" value="SEMI,POST_DEC,POST_INC,COMMA"/>
+            <property name="severity" value="warning"/>
+        </module>
+        
+        <!-- Space after 'for', 'if', 'while', etc before parenthesis -->
+        <module name="WhitespaceAfter">
+            <property name="tokens" value="LITERAL_FOR,LITERAL_IF,LITERAL_WHILE,LITERAL_DO"/>
+            <property name="severity" value="warning"/>
+        </module>
+        
+        <!-- No space after opening parenthesis -->
+        <module name="ParenPad">
             <property name="severity" value="warning"/>
         </module>
         
