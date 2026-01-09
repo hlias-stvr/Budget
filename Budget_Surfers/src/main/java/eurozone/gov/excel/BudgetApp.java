@@ -235,8 +235,6 @@ private static void processEdit(Map<String, Object> session, Map<String, String>
             int idx = Integer.parseInt(params.get("index")) - 1;
             double newVal = Double.parseDouble(params.get("value"));
             double[] data = (double[]) session.get("data");
-            String type = (String) session.get("editType");
- 
             if (idx >= 0 && idx < data.length && newVal >= 0) {
                 data[idx] = newVal;
             }

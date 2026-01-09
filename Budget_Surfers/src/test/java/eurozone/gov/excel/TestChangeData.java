@@ -4,14 +4,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Scanner;
+
 public class TestChangeData {
+    Scanner scanner = new Scanner(System.in);
     @Test
     void testNewGrPercent() {
         String[][] budget = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
         long [] A = AvgEurozone.convertToLong(budget);
         double [] grpercent = AvgEurozone.ministrDiv(A);
         String [] grSectors = AvgEurozone.sectors();
-        double [] testarray = ChangeData.newGrPercent(grpercent, grSectors); 
+        double [] testarray = ChangeData.newGrPercent(grpercent, grSectors, scanner); 
         assertNotNull(testarray);
         for (int i = 0; i < testarray.length - 1; i++) {
             assertTrue(testarray[i] > 0);
@@ -22,7 +25,7 @@ public class TestChangeData {
         String[][] budget =
         ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
         long [] budgetLong = AvgEurozone.convertToLong(budget);
-        long [] testarray = ChangeData.newAmountPerRegion(budgetLong, budget);
+        long [] testarray = ChangeData.newAmountPerRegion(budgetLong, budget, scanner);
         assertNotNull(testarray);
         for (int i = 0; i < testarray.length - 1; i++) {
             assertTrue(testarray[i] > 0);
@@ -37,7 +40,7 @@ public class TestChangeData {
         for (int i = 0; i < LongData25.length; i++) {
             LongData25[i] = LongData[i][0];
         }
-        long [] testarray = ChangeData.newRevenue(LongData25, revenue);
+        long [] testarray = ChangeData.newRevenue(LongData25, revenue, scanner);
         assertNotNull(testarray);
         for (int i = 0; i < testarray.length - 1; i++) {
             assertTrue(testarray[i] > 0);
