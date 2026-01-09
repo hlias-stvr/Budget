@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.Executors;
 
@@ -18,16 +20,24 @@ public class BudgetApp {
     private static String[][] revenue;
     private static String[][] budget;
     private static String[][] gdppop;
-    private static double[] modifiedSectorPercents = null;
-    private static double[] modifiedRegionAmounts = null;
-    private static double[] modifiedRevenueAmounts = null;
+    private static double[] modifiedSectorPercents;
+    private static double[] modifiedRegionAmounts;
+    private static double[] modifiedRevenueAmounts;
 
     private static final Map<String, Map<String, Object>> sessions = new HashMap<>();
+    static List<String> historyTypes = new ArrayList<>();
+    static List<String> historyTypeNames = new ArrayList<>();
+    static List<double[]> historyOldValues = new ArrayList<>();
+    static List<double[]> historyNewValues = new ArrayList<>();
+    static List<LocalDateTime> historyTimestamps = new ArrayList<>();
 
     public static void main(String[] args) {
         revenue = ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         budget  = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
         gdppop  = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
+        modifiedSectorPercents = initializeData("sectors");
+        modifiedRegionAmounts = initializeData("regions");
+        modifiedRevenueAmounts = initializeData("revenues");
 
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress(0), 0);
@@ -57,6 +67,23 @@ public class BudgetApp {
         }
     }
 
+    static void addToHistory(String type, double[] oldData, double[] newData) {
+        if (!Arrays.equals(oldData, newData)) {
+            historyTypes.add(type);
+            historyOldValues.add(Arrays.copyOf(oldData, oldData.length));
+            historyNewValues.add(Arrays.copyOf(newData, newData.length));
+            historyTimestamps.add(LocalDateTime.now());
+            
+            String typeName;
+            switch(type) {
+                case "sectors": typeName = "Τομείς Δαπανών"; break;
+                case "regions": typeName = "Περιφέρειες"; break;
+                case "revenues": typeName = "Έσοδα"; break;
+                default: typeName = type;
+            }
+            historyTypeNames.add(typeName);
+        }
+    }
 // ================= ΚΥΡΙΟ ΜΕΝΟΥ =================
     static class MainMenuHandler implements HttpHandler {
         private static final String HTML = """
@@ -101,7 +128,7 @@ public class BudgetApp {
             </html>
             """;
 
-             @Override
+        @Override
         public void handle(HttpExchange exchange) throws IOException {
             sendHtml(exchange, HTML);
         }
@@ -126,6 +153,7 @@ public class BudgetApp {
             }
         }
     }
+
 
     // ================= INTERACTIVE ΕΠΕΞΕΡΓΑΣΙΑ 7 =================
     static class EditHandler implements HttpHandler {
@@ -167,10 +195,19 @@ public class BudgetApp {
  
                 // ΑΠΟΘΗΚΕΥΣΗ GLOBAL
                 if ("sectors".equals(type)) {
+                    if (modifiedSectorPercents != null) {
+                        addToHistory(type, modifiedSectorPercents, data);
+                    }
                     modifiedSectorPercents = Arrays.copyOf(data, 11);
                 } else if ("regions".equals(type)) {
+                    if (modifiedRegionAmounts != null) {
+                        addToHistory(type, modifiedRegionAmounts, data);
+                    }
                     modifiedRegionAmounts = Arrays.copyOf(data, 7);
                 } else if ("revenues".equals(type)) {
+                    if (modifiedRevenueAmounts != null) {
+                        addToHistory(type, modifiedRevenueAmounts, data);
+                    }
                     modifiedRevenueAmounts = Arrays.copyOf(data, data.length);
                 }
  
@@ -204,17 +241,6 @@ private static void processEdit(Map<String, Object> session, Map<String, String>
  
             if (idx >= 0 && idx < data.length && newVal >= 0) {
                 data[idx] = newVal;
- 
-                // ΕΝΗΜΕΡΩΝΟΥΜΕ ΑΜΕΣΩΣ ΤΙΣ GLOBAL ΜΕΤΑΒΛΗΤΕΣ
-                if ("sectors".equals(type)) {
-                    modifiedSectorPercents = new double[10];
-                    System.arraycopy(data, 0, modifiedSectorPercents, 0, 11);
-                } else if ("regions".equals(type)) {
-                    modifiedRegionAmounts = new double[7];
-                    System.arraycopy(data, 0, modifiedRegionAmounts, 0, 7);
-                } else if ("revenues".equals(type)) {
-                    modifiedRevenueAmounts = Arrays.copyOf(data, data.length);
-                }
             }
         } catch (Exception ignored) {
             // Ignore invalid input
@@ -717,6 +743,45 @@ private static double[] initializeData(String type) {
                 sb.append("Μ.Ο. Ευρωζώνης: ").append(avg).append("%\n\n");
                 sb.append(grPct > avg ? "Η Ελλάδα έχει υψηλότερα κατά " : "Η Ευρωζώνη έχει υψηλότερα κατά ").append(diff).append(" ποσοστιαίες μονάδες\n");
             }
+            case 8 -> {
+                if (historyTypes.isEmpty()) {
+                    sb.append("ΔΕΝ ΥΠΑΡΧΟΥΝ ΚΑΤΑΓΕΓΡΑΜΜΕΝΕΣ ΑΛΛΑΓΕΣ\n\n");
+                    sb.append("Δεν έχετε κάνει καμία επεξεργασία ακόμα.\n");
+                    sb.append("Χρησιμοποιήστε την επιλογή 7 για να κάνετε αλλαγές.");
+                } else {
+                    sb.append("=== ΙΣΤΟΡΙΚΟ ΑΛΛΑΓΩΝ ===\n\n");
+                    sb.append("Σύνολο αλλαγών: ").append(historyTypes.size()).append("\n\n");
+                    
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                
+                    for (int i = 0; i < historyTypes.size(); i++) {
+                        sb.append("─────────────────────────────────────────\n");
+                        sb.append("Αλλαγή #").append(i + 1).append("\n");
+                        sb.append("Τύπος: ").append(historyTypeNames.get(i)).append("\n");
+                        sb.append("Ημερομηνία: ").append(historyTimestamps.get(i).format(formatter)).append("\n\n");
+                        
+                        String[] labels = getLabels(historyTypes.get(i));
+                        double[] oldVals = historyOldValues.get(i);
+                        double[] newVals = historyNewValues.get(i);
+                        
+                        sb.append("Αλλαγές:\n");
+                        for (int j = 0; j <= oldVals.length - 1; j++) {
+                            if (oldVals[j] != newVals[j]) {
+                                sb.append("  • ").append(labels[j]).append(": ");
+                                sb.append(String.format("%.2f", oldVals[j]));
+                                sb.append(" → ");
+                                sb.append(String.format("%.2f", newVals[j]));
+                                
+                                double diff = newVals[j] - oldVals[j];
+                                sb.append(String.format(" (%+.2f)", diff));
+                                sb.append("\n");
+                            }
+                        }
+                        sb.append("\n");
+                    }
+                }
+            }
+                    
             // Προσθέτεις τις υπόλοιπες όπως θέλεις
             default -> sb.append("Αποτέλεσμα για επιλογή ").append(main).append(" - υποεπιλογή ").append(sub);
         }
