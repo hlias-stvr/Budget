@@ -60,7 +60,7 @@ public class Main {
                 } catch (IllegalArgumentException e){
                     System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
-                    System.out.println("Πρέπει να δώσεις αριθμό");
+                    System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
             }
