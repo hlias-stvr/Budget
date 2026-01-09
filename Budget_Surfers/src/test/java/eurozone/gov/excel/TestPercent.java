@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestPercent {
     @Test
     void testconvertToLong() {
-        String[][] revenue = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_revenue_expenses_25.csv");
+        String[][] revenue = ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] testarray1 = Percent.converterToLong(revenue, 14, 2);
         long[][] testarray2 = Percent.converterToLong(revenue, 16, 16);
         assertNotNull(testarray1);
@@ -29,7 +29,7 @@ public class TestPercent {
     }
     @Test
     void testpercentual() {
-        String[][] revenue = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_revenue_expenses_25.csv");
+        String[][] revenue = ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] testarray1 = Percent.converterToLong(revenue, 14, 2);
         long[][] testarray2 = Percent.converterToLong(revenue, 16, 16);
         double[][] testarray3 = Percent.percentual(testarray1);
@@ -41,7 +41,7 @@ public class TestPercent {
     }
     @Test
     void testamount() {
-        String[][] revenue = ReadTwoCsvFiles.readCsv("src\\main\\resourses\\gr_revenue_expenses_25.csv");
+        String[][] revenue = ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] testarray1 = Percent.converterToLong(revenue, 14, 2);
         long[][] testarray2 = Percent.converterToLong(revenue, 16, 16);
         long[][] testarray5 = Percent.amount(testarray1);
