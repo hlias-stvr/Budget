@@ -45,7 +45,7 @@ public class Subchoises {
                 } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
-                    System.out.println("Πρέπει να δώσεις αριθμό");
+                    System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
             }
@@ -82,7 +82,7 @@ public class Subchoises {
                 } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
-                    System.out.println("Πρέπει να δώσεις αριθμό");
+                    System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
             }
@@ -130,7 +130,7 @@ public class Subchoises {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Πρόβλημα με τον πίνακα: " + e.getMessage());
                 } catch (Exception e) {
-                    System.out.println("Πρέπει να δώσεις αριθμό");
+                    System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
             }
@@ -178,7 +178,7 @@ public class Subchoises {
                 } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
-                    System.out.println("Πρέπει να δώσεις αριθμό");
+                    System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
             }
@@ -215,7 +215,7 @@ public class Subchoises {
                 } catch (IllegalArgumentException e){
                     System.out.println("Σφάλμα" + e.getMessage());
                 } catch (Exception e) {
-                    System.out.println("Πρέπει να δώσεις αριθμό");
+                    System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
             }
