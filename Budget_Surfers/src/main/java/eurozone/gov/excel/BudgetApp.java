@@ -316,7 +316,7 @@ private static String getResultsAfterEdit(String type) {
             double avg = 40.9; // Μέσος Όρος Ευρωζώνης
             double diff = Math.abs(grPct - avg);
 
-            sb.append("<div style='background:white; padding:20px; border-radius:10px; border:1px solid #ddd; display:inline-block; text-align:left;'>");
+            sb.append("<div style='background:white; padding:20px; border-radius:10px; border:1px solid ; display:inline-block; text-align:left;'>");
             sb.append("<p style='font-size:18px;'>Συνολικά Φορολογικά Έσοδα: <b>").append(String.format("%,d €", grTaxes)).append("</b></p>");
             sb.append("<p style='font-size:18px;'>Ποσοστό Ελλάδας: <b style='color:#007bff;'>").append(String.format("%.2f%%", grPct)).append("</b> του ΑΕΠ</p>");
             sb.append("<p style='font-size:18px;'>Μέσος Όρος Ευρωζώνης: <b>40.90%</b></p>");
