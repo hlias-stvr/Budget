@@ -1,6 +1,7 @@
 package eurozone.gov.excel;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -118,6 +119,7 @@ public class ReadTwoCsvFiles {
                                                     }
                                                     if (choice4 == 1) {
                                                         System.out.println("Η διαφορά των ποσοστών των εσόδων ανά έτος είναι:");
+                                                        System.out.println("Έτη:  24-25, 23-24, 22-23, 21-22");
                                                         for(int i = 0; i < g.length; i++) {
                                                             for(int j = 0; j < 4; j++) {
                                                                 if (j == 0) {
@@ -131,6 +133,7 @@ public class ReadTwoCsvFiles {
                                                         }
                                                     } else if (choice4 == 2) {
                                                         System.out.println("η διαφορά των ποσών των εσόδων ανά έτος είναι:");
+                                                        System.out.println("Έτη:   24-25,      23-24,      22-23,      21-22");
                                                         for(int i = 0; i < n.length; i++) {
                                                             for(int j = 0; j < 4; j++) {
                                                                 if (j == 0) {
@@ -173,10 +176,11 @@ public class ReadTwoCsvFiles {
                                                     }
                                                     if (choice4 == 1) {
                                                         System.out.println("Η διαφορά των ποσοστών ανά έτος είναι:");
+                                                        System.out.println("Έτη:  24-25, 23-24, 22-23, 21-22");
                                                         for(int i = 0; i < h.length; i++) {
                                                             for(int j = 0; j < 4; j++) {
                                                                 if (j == 0) {
-                                                                    System.out.print(revenue[i][1]+" "+h[i][j]+"% ");
+                                                                    System.out.print(revenue[i+14][1]+" "+h[i][j]+"% ");
                                                                 } else if (j == 1 || j ==2) {
                                                                     System.out.print(h[i][j]+"% ");
                                                                 } else if (j == 3) {
@@ -186,10 +190,11 @@ public class ReadTwoCsvFiles {
                                                         }
                                                     } else if (choice4 == 2) {
                                                         System.out.println("Η διαφορά των ποσών ανά έτος είναι:");
+                                                        System.out.println("Έτη:   24-25,      23-24,      22-23,      21-22");
                                                         for(int i = 0; i < m.length; i++) {
                                                             for(int j = 0; j < 4; j++) {
                                                                 if (j == 0) {
-                                                                    System.out.print(revenue[i][1]+" "+m[i][j]);
+                                                                    System.out.print(revenue[i+14][1]+" "+m[i][j]);
                                                                 } else if (j == 1 || j ==2) {
                                                                     System.out.print(" "+m[i][j]);
                                                                 } else if (j == 3) {
