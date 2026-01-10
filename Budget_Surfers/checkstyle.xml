@@ -7,6 +7,11 @@
     <!-- File-level checks (outside TreeWalker) -->
     <property name="charset" value="UTF-8"/>
     <property name="severity" value="warning"/>
+
+    <!-- File must end with newline -->
+    <module name="NewlineAtEndOfFile">
+        <property name="severity" value="warning"/>
+    </module>
     
     <module name="LineLength">
         <property name="max" value="80"/>
