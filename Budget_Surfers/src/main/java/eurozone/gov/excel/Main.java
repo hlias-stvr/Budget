@@ -5,11 +5,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         String[][] revenue =
-         ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+            ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         String[][] budget  = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
         String[][] gdppop  = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
         Choices ch = new Choices();
-
         Scanner scanner = new Scanner(System.in);
         int choice = -1;
         do { // βασικό μενού επιλογών
