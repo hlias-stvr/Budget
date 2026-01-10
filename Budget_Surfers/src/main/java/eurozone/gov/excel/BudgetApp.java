@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import java.awt.Desktop;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
@@ -42,6 +43,7 @@ public class BudgetApp {
             server.createContext("/submenu", new SubMenuHandler());
             server.createContext("/edit", new EditHandler());
             server.createContext("/exit", new ExitHandler());
+            server.createContext("/png", new PngHandler()); 
             server.setExecutor(Executors.newFixedThreadPool(10));
             server.start();
 
@@ -64,7 +66,7 @@ public class BudgetApp {
             e.printStackTrace();
         }
     }
-
+    
     static void addToHistory(String type, double[] oldData, double[] newData) {
         if (!Arrays.equals(oldData, newData)) {
             historyTypes.add(type);
@@ -105,6 +107,7 @@ public class BudgetApp {
                 </style>
             </head>
             <body>
+                <img src="/png/logo.png" style="position:absolute; top:20px; left:20px; width:100px; height:auto;>
                 <div class="container">
                     <h1>Επίλεξε λειτουργία</h1>
                     <button class="blue" onclick="go(1)">1 - Προβολή στοιχείων κρατικού προϋπολογισμού</button>
@@ -429,7 +432,7 @@ private static String resultPageWithTitle(String title, String content) {
         }
         return 0;
     }
-private static double[] initializeData(String type) {
+    private static double[] initializeData(String type) {
         if ("sectors".equals(type)) {
         long[] A = AvgEurozone.convertToLong(budget);
         double[] B = AvgEurozone.ministrDiv(A); // Παράγει 11 στοιχεία
@@ -784,6 +787,19 @@ private static double[] initializeData(String type) {
             default -> sb.append("Αποτέλεσμα για επιλογή ").append(main).append(" - υποεπιλογή ").append(sub);
         }
         return sb.toString();
+    }
+    static class PngHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            exchange.getResponseHeaders().set("Content-Type", "image/png");
+            InputStream is = BudgetApp.class.getResourceAsStream("/logo.png");
+            byte[] data = is.readAllBytes();
+            exchange.sendResponseHeaders(200, data.length);
+            OutputStream os = exchange.getResponseBody();
+            os.write(data);
+            os.close();
+            exchange.close();
+        }
     }
     // ================= ΒΟΗΘΗΤΙΚΕΣ =================
     private static int parseParam(String query, String param, int def) {
