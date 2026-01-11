@@ -8,11 +8,9 @@ public class ChildChoices {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
                     System.out.print(revenue[i][1] + " " + g[i][j] + "% ");
-                }
-                else if (j == 1 || j == 2) {
+                } else if (j == 1 || j == 2) {
                     System.out.print(g[i][j] + "% ");
-                }
-                else if (j == 3) {
+                } else if (j == 3) {
                     System.out.println(g[i][j] + "%");
                 }
             }
@@ -26,11 +24,9 @@ public class ChildChoices {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
                     System.out.print(revenue[i][1] + " " + n[i][j]);
-                }
-                else if (j == 1 || j == 2) {
+                } else if (j == 1 || j == 2) {
                     System.out.print(" " + n[i][j]);
-                }
-                else if (j == 3) {
+                } else if (j == 3) {
                     System.out.println(" " + n[i][j]);
                 }
             }
@@ -44,11 +40,9 @@ public class ChildChoices {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
                     System.out.print(revenue[i][1] + " " + h[i][j] + "% ");
-                }
-                else if (j == 1 || j == 2) {
+                } else if (j == 1 || j == 2) {
                     System.out.print(h[i][j] + "% ");
-                }
-                else if (j == 3) {
+                } else if (j == 3) {
                     System.out.println(h[i][j] + "% ");
                 }
             }
@@ -62,11 +56,9 @@ public class ChildChoices {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
                     System.out.print(revenue[i][1] + " " + m[i][j]);
-                }
-                else if (j == 1 || j == 2) {
+                } else if (j == 1 || j == 2) {
                     System.out.print(" " + m[i][j]);
-                }
-                else if (j == 3) {
+                } else if (j == 3) {
                     System.out.println(" " + m[i][j]);
                 }
             }
@@ -88,14 +80,12 @@ public class ChildChoices {
                     " δαπανά " + newCompareAvgEurz[i] + "% λιγότερο" +
                     " στον τομέα " + grSectors[i] + " από" +
                     " τον ΜΟ της Ευρωζώνης");
-            }
-            else if (newCompareAvgEurz[i] < 0) {
+            } else if (newCompareAvgEurz[i] < 0) {
                 System.out.println("Η Ελλάδα" +
                     " δαπανά " + Math.abs(newCompareAvgEurz[i]) + "%" +
                     " περισσότερο στον" +
                     " τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
-            }
-            else {
+            } else {
                 System.out.println("Η Ελλάδα δαπανά το ίδιο ποσοστό στον" +
                     " τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
             }

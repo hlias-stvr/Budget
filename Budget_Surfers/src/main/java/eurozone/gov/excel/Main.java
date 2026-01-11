@@ -66,11 +66,9 @@ public class Main {
                             break;
                     }
                     break;
-                }
-                catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }

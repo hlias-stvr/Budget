@@ -6,7 +6,8 @@ public class Choices {
     Subchoises sub = new Subchoises();
 
     public void mainChoice1(String[][] revenue, String[][] budget) {
-        System.out.println("Προυπολογισμός Ελλάδας μετά την αφαίρεση του αναλυκλώσιμου χρέους");
+        System.out.println("Προυπολογισμός Ελλάδας μετά την αφαίρεση του" +
+            " αναλυκλώσιμου χρέους");
         ReadTwoCsvFiles.printFirstRows(revenue, 33);
         ReadTwoCsvFiles.printFirstRows(budget, 35);
     }
@@ -42,11 +43,9 @@ public class Choices {
                             break;
                     }
                     break;
-                }
-                catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
@@ -86,11 +85,9 @@ public class Choices {
                             break;
                     }
                     break;
-                }
-                catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
@@ -125,11 +122,9 @@ public class Choices {
                             break;
                     }
                     break;
-                }
-                catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
@@ -164,11 +159,9 @@ public class Choices {
                             break;
                     }
                     break;
-                }
-                catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
@@ -218,11 +211,9 @@ public class Choices {
                             break;
                     }
                     break;
-                }
-                catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("Πρέπει να δώσεις ακέραιο αριθμό");
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
