@@ -1,0 +1,3 @@
+{
+    "java.checkstyle.configuration": "${workspaceFolder}\\Budget_Surfers\\checkstyle.xml"
+}
