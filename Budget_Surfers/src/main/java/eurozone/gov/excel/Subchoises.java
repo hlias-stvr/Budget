@@ -13,8 +13,7 @@ public class Subchoises {
     }
 
     public void subchoice2b(double[] percdiffSectorsExpenses,
-                            String[] grSectors
-                            ) {
+        String[] grSectors) {
         for (int i = 0; i < 11; i++) {
             if (percdiffSectorsExpenses[i] > 0) {
                 System.out.println("Η Ελλάδα δαπανά "
@@ -33,11 +32,8 @@ public class Subchoises {
         }
     }
 
-    public void subchoice3a(double[][] percVarIncome,
-                            String[][] revenue,
-                            long[][] amountVarIncome,
-                            Scanner scanner
-                            ) {
+    public void subchoice3a(double[][] percVarIncome, String[][] revenue,
+        long[][] amountVarIncome, Scanner scanner) {
         int choice4 = -1;
         do {
             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
@@ -77,11 +73,8 @@ public class Subchoises {
         } while (choice4 != 0);
     }
 
-    public void subchoice3b(double[][] percVarExpenses,
-                            String[][] revenue,
-                            long[][] amountVarExpenses,
-                            Scanner scanner
-                            ) {
+    public void subchoice3b(double[][] percVarExpenses, String[][] revenue,
+        long[][] amountVarExpenses, Scanner scanner) {
         int choice4 = -1;
         do {
             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
@@ -131,10 +124,8 @@ public class Subchoises {
         }
     }
 
-    public void subchoice4b(String[][] gdppop,
-                            double[] euzGdpPerCapita,
-                            Scanner scanner
-                            ) {
+    public void subchoice4b(String[][] gdpPop, double[] euzGdpPerCapita,
+        Scanner scanner) {
         int a = -1;
         System.out.println("Γράψε\n 1 για Αυστρία\n 2 για Βέλγιο\n 3 για" +
             " Κροατία\n"
@@ -161,12 +152,10 @@ public class Subchoises {
                     }
                     if (a != 20) {
                         System.out.println("Έβαλες την" +
-                            " χώρα " + gdppop[a - 1][0]);
+                            " χώρα " + gdpPop[a - 1][0]);
                     }
-                    EuzLivingStandard.compareStdLive(a,
-                                                    euzGdpPerCapita,
-                                                    gdppop
-                    );
+                    EuzLivingStandard.compareStdLive(a, euzGdpPerCapita,
+                        gdpPop);
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
@@ -246,10 +235,10 @@ public class Subchoises {
         int choice9 = -1;
         // αν αλλάξει τα δεδομένα της επιλογής 2
         do {
-            double perPerson[] =
-             RegionalPer.calcBudgetPerPerson(newRegionExpenses);
-            double perRegion[] =
-             RegionalPer.calcBudgetPerRegion(newRegionExpenses);
+            double expensesPerPerson[] =
+                RegionalPer.calcBudgetPerPerson(newRegionExpenses);
+            double percExpensesPerRegion[] =
+                RegionalPer.calcBudgetPerRegion(newRegionExpenses);
             // ξανακαλεί τις μεθόδους που έχουν να κάνουν με αυτά που άλλαξε
             // για να δει την διαφορά
             System.out.println("Γράψε\n1 για να δεις" +
@@ -266,10 +255,10 @@ public class Subchoises {
                     }
                     switch(choice9) {
                         case 1:
-                            child.childChoice7b1(perPerson, budget);
+                            child.childChoice7b1(budget, expensesPerPerson);
                             break;
                         case 2:
-                            child.childChoice7b2(budget, perRegion);
+                            child.childChoice7b2(budget, percExpensesPerRegion);
                             break;
                     }
                     break;
@@ -293,6 +282,6 @@ public class Subchoises {
         ChangeData.newRevenue(oneDimensLongImcome, revenue, scanner);
         System.out.println("Ακολουθεί η σύγκριση των νέων" +
             " φορολογικών εσόδων με τον μέσο όρο της Ευρωζώνης");
-        CompareEuzTaxes.Calculation(newIncome);
+        CompareEuzTaxes.calcDiffGrEuzTaxes(newIncome);
     }
 }

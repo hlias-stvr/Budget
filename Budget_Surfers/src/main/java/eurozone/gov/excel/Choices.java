@@ -13,8 +13,9 @@ public class Choices {
     }
 
     public void mainChoice2(String[][] budget, Scanner scanner) {
-        long [] longBudget = AvgEurozone.convertToLong(budget);
-        double [] percSectorsExpenses = AvgEurozone.ministrDiv(longBudget);
+        long [] longMinistrExpenses = AvgEurozone.convertToLong(budget);
+        double [] percSectorsExpenses =
+            AvgEurozone.ministrDiv(longMinistrExpenses);
         double [] percdiffSectorsExpenses =
             AvgEurozone.compareGrToEurozone(percSectorsExpenses);
         String[] grSectors = AvgEurozone.sectors();
@@ -31,9 +32,9 @@ public class Choices {
                 try {
                     choice2 = scanner.nextInt();
                     if (choice2 < 0 || choice2 > 2) {
-                         //έλεγχος για τις υποεπιλογές
+                        //έλεγχος για τις υποεπιλογές
                         throw new IllegalArgumentException(" Η επιλογή" +
-                         " πρέπει να είναι 1 ή 2 ή 0");
+                            " πρέπει να είναι 1 ή 2 ή 0");
                     }
                     switch(choice2) {
                         case 1:
@@ -75,7 +76,7 @@ public class Choices {
                     // έλεγχος για τις υποεπιλογές
                     if (choice3 < 0 || choice3 > 2) {
                         throw new IllegalArgumentException(" Η επιλογή" +
-                         " πρέπει να είναι 1 ή 2");
+                            " πρέπει να είναι 1 ή 2");
                     }
                     switch(choice3) {
                         case 1:
@@ -115,7 +116,7 @@ public class Choices {
                     // υπο επιλογές
                     if (choice5 < 0 || choice5 > 2) {
                         throw new IllegalArgumentException(" Η επιλογή" +
-                         " πρέπει να είναι 1 ή 2");
+                            " πρέπει να είναι 1 ή 2");
                     }
                     switch(choice5) {
                         case 1:
@@ -154,7 +155,7 @@ public class Choices {
                     choice6 = scanner.nextInt();
                     if (choice6 < 0 || choice6 > 2) {
                         throw new IllegalArgumentException(" Η επιλογή" +
-                         " πρέπει να είναι 1 ή 2");
+                            " πρέπει να είναι 1 ή 2");
                     }
                     switch(choice6) {
                         case 1:
@@ -181,7 +182,7 @@ public class Choices {
         for (int i = 0; i < longIncome.length; i++) {
             oneDimensLongImcome[i] = longIncome[i][0];
         }
-        CompareEuzTaxes.Calculation(oneDimensLongImcome);
+        CompareEuzTaxes.calcDiffGrEuzTaxes(oneDimensLongImcome);
     }
 
     public void mainChoice7(String[][] revenue, String[][] budget,

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class TestEuzTaxes {
     @Test
-    void testCalculation() {
+    void testcalcDiffGrEuzTaxes() {
         String[][] revenue =
         ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] LongData = Percent.converterToLong(revenue, 14, 2);

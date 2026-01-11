@@ -96,7 +96,7 @@ public class ChildChoices {
         }
     }
 
-    public void childChoice7b1(double[] perPerson, String[][] budget) {
+    public void childChoice7b1(String[][] budget, double[] perPerson) {
         for (int i = 0; i < perPerson.length; i++) {
             System.out.println(budget[i + 25][1] + " " + perPerson[i]);
         }

@@ -26,7 +26,7 @@ public class ReadTwoCsvFiles {
             }
         } catch (Exception e) {
             System.out.println("Σφάλμα στο " +
-                    resourcePath + ": " + e.getMessage());
+                resourcePath + ": " + e.getMessage());
         }
         return rows.toArray(new String[0][]);
     }

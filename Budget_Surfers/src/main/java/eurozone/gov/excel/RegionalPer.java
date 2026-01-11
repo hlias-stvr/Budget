@@ -1,17 +1,21 @@
 package eurozone.gov.excel;
 
 public class RegionalPer {
+    /*
+    *Μετατροπή κομματιού του πίνακα buget που περιέχει τις δαπάνες
+    *για τις Αποκεντρωμένες διοικήσεις(περιφέρειες) σε long
+    */
     public static long[] transformToLong(String[][] budget) {
-        long[] budgetlong = new long[7];
+        long[] longRegionExpenses = new long[7];
         for (int i = 25; i < 32; i++) {
-            budgetlong[i - 25] = Long.parseLong(budget[i][2]);
+            longRegionExpenses[i - 25] = Long.parseLong(budget[i][2]);
         }
-        return budgetlong;
+        return longRegionExpenses;
     }
 
-    // δαπάνη ανά πολίτη
-    public static double[] calcBudgetPerPerson(long[] budgetlong) {
-        double[] perperson = new double[7];
+    //Υπολογίζει τη δαπάνη ανά πολίτη
+    public static double[] calcBudgetPerPerson(long[] regionExpenses) {
+        double[] expensesPerPerson = new double[7];
         long[] population = new long[7];
         population[0] = 3814064;
         population[1] = 1196509;
@@ -21,22 +25,24 @@ public class RegionalPer {
         population[5] = 624408;
         population[6] = 2357870;
         for (int l = 0; l < 7; l++) {
-            perperson[l] =
-            Math.round((budgetlong[l] / (double) population[l]) * 10.0) / 10.0;
+            expensesPerPerson[l] =
+            Math.round((regionExpenses[l] / (double) population[l]) * 10.0) /
+                10.0;
         }
-        return perperson;
+        return expensesPerPerson;
     }
 
-    //δαπάνη ανά περιφέρεια 
-    public static double[] calcBudgetPerRegion(long []budgetlong) {
+    //Υπολογίζει την ποσοστιαία δαπάνη ανά περιφέρεια
+    public static double[] calcBudgetPerRegion(long[] regionExpenses) {
         double[] perregion = new double[7];
         long sum = 0;
         for (int i = 0; i < 7; i++) {
-            sum = sum + budgetlong[i];
+            sum = sum + regionExpenses[i];
         }
         for (int j = 0; j < 7; j++) {
             perregion[j] =
-            Math.round(((budgetlong[j] / (double) sum) * 100) * 10.0) / 10.0;
+                Math.round(((regionExpenses[j] / (double) sum) * 100) * 10.0) /
+                10.0;
         }
         return perregion;
     }
