@@ -1,11 +1,10 @@
 package eurozone.gov.excel;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class TestEuzTaxes {
-    @Test 
+    @Test
     void testCalculation() {
         String[][] revenue =
         ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
@@ -16,7 +15,7 @@ public class TestEuzTaxes {
         }
         final long GTP = 206000000000L;
         double grtax = Math.round((((LongData25[1] + LongData25[2]) /
-        (double) GTP) * 100) * 10.0) / 10.0;
+            (double) GTP) * 100) * 10.0) / 10.0;
         double avgeuztax = Math.round(40.9 * 10.0) / 10.0;
         double dif = Math.round((Math.abs((grtax - avgeuztax))) * 10.0) / 10.0;
         assertEquals(grtax, 30.2);
