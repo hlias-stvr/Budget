@@ -107,7 +107,7 @@ public class BudgetApp {
                 </style>
             </head>
             <body>
-                <img src="/png/logo.png" style="position:absolute; top:20px; left:20px; width:100px; height:auto;>
+                <img src="/png/logo.png" style="position:absolute; top:20px; left:20px; width:100px; height:auto;">
                 <div class="container">
                     <h1>Επίλεξε λειτουργία</h1>
                     <button class="blue" onclick="go(1)">1 - Προβολή στοιχείων κρατικού προϋπολογισμού</button>
