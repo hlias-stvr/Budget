@@ -1,36 +1,41 @@
 package eurozone.gov.excel;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Scanner;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 public class TestChangeData {
     Scanner scanner = new Scanner(System.in);
+
     @Test
     void testNewGrPercent() {
         String[][] budget = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
         long [] A = AvgEurozone.convertToLong(budget);
         double [] grpercent = AvgEurozone.ministrDiv(A);
         String [] grSectors = AvgEurozone.sectors();
-        double [] testarray = ChangeData.newGrPercent(grpercent, grSectors, scanner); 
+        double [] testarray =
+        ChangeData.newGrPercent(grpercent, grSectors, scanner);
         assertNotNull(testarray);
         for (int i = 0; i < testarray.length - 1; i++) {
             assertTrue(testarray[i] > 0);
         }
     }
+
     @Test
     void testNewAmountPerRegion() {
         String[][] budget =
         ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
         long [] budgetLong = AvgEurozone.convertToLong(budget);
-        long [] testarray = ChangeData.newAmountPerRegion(budgetLong, budget, scanner);
+        long [] testarray =
+        ChangeData.newAmountPerRegion(budgetLong, budget, scanner);
         assertNotNull(testarray);
         for (int i = 0; i < testarray.length - 1; i++) {
             assertTrue(testarray[i] > 0);
         }
     }
+
     @Test
     void testNewRevenue() {
         String[][] revenue =
