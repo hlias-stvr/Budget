@@ -6,9 +6,8 @@ public class Choices {
     Subchoises sub = new Subchoises();
 
     public void mainChoice1(String[][] revenue, String[][] budget) {
-        System.out.println("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===");
+        System.out.println("Προυπολογισμός Ελλάδας μετά την αφαίρεση του αναλυκλώσιμου χρέους");
         ReadTwoCsvFiles.printFirstRows(revenue, 33);
-        System.out.println("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===");
         ReadTwoCsvFiles.printFirstRows(budget, 35);
     }
 

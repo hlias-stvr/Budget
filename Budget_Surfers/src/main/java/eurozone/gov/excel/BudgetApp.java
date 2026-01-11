@@ -667,9 +667,7 @@ public class BudgetApp {
         switch (main) {
             case 1 -> {
                 sb.append("Προυπολογισμός Ελλάδας μετά την αφαίρεση του αναλυκλώσιμου χρέους\n");
-                sb.append("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===\n");
                 appendFirstRows(sb, revenue, 33);
-                sb.append("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===\n");
                 appendFirstRows(sb, budget, 35);
             } case 2 -> {
                 long[] longBudget = AvgEurozone.convertToLong(budget);
