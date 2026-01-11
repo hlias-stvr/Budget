@@ -189,7 +189,7 @@ public class Subchoises {
          AvgEurozone.ministrDiv(longMinistrExpenses);
         String[] grSectors = AvgEurozone.sectors();
         double[] newSectorsExpenses =
-         ChangeData.newGrPercent(grPercentSectors, grSectors, scanner);
+            ChangeData.newGrPercent(grPercentSectors, grSectors, scanner);
         double [] newCompareAvgEurz =
          AvgEurozone.compareGrToEurozone(newSectorsExpenses);
         int choice7 = -1;

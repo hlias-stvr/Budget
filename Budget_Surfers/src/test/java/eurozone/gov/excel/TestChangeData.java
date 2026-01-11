@@ -12,14 +12,16 @@ public class TestChangeData {
     @Test
     void testNewGrPercent() {
         String[][] budget = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
-        long [] A = AvgEurozone.convertToLong(budget);
-        double [] grpercent = AvgEurozone.ministrDiv(A);
-        String [] grSectors = AvgEurozone.sectors();
-        double [] testarray =
-        ChangeData.newGrPercent(grpercent, grSectors, scanner);
-        assertNotNull(testarray);
-        for (int i = 0; i < testarray.length - 1; i++) {
-            assertTrue(testarray[i] > 0);
+        long [] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
+        double [] testPercSectorsExpenses =
+            AvgEurozone.ministrDiv(testLongMinistrExpenses);
+        String [] testGrSectors = AvgEurozone.sectors();
+        double [] testNewSectorsExpenses =
+            ChangeData.newGrPercent(testPercSectorsExpenses,
+            testGrSectors, scanner);
+        assertNotNull(testNewSectorsExpenses);
+        for (int i = 0; i < testNewSectorsExpenses.length - 1; i++) {
+            assertTrue(testNewSectorsExpenses[i] > 0);
         }
     }
 
@@ -27,12 +29,13 @@ public class TestChangeData {
     void testNewAmountPerRegion() {
         String[][] budget =
         ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
-        long [] budgetLong = AvgEurozone.convertToLong(budget);
-        long [] testarray =
-        ChangeData.newAmountPerRegion(budgetLong, budget, scanner);
-        assertNotNull(testarray);
-        for (int i = 0; i < testarray.length - 1; i++) {
-            assertTrue(testarray[i] > 0);
+        long [] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
+        long [] testNewRegionExpenses =
+            ChangeData.newAmountPerRegion(testLongMinistrExpenses, budget,
+            scanner);
+        assertNotNull(testNewRegionExpenses);
+        for (int i = 0; i < testNewRegionExpenses.length - 1; i++) {
+            assertTrue(testNewRegionExpenses[i] > 0);
         }
     }
 
@@ -40,12 +43,13 @@ public class TestChangeData {
     void testNewRevenue() {
         String[][] revenue =
         ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        long[][] LongData = Percent.converterToLong(revenue, 14, 2);
-        long[] LongData25 = new long[LongData.length];
-        for (int i = 0; i < LongData25.length; i++) {
-            LongData25[i] = LongData[i][0];
+        long[][] testLongIncome = Percent.converterToLong(revenue, 14, 2);
+        long[] testLongIncome25 = new long[testLongIncome.length];
+        for (int i = 0; i < testLongIncome25.length; i++) {
+            testLongIncome25[i] = testLongIncome[i][0];
         }
-        long [] testarray = ChangeData.newRevenue(LongData25, revenue, scanner);
+        long [] testarray =
+            ChangeData.newRevenue(testLongIncome25, revenue, scanner);
         assertNotNull(testarray);
         for (int i = 0; i < testarray.length - 1; i++) {
             assertTrue(testarray[i] > 0);

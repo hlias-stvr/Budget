@@ -5,21 +5,22 @@ import org.junit.jupiter.api.Test;
 
 public class TestEuzTaxes {
     @Test
-    void testcalcDiffGrEuzTaxes() {
+    void testCalcDiffGrEuzTaxes() {
         String[][] revenue =
         ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        long[][] LongData = Percent.converterToLong(revenue, 14, 2);
-        long[] LongData25 = new long[LongData.length];
-        for (int i = 0; i < LongData.length; i++) {
-            LongData25[i] = LongData[i][0];
+        long[][] testLongIncome = Percent.converterToLong(revenue, 14, 2);
+        long[] testLongIncome25 = new long[testLongIncome.length];
+        for (int i = 0; i < testLongIncome.length; i++) {
+            testLongIncome25[i] = testLongIncome[i][0];
         }
-        final long GTP = 206000000000L;
-        double grtax = Math.round((((LongData25[1] + LongData25[2]) /
-            (double) GTP) * 100) * 10.0) / 10.0;
-        double avgeuztax = Math.round(40.9 * 10.0) / 10.0;
-        double dif = Math.round((Math.abs((grtax - avgeuztax))) * 10.0) / 10.0;
-        assertEquals(grtax, 30.2);
-        assertEquals(avgeuztax, 40.9);
+        final long GRGDP = 206000000000L;
+        double testGrTaxes = Math.round((((testLongIncome25[1] +
+            testLongIncome25[2]) / (double) GRGDP) * 100) * 10.0) / 10.0;
+        double testAvgEuzTaxes = Math.round(40.9 * 10.0) / 10.0;
+        double dif = Math.round((Math.abs((testGrTaxes - testAvgEuzTaxes))) *
+            10.0) / 10.0;
+        assertEquals(testGrTaxes, 30.2);
+        assertEquals(testAvgEuzTaxes, 40.9);
         assertEquals(dif, 10.7);
     }
 }

@@ -7,35 +7,36 @@ import org.junit.jupiter.api.Test;
 
 public class TestEuzLivingStandard {
     @Test
-    void testcompareToLong() {
-        String[][] gdppop =
+    void testCompareToLong() {
+        String[][] gdpPop =
         ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
-        long[][] testarray2 = EuzLivingStandard.compareToLong(gdppop);
-        assertNotNull(testarray2);
-        assertEquals(19, testarray2.length);
-        assertEquals(2, testarray2[0].length);
-        for (int i = 0; i < testarray2.length; i++) {
-            for (int j = 0; j < testarray2[0].length; j++) {
-                assertTrue(testarray2[i][j] > 0);
+        long[][] testLongGdpPop = EuzLivingStandard.compareToLong(gdpPop);
+        assertNotNull(testLongGdpPop);
+        assertEquals(19, testLongGdpPop.length);
+        assertEquals(2, testLongGdpPop[0].length);
+        for (int i = 0; i < testLongGdpPop.length; i++) {
+            for (int j = 0; j < testLongGdpPop[0].length; j++) {
+                assertTrue(testLongGdpPop[i][j] > 0);
             }
         }
     }
 
     @Test
-    void testfindStandLiving() {
-        String[][] gdppop = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
-        long[][] testarray2 = EuzLivingStandard.compareToLong(gdppop);
-        double[] testarray3 = EuzLivingStandard.findStandLiving(testarray2);
-        assertNotNull(testarray2);
-        assertEquals(19, testarray2.length);
-        assertNotNull(testarray3);
-        assertEquals(20, testarray3.length);
-        for (int j = 0; j < testarray2.length; j++) {
-            assertTrue(testarray2[j][1] > 560000);
-            assertTrue(testarray2[j][0] > 7703840000L);
-            assertTrue(testarray3[j] > 10000);
+    void testFindStandLiving() {
+        String[][] gdpPop = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
+        long[][] testLongGdpPop = EuzLivingStandard.compareToLong(gdpPop);
+        double[] testEuzGdpPerCapita =
+            EuzLivingStandard.findStandLiving(testLongGdpPop);
+        assertNotNull(testLongGdpPop);
+        assertEquals(19, testLongGdpPop.length);
+        assertNotNull(testEuzGdpPerCapita);
+        assertEquals(20, testEuzGdpPerCapita.length);
+        for (int j = 0; j < testLongGdpPop.length; j++) {
+            assertTrue(testLongGdpPop[j][1] > 560000);
+            assertTrue(testLongGdpPop[j][0] > 7703840000L);
+            assertTrue(testEuzGdpPerCapita[j] > 10000);
         }
-        assertTrue(testarray3[19] > 10000);
+        assertTrue(testEuzGdpPerCapita[19] > 10000);
     }
     // The 3rd method does not return any value to be tested, it's just println
 }

@@ -9,35 +9,37 @@ public class TestRegionalPer {
     void testTransformToLong() {
         String[][] budget =
         ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
-        long[] testarray1 = RegionalPer.transformToLong(budget);
-        assertNotNull(testarray1);
-        assertEquals(7,testarray1.length);
-        for (int i = 0; i < testarray1.length; i++) {
-            assertTrue(testarray1[i] > 0);
+        long[] testLongRegionExpenses = RegionalPer.transformToLong(budget);
+        assertNotNull(testLongRegionExpenses);
+        assertEquals(7, testLongRegionExpenses);
+        for (int i = 0; i < testLongRegionExpenses.length; i++) {
+            assertTrue(testLongRegionExpenses[i] > 0);
         }
     }
     @Test
     void testCalcBudgetPerPerson() {
         String[][] budget =
         ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
-        long[] testarray1 = RegionalPer.transformToLong(budget);
-        double[] testarray2 = RegionalPer.calcBudgetPerPerson(testarray1);
-        assertNotNull(testarray2);
-        assertEquals(7,testarray2.length);
-        for (int i = 0; i < testarray2.length; i++) {
-            assertTrue(testarray2[i] > 0);
+        long[] testLongRegionExpenses = RegionalPer.transformToLong(budget);
+        double[] testExpensesPerPerson =
+            RegionalPer.calcBudgetPerPerson(testLongRegionExpenses);
+        assertNotNull(testExpensesPerPerson);
+        assertEquals(7, testExpensesPerPerson.length);
+        for (int i = 0; i < testExpensesPerPerson.length; i++) {
+            assertTrue(testExpensesPerPerson[i] > 0);
         }
     }
     @Test
     void testCalcBudgetPerRegion() {
         String[][] budget =
         ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
-        long[] testarray1 = RegionalPer.transformToLong(budget);
-        double[] testarray2 = RegionalPer.calcBudgetPerRegion(testarray1);
-        assertNotNull(testarray2);
-        assertEquals(7,testarray2.length);
-        for (int i = 0; i < testarray2.length; i++) {
-            assertTrue(testarray2[i] > 0);
+        long[] testLongRegionExpenses = RegionalPer.transformToLong(budget);
+        double[] testPercExpensesPerRegion =
+            RegionalPer.calcBudgetPerRegion(testLongRegionExpenses);
+        assertNotNull(testPercExpensesPerRegion);
+        assertEquals(7, testPercExpensesPerRegion.length);
+        for (int i = 0; i < testPercExpensesPerRegion.length; i++) {
+            assertTrue(testPercExpensesPerRegion[i] > 0);
         }
     }
 }

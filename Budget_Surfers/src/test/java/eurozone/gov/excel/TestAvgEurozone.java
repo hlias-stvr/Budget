@@ -7,38 +7,41 @@ import org.junit.jupiter.api.Test;
 
 public class TestAvgEurozone {
     @Test
-    void testconvertToLong() {
+    void testConvertToLong() {
         String[][] budget =
         ReadTwoCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
-        long[] testarray1 = AvgEurozone.convertToLong(budget);
-        assertNotNull(testarray1);
-        assertEquals(20, testarray1.length);
-        for (int i = 0; i < testarray1.length; i++) {
-            assertTrue(testarray1[i] > 180000000);
+        long[] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
+        assertNotNull(testLongMinistrExpenses);
+        assertEquals(20, testLongMinistrExpenses.length);
+        for (int i = 0; i < testLongMinistrExpenses.length; i++) {
+            assertTrue(testLongMinistrExpenses[i] > 180000000);
         }
     }
 
     @Test
-    void testministrDiv() {
+    void testMinistrDiv() {
         String[][] budget =
         ReadTwoCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
-        long[] testarray1 = AvgEurozone.convertToLong(budget);
-        double[] testarray2 = AvgEurozone.ministrDiv(testarray1);
-        double sumgrministrpercent = 0.0;
-        long sumgrministr = 0;
+        long[] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
+        double[] testPercSectorsExpenses =
+            AvgEurozone.ministrDiv(testLongMinistrExpenses);
+        double percSumGrMinistr = 0.0;
+        long sumGrMinistr = 0;
         final long GTP = 257100000000L;
-        assertNotNull(testarray2);
-        assertEquals(11, testarray2.length);
-        for (int i = 0; i < testarray2.length - 1; i++) {
-            assertTrue(testarray2[i] > 0);
-            sumgrministrpercent += testarray2[i];
+        assertNotNull(testPercSectorsExpenses);
+        assertEquals(11, testPercSectorsExpenses.length);
+        for (int i = 0; i < testPercSectorsExpenses.length - 1; i++) {
+            assertTrue(testPercSectorsExpenses[i] > 0);
+            percSumGrMinistr += testPercSectorsExpenses[i];
         }
-        assertTrue(Math.abs(sumgrministrpercent - testarray2[10]) < 0.000001);
-        for (int i = 0; i < testarray1.length; i++) {
-            sumgrministr += testarray1[i];
+        assertTrue(Math.abs(percSumGrMinistr - testPercSectorsExpenses[10])
+            < 0.000001);
+        for (int i = 0; i < testLongMinistrExpenses.length; i++) {
+            sumGrMinistr += testLongMinistrExpenses[i];
         }
-        double t =
-            Math.round(((double) sumgrministr / GTP * 100) * 100.0) / 100.0;
-        assertTrue(Math.abs(t - sumgrministrpercent) < 0.000001);
+        double testPercSumGrMinistr =
+            Math.round(((double) sumGrMinistr / GTP * 100) * 100.0) / 100.0;
+        assertTrue(Math.abs(testPercSumGrMinistr - percSumGrMinistr) <
+            0.000001);
     }
 }
