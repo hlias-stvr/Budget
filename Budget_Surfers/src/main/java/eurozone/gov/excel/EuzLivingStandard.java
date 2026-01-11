@@ -1,26 +1,26 @@
 package eurozone.gov.excel;
 
 public class EuzLivingStandard {
-    // μετατροπή πίνακα gdppop σε long 
-    public static long[][] compareToLong(String[][] gdppop) {
-        long[][] gdppopulation = new long[19][2];
+    // μετατροπή πίνακα gdpPop σε long 
+    public static long[][] compareToLong(String[][] gdpPop) {
+        long[][] longGdpPop = new long[19][2];
         for (int i = 0 ; i < 19 ; i++) {
             for (int j = 0 ; j < 2 ; j++) {
-                gdppopulation[i][j] = Long.parseLong(gdppop[i][j+1]);
+                longGdpPop[i][j] = Long.parseLong(gdpPop[i][j+1]);
             }
         }
-        return gdppopulation;
+        return longGdpPop;
     }
     public static final int GRAVGGDP = 25300;
     public static double[] findStandLiving(long[][] gdppopulation) {
-        double[] stdLive = new double[20];
-        double sum = 0;
+        double[] livingStd = new double[20];
+        double sumLivingStd = 0;
         for (int k = 0 ; k < 19 ; k++) {
-            stdLive[k] = (double) (gdppopulation[k][0] / gdppopulation[k][1]);
-            sum = sum + stdLive[k];
+            livingStd[k] = (double) (gdppopulation[k][0] / gdppopulation[k][1]);
+            sumLivingStd = sumLivingStd + livingStd[k];
         }
-        stdLive[19] = (double) ((sum + GRAVGGDP) / 20);
-        return stdLive;
+        livingStd[19] = (double) ((sumLivingStd + GRAVGGDP) / 20);
+        return livingStd;
     }
     public static void compareStdLive(int a, double stdLive[], String [][] gdppop) {
         if (a != 20) {

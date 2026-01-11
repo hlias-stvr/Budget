@@ -24,7 +24,7 @@ public class BudgetApp {
     private static double[] modifiedRegionAmounts;
     private static double[] modifiedRevenueAmounts;
 
-    private static final Map<String, Map<String, Object>> sessions =
+    private static final Map<String, Map<String, Object>> SESSIONS =
         new HashMap<>();
     static List<String> historyTypes = new ArrayList<>();
     static List<String> historyTypeNames = new ArrayList<>();
@@ -61,13 +61,11 @@ public class BudgetApp {
             if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().browse(new URI(url));
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println("Άνοιξε χειροκίνητα: " + url);
                 }
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -81,9 +79,12 @@ public class BudgetApp {
 
             String typeName;
             switch(type) {
-                case "sectors": typeName = "Τομείς Δαπανών"; break;
-                case "regions": typeName = "Περιφέρειες"; break;
-                case "revenues": typeName = "Έσοδα"; break;
+                case "sectors": typeName = "Τομείς Δαπανών";
+                    break;
+                case "regions": typeName = "Περιφέρειες";
+                    break;
+                case "revenues": typeName = "Έσοδα";
+                    break;
                 default: typeName = type;
             }
             historyTypeNames.add(typeName);
@@ -169,7 +170,7 @@ public class BudgetApp {
             String path = exchange.getRequestURI().getPath();
             String sessionId = getSessionId(exchange);
             Map<String, Object> session =
-                sessions.computeIfAbsent(sessionId, k -> new HashMap<>());
+                SESSIONS.computeIfAbsent(sessionId, k -> new HashMap<>());
 
             if ("GET".equals(method)) {
                 if ("/edit".equals(path)) {
@@ -180,7 +181,7 @@ public class BudgetApp {
                     session.put("editType", type);
                     session.put("originalSum", calculateOriginalSum(type));
                     session.put("data", initializeData(type));
-                    sendHtml(exchange, getEditPage(session,false));
+                    sendHtml(exchange, getEditPage(session, false));
                     return;
                 }
             } else if ("POST".equals(method)) {
@@ -315,7 +316,7 @@ public class BudgetApp {
                     * Διασφάλιση ότι δεν θα βγούμε εκτός ορίων του πίνακα
                     * budget
                     */
-                    String regionName = (i + 25 < budget.length) ? budget[i + 25][1] : "Περιφέρεια " + (i+1); 
+                    String regionName = (i + 25 < budget.length) ? budget[i + 25][1] : "Περιφέρεια " + (i + 1); 
                     sb.append("<tr>");
                     sb.append("<td style='padding:8px;'>").append(regionName).append("</td>");
                     sb.append("<td style='padding:8px; font-weight:bold;'>").append(String.format("%,.2f €", perPerson[i])).append("</td>");
@@ -435,11 +436,11 @@ public class BudgetApp {
 
     private static double calculateOriginalSum(String type) {
         if ("sectors".equals(type)) {
-            long[] A = AvgEurozone.convertToLong(budget);
-            double[] B = AvgEurozone.ministrDiv(A);
+            long[] longMinistrExpenses = AvgEurozone.convertToLong(budget);
+            double[] grPercentSectors = AvgEurozone.ministrDiv(longMinistrExpenses);
             double sum = 0;
             for (int i = 0; i < 10; i++) {
-                sum += B[i];
+                sum += grPercentSectors[i];
             }
             return Math.round(sum * 100.0) / 100.0;
         } else if ("regions".equals(type)) {
@@ -536,7 +537,7 @@ public class BudgetApp {
         String[] labels = getLabels(type);
         // Εμφανίζουμε μόνο τις 10 πρώτες κατηγορίες για τους sectors
         for (int i = 0; i < displayLimit; i++) {
-            html.append("<tr><td>").append(i+1).append("</td><td>").append(labels[i]).append("</td><td>").append(String.format("%.2f", data[i])).append("</td></tr>");
+            html.append("<tr><td>").append(i + 1).append("</td><td>").append(labels[i]).append("</td><td>").append(String.format("%.2f", data[i])).append("</td></tr>");
         }
         html.append("<tr style='background:#d4edda;font-weight:bold'><td colspan='2'>Τρέχον σύνολο (επεξεργασμένων)</td><td>").append(String.format("%.2f", currentSum)).append("</td></tr></table>");
 
@@ -658,7 +659,7 @@ public class BudgetApp {
                 <button class="red" onclick="location.href='/'">Κύριο μενού</button>
             </body>
             </html>
-            """.formatted(result,subMenuButtonStyle, main);
+            """.formatted(result, subMenuButtonStyle, main);
     }
 
         // Εκτέλεση επιλογών
@@ -724,7 +725,7 @@ public class BudgetApp {
                     sb.append("Ποσοστιαίες διαφορές (%):\n");
                     sb.append("Έτη: 24-25 | 23-24 | 22-23 | 21-22\n");
                     for (int i = 0; i < expensesPercent.length; i++) {
-                        sb.append(String.format("%-40s", revenue[i+14][1]));
+                        sb.append(String.format("%-40s", revenue[i + 14][1]));
                         for (int j = 0; j < 4; j++) {
                             sb.append(String.format(" %8.2f%%", expensesPercent[i][j]));
                         }
@@ -732,7 +733,7 @@ public class BudgetApp {
                     }
                     sb.append("\nΠοσά διαφορές:\n");
                     for (int i = 0; i < expensesAmount.length; i++) {
-                        sb.append(String.format("%-40s", revenue[i+14][1]));
+                        sb.append(String.format("%-40s", revenue[i + 14][1]));
                         for (int j = 0; j < 4; j++) {
                             sb.append(String.format(" %,12d", expensesAmount[i][j]));
                         }
@@ -797,13 +798,13 @@ public class BudgetApp {
                 }
             }
             case 6 -> {
-                long[][] LongDataFull = Percent.converterToLong(revenue, 14, 2);
-                long[] LongData25 = new long[LongDataFull.length];
-                for (int i = 0; i < LongDataFull.length; i++) {
-                    LongData25[i] = LongDataFull[i][0];
+                long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
+                long[] longIncome25 = new long[longIncome.length];
+                for (int i = 0; i < longIncome.length; i++) {
+                    longIncome25[i] = longIncome[i][0];
                 }
 
-                long grTaxes = LongData25[1] + LongData25[2];
+                long grTaxes = longIncome25[1] + longIncome25[2];
                 double grPct = Math.round((grTaxes / 206000000000.0 * 100) *
                     10.0) / 10.0;
                 double avg = 40.9;
@@ -916,7 +917,7 @@ public class BudgetApp {
 
     private static Map<String, String> parseParams(String body) {
         Map<String, String> map = new HashMap<>();
-        if (body == null || body.isEmpty()){
+        if (body == null || body.isEmpty()) {
             return map;
         }
         for (String pair : body.split("&")) {

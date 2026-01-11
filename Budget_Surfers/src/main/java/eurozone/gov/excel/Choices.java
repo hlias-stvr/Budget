@@ -13,9 +13,10 @@ public class Choices {
     }
 
     public void mainChoice2(String[][] budget, Scanner scanner) {
-        long [] A = AvgEurozone.convertToLong(budget);
-        double [] B = AvgEurozone.ministrDiv(A);
-        double [] C = AvgEurozone.compareGrToEurozone(B);
+        long [] longBudget = AvgEurozone.convertToLong(budget);
+        double [] percSectorsExpenses = AvgEurozone.ministrDiv(longBudget);
+        double [] percdiffSectorsExpenses =
+            AvgEurozone.compareGrToEurozone(percSectorsExpenses);
         String[] grSectors = AvgEurozone.sectors();
         int choice2 = -1;
         do {
@@ -36,10 +37,10 @@ public class Choices {
                     }
                     switch(choice2) {
                         case 1:
-                            sub.subchoice2a(B, grSectors);
+                            sub.subchoice2a(percSectorsExpenses, grSectors);
                             break;
                         case 2:
-                            sub.subchoice2b(C, grSectors);
+                            sub.subchoice2b(percdiffSectorsExpenses, grSectors);
                             break;
                     }
                     break;
@@ -55,12 +56,12 @@ public class Choices {
     }
 
     public void mainChoice3(String[][] revenue, Scanner scanner) {
-        long[][] s = Percent.converterToLong(revenue, 14, 2);
-        long[][] f = Percent.converterToLong(revenue, 16, 16);
-        double[][] g = Percent.percentual(s);
-        double[][] h = Percent.percentual(f);
-        long[][] n = Percent.amount(s);
-        long[][] m = Percent.amount(f);
+        long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
+        long[][] longExpenses = Percent.converterToLong(revenue, 16, 16);
+        double[][] percVarIncome = Percent.percentual(longIncome);
+        double[][] percVarExpenses = Percent.percentual(longExpenses);
+        long[][] amountVarIncome = Percent.amount(longIncome);
+        long[][] amountVarExpenses = Percent.amount(longExpenses);
         int choice3 = -1;
         // υποεπιλογές για την επιλογή 3
         System.out.println("Γράψε 1 για σύγκριση εσόδων");
@@ -78,10 +79,12 @@ public class Choices {
                     }
                     switch(choice3) {
                         case 1:
-                            sub.subchoice3a(g, revenue, n, scanner);
+                            sub.subchoice3a(percVarIncome, revenue,
+                                amountVarIncome, scanner);
                             break;
                         case 2:
-                            sub.subchoice3b(h, revenue, m, scanner);
+                            sub.subchoice3b(percVarExpenses, revenue,
+                                amountVarExpenses, scanner);
                             break;
                     }
                     break;
@@ -95,9 +98,10 @@ public class Choices {
         } while (choice3 != 0);
     }
 
-    public void mainChoice4(String[][] gdppop, Scanner scanner) {
-        long [][] D = EuzLivingStandard.compareToLong(gdppop);
-        double [] E = EuzLivingStandard.findStandLiving(D);
+    public void mainChoice4(String[][] gdpPop, Scanner scanner) {
+        long [][] longGdpPop = EuzLivingStandard.compareToLong(gdpPop);
+        double [] euzGdpPerCapita =
+            EuzLivingStandard.findStandLiving(longGdpPop);
         int choice5 = -1;
         do {
             System.out.println("Γράψε 1 για να δεις τα" +
@@ -115,10 +119,10 @@ public class Choices {
                     }
                     switch(choice5) {
                         case 1:
-                            sub.subchoice4a(E, gdppop);
+                            sub.subchoice4a(euzGdpPerCapita, gdpPop);
                             break;
                         case 2:
-                            sub.subchoice4b(gdppop, E, scanner);
+                            sub.subchoice4b(gdpPop, euzGdpPerCapita, scanner);
                             break;
                     }
                     break;
@@ -134,8 +138,10 @@ public class Choices {
 
     public void mainChoice5(String[][] budget, Scanner scanner) {
         long budgetLong[] = RegionalPer.transformToLong(budget);
-        double perPerson[] = RegionalPer.calcBudgetPerPerson(budgetLong);
-        double perRegion[] = RegionalPer.calcBudgetPerRegion(budgetLong);
+        double expensesPerPerson[] =
+            RegionalPer.calcBudgetPerPerson(budgetLong);
+        double expensesPerRegion[] =
+            RegionalPer.calcBudgetPerRegion(budgetLong);
         int choice6 = -1;
         do {
             System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");
@@ -152,10 +158,10 @@ public class Choices {
                     }
                     switch(choice6) {
                         case 1:
-                            sub.subchoice5a(perPerson, budget);
+                            sub.subchoice5a(expensesPerPerson, budget);
                             break;
                         case 2:
-                            sub.subchoice5b(perRegion, budget);
+                            sub.subchoice5b(expensesPerRegion, budget);
                             break;
                     }
                     break;
@@ -170,19 +176,16 @@ public class Choices {
     }
 
     public void mainChoice6(String[][] revenue) {
-        long[][] LongData = Percent.converterToLong(revenue, 14, 2);
-        long[] LongData25 = new long[LongData.length];
-        for (int i = 0; i < LongData.length; i++) {
-            LongData25[i] = LongData[i][0];
+        long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
+        long[] oneDimensLongImcome = new long[longIncome.length];
+        for (int i = 0; i < longIncome.length; i++) {
+            oneDimensLongImcome[i] = longIncome[i][0];
         }
-        CompareEuzTaxes.Calculation(LongData25);
+        CompareEuzTaxes.Calculation(oneDimensLongImcome);
     }
 
-    public void mainChoice7(
-            String[][] revenue,
-            String[][] budget,
-            Scanner scanner
-    ) {
+    public void mainChoice7(String[][] revenue, String[][] budget,
+        Scanner scanner) {
         int choice8 = -1;
         do {
             System.out.println("Γράψε\n1 Για να μεταβάλλεις" +

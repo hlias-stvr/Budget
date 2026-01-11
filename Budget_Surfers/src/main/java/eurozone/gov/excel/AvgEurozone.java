@@ -34,7 +34,7 @@ public class AvgEurozone {
         long [] sectors = {publicserv, def, pubordsaf, econ, envprot,
             houscomamen, health, recrculrel, edu, socialprot, grsum};
         double [] grpercent = new double[11];
-        //εύρεση ποσοστών Ελλάδας ανά τομέα
+        //Εύρεση ποσοστών Ελλάδας ανά τομέα
         for (int i = 0; i < 11; i++) {
             grpercent[i] = Math.round(((double) sectors[i] / GTP * 100)
                 * 100.0) / 100.0;
@@ -42,7 +42,7 @@ public class AvgEurozone {
         return grpercent;
     }
 
-    // ονόματα τομέων 
+    //Ονόματα τομέων
     public static String[] sectors() {
         String grSectors[] = {"publicserv", "def", "pubordsaf", "econ",
             "envprot", "houscomamen", "health", "recrculrel",
@@ -50,12 +50,12 @@ public class AvgEurozone {
         return grSectors;
     }
 
-    // σύγκριση με Μέσο όρο ευρωζώνης
+    //Σύγκριση με Μέσο όρο ευρωζώνης
     public static double [] compareGrToEurozone(double[] grpercent) {
-        // ποσοστά Ευρωζώνης στους τομείς
+        //Ποσοστά Ευρωζώνης στους τομείς
         double [] euzpercent = {6.0, 1.2, 1.7, 5.7, 0.9, 1.2,
             7.4, 1.1, 4.6, 19.8, 49.5};
-            // σύγκριση ποσοστών Ελλάδας με Μέσο όρο ευρωζώνης
+            //Σύγκριση ποσοστών Ελλάδας με Μέσο όρο ευρωζώνης
         double [] diffgreuz = new double[11];
         for (int i = 0; i < 11; i++) {
             diffgreuz[i] = Math.round((euzpercent[i] - grpercent[i])

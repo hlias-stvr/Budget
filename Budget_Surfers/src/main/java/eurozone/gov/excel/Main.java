@@ -7,7 +7,7 @@ public class Main {
         String[][] revenue =
             ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         String[][] budget  = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
-        String[][] gdppop  = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
+        String[][] gdpPop  = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
         Choices ch = new Choices();
         Scanner scanner = new Scanner(System.in);
         int choice = -1;
@@ -50,7 +50,7 @@ public class Main {
                             ch.mainChoice3(revenue, scanner);
                             break;
                         case 4:
-                            ch.mainChoice4(gdppop, scanner);
+                            ch.mainChoice4(gdpPop, scanner);
                             break;
                         case 5:
                             ch.mainChoice5(budget, scanner);

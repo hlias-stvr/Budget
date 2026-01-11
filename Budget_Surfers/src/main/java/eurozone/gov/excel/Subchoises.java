@@ -4,23 +4,23 @@ import java.util.Scanner;
 
 public class Subchoises {
     ChildChoices child = new ChildChoices();
-    public void subchoice2a(double[] B, String[] grSectors) {
+    public void subchoice2a(double[] percSectorsExpenses, String[] grSectors) {
         for(int i = 0; i < 11; i++) {
-            System.out.println("Η Ελλάδα δαπανά " + B[i] + "%" + " στον τομέα " + grSectors[i]);
+            System.out.println("Η Ελλάδα δαπανά " + percSectorsExpenses[i] + "%" + " στον τομέα " + grSectors[i]);
         }
     }
-    public void subchoice2b(double[] C, String[] grSectors) {
+    public void subchoice2b(double[] percdiffSectorsExpenses, String[] grSectors) {
         for(int i = 0; i < 11; i++) {
-            if(C[i] > 0) {
-                System.out.println("Η Ελλάδα δαπανά "+ C[i] + "% λιγότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
-            } else if(C[i] < 0) {
-                System.out.println("Η Ελλάδα δαπανά "+ Math.abs(C[i]) + "% περισσότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
+            if(percdiffSectorsExpenses[i] > 0) {
+                System.out.println("Η Ελλάδα δαπανά "+ percdiffSectorsExpenses[i] + "% λιγότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
+            } else if(percdiffSectorsExpenses[i] < 0) {
+                System.out.println("Η Ελλάδα δαπανά "+ Math.abs(percdiffSectorsExpenses[i]) + "% περισσότερο στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
             } else {
                 System.out.println("Η Ελλάδα δαπανά το ίδιο ποσοστό στον τομέα " + grSectors[i] + " από τον ΜΟ της Ευρωζώνης");
             }
         }
     }
-    public void subchoice3a(double[][] g, String[][] revenue, long[][] n, Scanner scanner ) {
+    public void subchoice3a(double[][] percVarIncome, String[][] revenue, long[][] amountVarIncome, Scanner scanner ) {
         int choice4 = -1;
         do {
             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
@@ -35,10 +35,10 @@ public class Subchoises {
                     }
                     switch(choice4) {
                         case 1:
-                            child.childChoice3a1(g, revenue);
+                            child.childChoice3a1(revenue, percVarIncome);
                             break;
                         case 2:
-                            child.childChoice3a2(revenue, n);
+                            child.childChoice3a2(revenue, amountVarIncome);
                             break;
                     }
                     break;
@@ -57,7 +57,7 @@ public class Subchoises {
             }
         }while (choice4!= 0);
     }
-    public void subchoice3b(double[][] h, String[][] revenue, long[][] m, Scanner scanner) {
+    public void subchoice3b(double[][] percVarExpenses, String[][] revenue, long[][] amountVarExpenses, Scanner scanner) {
         int choice4 = -1;  
         do {
             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
@@ -72,10 +72,10 @@ public class Subchoises {
                     }
                     switch(choice4) {
                         case 1:
-                            child.childChoice3b1(revenue, h);
+                            child.childChoice3b1(revenue, percVarExpenses);
                             break;
                         case 2:
-                            child.childChoice3b2(revenue, m);
+                            child.childChoice3b2(revenue, amountVarExpenses);
                             break;
                     }
                     break;
@@ -93,16 +93,16 @@ public class Subchoises {
             }
         }while (choice4!=0);
     }
-    public void subchoice4a(double[] E, String[][] gdppop) {
-        for (int i = 0; i<E.length; i++) {
+    public void subchoice4a(double[] euzGdpPerCapita, String[][] gdppop) {
+        for (int i = 0; i < euzGdpPerCapita.length; i++) {
             if (i < 19) {
-                System.out.println("Τα ΚΚΑΕΠ της χώρας "+gdppop[i][0]+" είναι "+E[i]);
+                System.out.println("Τα ΚΚΑΕΠ της χώρας " + gdppop[i][0] + " είναι "+ euzGdpPerCapita[i]);
             } else if (i == 19) {
-                System.out.println("Τα ΚΚΑΕΠ του ΜΟ της Ευρωζώνης είναι "+E[i]);
+                System.out.println("Τα ΚΚΑΕΠ του ΜΟ της Ευρωζώνης είναι "+ euzGdpPerCapita[i]);
             }
         }
     }
-    public void subchoice4b(String[][] gdppop, double[] E, Scanner scanner) {
+    public void subchoice4b(String[][] gdppop, double[] euzGdpPerCapita, Scanner scanner) {
         int a = -1;
         System.out.println("Γράψε\n 1 για Αυστρία\n 2 για Βέλγιο\n 3 για Κροατία\n"
         +" 4 για Κύπρο\n 5 για Εσθονία\n 6 για Φινλανδία\n 7 για Γαλλία\n 8 για Γερμανία\n" 
@@ -123,9 +123,9 @@ public class Subchoises {
                     if (a != 20) {
                     System.out.println("Έβαλες την χώρα " + gdppop[a-1][0]);
                     }
-                    EuzLivingStandard.compareStdLive(a,E,gdppop );
+                    EuzLivingStandard.compareStdLive(a, euzGdpPerCapita, gdppop);
                     break;
-                } catch (IllegalArgumentException e) { 
+                } catch (IllegalArgumentException e) {
                     System.out.println("Σφάλμα" + e.getMessage());
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Πρόβλημα με τον πίνακα: " + e.getMessage());
@@ -136,22 +136,22 @@ public class Subchoises {
             }
         } while (a!= 0);
     }
-    public void subchoice5a(double[] perPerson, String[][] budget) {
-        for (int i = 0; i < perPerson.length; i++) {
-            System.out.println(budget[i+25][1]+ " " + perPerson[i]);
+    public void subchoice5a(double[] expensesPerPerson, String[][] budget) {
+        for (int i = 0; i < expensesPerPerson.length; i++) {
+            System.out.println(budget[i + 25][1] + " " + expensesPerPerson[i]);
         }
     }
-    public void subchoice5b(double[] perRegion, String[][] budget) {
-        for (int i = 0; i < perRegion.length; i++) {
-            System.out.println(budget[i+25][1]+ " " + perRegion[i] + "%");
+    public void subchoice5b(double[] expensesPerRegion, String[][] budget) {
+        for (int i = 0; i < expensesPerRegion.length; i++) {
+            System.out.println(budget[i+25][1]+ " " + expensesPerRegion[i] + "%");
         }
     }
     public void subchoice7a(String[][] budget, Scanner scanner) {
-        long [] longBudget1 = AvgEurozone.convertToLong(budget);
-        double [] grpercent = AvgEurozone.ministrDiv(longBudget1);
+        long [] longMinistrExpenses = AvgEurozone.convertToLong(budget);
+        double [] grPercentSectors = AvgEurozone.ministrDiv(longMinistrExpenses);
         String[] grSectors = AvgEurozone.sectors();
-        double[] newgrPercent = ChangeData.newGrPercent(grpercent, grSectors, scanner);
-        double [] newCompareAvgEurz = AvgEurozone.compareGrToEurozone(newgrPercent);    
+        double[] newSectorsExpenses = ChangeData.newGrPercent(grPercentSectors, grSectors, scanner);
+        double [] newCompareAvgEurz = AvgEurozone.compareGrToEurozone(newSectorsExpenses);    
         int choice7 = -1;
         // αν αλλάξει τα δεδομένα της επιλογής 1           
         do {
@@ -168,7 +168,7 @@ public class Subchoises {
                     }
                     switch(choice7) {
                         case 1:
-                            child.childChoice7a1(newgrPercent, grSectors);
+                            child.childChoice7a1(newSectorsExpenses, grSectors);
                             break;
                         case 2:
                             child.childChoice7a2(newCompareAvgEurz, grSectors);
@@ -182,16 +182,16 @@ public class Subchoises {
                     scanner.nextLine(); //καθάρισμα εισόδου
                 }
             }
-        } while(choice7 !=0);
+        } while(choice7 != 0);
     }
     public void subchoice7b(String[][] budget, Scanner scanner) {
-        long[] longBudget = RegionalPer.transformToLong(budget);
-        long[] newLongBudget = ChangeData.newAmountPerRegion(longBudget, budget, scanner);
+        long[] longRegionExpenses = RegionalPer.transformToLong(budget);
+        long[] newRegionExpenses = ChangeData.newAmountPerRegion(longRegionExpenses, budget, scanner);
         int choice9 = -1;
         // αν αλλάξει τα δεδομένα της επιλογής 2
         do {
-            double perPerson[] = RegionalPer.calcBudgetPerPerson(newLongBudget);
-            double perRegion[] = RegionalPer.calcBudgetPerRegion(newLongBudget);
+            double perPerson[] = RegionalPer.calcBudgetPerPerson(newRegionExpenses);
+            double perRegion[] = RegionalPer.calcBudgetPerRegion(newRegionExpenses);
             // ξανακαλεί τις μεθόδους που έχουν να κάνουν με αυτά που άλλαξε
             // για να δει την διαφορά
             System.out.println("Γράψε\n1 για να δεις την νέα δαπάνη ανά πολίτη");
@@ -222,13 +222,13 @@ public class Subchoises {
         } while(choice9 != 0);
     }
     public void subchoice7c(String[][] revenue, Scanner scanner) {
-        long[][] LongData = Percent.converterToLong(revenue, 14, 2);
-        long[] LongData25 = new long[LongData.length];
-        for (int i = 0; i < LongData25.length; i++) {
-            LongData25[i] = LongData[i][0];
+        long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
+        long[] oneDimensLongImcome = new long[longIncome.length];
+        for (int i = 0; i < oneDimensLongImcome.length; i++) {
+            oneDimensLongImcome[i] = longIncome[i][0];
         }
-        long[] newLongData= ChangeData.newRevenue(LongData25, revenue, scanner);
+        long[] newIncome = ChangeData.newRevenue(oneDimensLongImcome, revenue, scanner);
         System.out.println("Ακολουθεί η σύγκριση των νέων φορολογικών εσόδων με τον μέσο όρο της Ευρωζώνης");
-        CompareEuzTaxes.Calculation(newLongData);
+        CompareEuzTaxes.Calculation(newIncome);
     }
 }

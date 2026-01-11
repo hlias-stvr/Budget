@@ -1,65 +1,69 @@
 package eurozone.gov.excel;
 
 public class ChildChoices {
-    public void childChoice3a1(double[][] g, String[][] revenue) {
+    public void childChoice3a1(String[][] revenue, double[][] percVarIncome) {
         System.out.println("Η διαφορά των ποσοστών των εσόδων ανά έτος είναι:");
         System.out.println("Έτη 2024-2025,2023-2024,2022-2023,2021-2022");
-        for (int i = 0; i < g.length; i++) {
+        for (int i = 0; i < percVarIncome.length; i++) {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
-                    System.out.print(revenue[i][1] + " " + g[i][j] + "% ");
+                    System.out.print(revenue[i][1] + " " + percVarIncome[i][j]
+                        + "% ");
                 } else if (j == 1 || j == 2) {
-                    System.out.print(g[i][j] + "% ");
+                    System.out.print(percVarIncome[i][j] + "% ");
                 } else if (j == 3) {
-                    System.out.println(g[i][j] + "%");
+                    System.out.println(percVarIncome[i][j] + "%");
                 }
             }
         }
     }
 
-    public void childChoice3a2(String[][] revenue, long[][] n) {
-        System.out.println("η διαφορά των ποσών των εσόδων ανά έτος είναι:");
+    public void childChoice3a2(String[][] revenue, long[][] amountVarIncome) {
+        System.out.println("Η διαφορά των ποσών των εσόδων ανά έτος είναι:");
         System.out.println("Έτη 2024-2025,2023-2024,2022-2023,2021-2022");
-        for (int i = 0; i < n.length; i++) {
+        for (int i = 0; i < amountVarIncome.length; i++) {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
-                    System.out.print(revenue[i][1] + " " + n[i][j]);
+                    System.out.print(revenue[i][1] + " " +
+                        amountVarIncome[i][j]);
                 } else if (j == 1 || j == 2) {
-                    System.out.print(" " + n[i][j]);
+                    System.out.print(" " + amountVarIncome[i][j]);
                 } else if (j == 3) {
-                    System.out.println(" " + n[i][j]);
+                    System.out.println(" " + amountVarIncome[i][j]);
                 }
             }
         }
     }
 
-    public void childChoice3b1(String[][] revenue, double[][] h) {
-        System.out.println("Η διαφορά των ποσοστών ανά έτος είναι:");
+    public void childChoice3b1(String[][] revenue, double[][] percVarExpenses) {
+        System.out.println("Η διαφορά των ποσοστών των εξόδων ανά έτος είναι:");
         System.out.println("Έτη 2024-2025,2023-2024,2022-2023,2021-2022");
-        for (int i = 0; i < h.length; i++) {
+        for (int i = 0; i < percVarExpenses.length; i++) {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
-                    System.out.print(revenue[i][1] + " " + h[i][j] + "% ");
+                    System.out.print(revenue[i][1] + " " +
+                        percVarExpenses[i][j] + "% ");
                 } else if (j == 1 || j == 2) {
-                    System.out.print(h[i][j] + "% ");
+                    System.out.print(percVarExpenses[i][j] + "% ");
                 } else if (j == 3) {
-                    System.out.println(h[i][j] + "% ");
+                    System.out.println(percVarExpenses[i][j] + "% ");
                 }
             }
         }
     }
 
-    public void childChoice3b2(String[][] revenue, long[][] m) {
-        System.out.println("Η διαφορά των ποσών ανά έτος είναι:");
+    public void childChoice3b2(String[][] revenue, long[][] amountVarExpenses) {
+        System.out.println("Η διαφορά των ποσών των εξόδων ανά έτος είναι:");
         System.out.println("Έτη 2024-2025,2023-2024,2022-2023,2021-2022");
-        for (int i = 0; i < m.length; i++) {
+        for (int i = 0; i < amountVarExpenses.length; i++) {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
-                    System.out.print(revenue[i][1] + " " + m[i][j]);
+                    System.out.print(revenue[i][1] + " " +
+                        amountVarExpenses[i][j]);
                 } else if (j == 1 || j == 2) {
-                    System.out.print(" " + m[i][j]);
+                    System.out.print(" " + amountVarExpenses[i][j]);
                 } else if (j == 3) {
-                    System.out.println(" " + m[i][j]);
+                    System.out.println(" " + amountVarExpenses[i][j]);
                 }
             }
         }
