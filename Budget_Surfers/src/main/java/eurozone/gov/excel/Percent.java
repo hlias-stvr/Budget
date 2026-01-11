@@ -14,6 +14,7 @@ public class Percent {
             }
             return LongData;
     }
+    // ποσοστά 
     public static double[][] percentual(long[][] LongData) {
         double[][] variance = new double [LongData.length][4];
             for (int i = 0; i < LongData.length; i++) {
@@ -29,6 +30,7 @@ public class Percent {
             }
         return variance;
     }
+    //ποσά
     public static long[][] amount(long[][] LongData) {
         long[][] amountdiff = new long[LongData.length][4];
             for (int i = 0; i < amountdiff.length ; i++) {

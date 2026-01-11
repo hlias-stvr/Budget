@@ -89,7 +89,7 @@ public class BudgetApp {
             historyTypeNames.add(typeName);
         }
     }
-// ================= ΚΥΡΙΟ ΜΕΝΟΥ =================
+// Κύριο μενού
 
     static class MainMenuHandler implements HttpHandler {
         private static final String HTML = """
@@ -141,7 +141,7 @@ public class BudgetApp {
         }
     }
 
-     // ================= ΥΠΟΜΕΝΟΥ & ΑΠΟΤΕΛΕΣΜΑΤΑ =================
+     // Υπομενού και αποτελέσματα
     static class SubMenuHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
@@ -161,7 +161,7 @@ public class BudgetApp {
         }
     }
 
-    // ================= INTERACTIVE ΕΠΕΞΕΡΓΑΣΙΑ 7 =================
+    // Επιλογή 7 επεξεργασία δεδομένων
     static class EditHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
@@ -202,7 +202,7 @@ public class BudgetApp {
                     String type = (String) session.get("editType");
                     double[] data = (double[]) session.get("data");
 
-                    // ΑΠΟΘΗΚΕΥΣΗ GLOBAL
+                    // Αποθήκευση global
                     if ("sectors".equals(type)) {
                         if (modifiedSectorPercents != null) {
                             addToHistory(type, modifiedSectorPercents, data);
@@ -223,7 +223,7 @@ public class BudgetApp {
 
                     session.clear();
 
-                    // ΕΜΦΑΝΙΣΗ ΑΠΟΤΕΛΕΣΜΑΤΩΝ ΜΕΤΑ ΤΗΝ ΑΠΟΘΗΚΕΥΣΗ
+                    // Εμφάνιση αποτελεσμάτων μετά την αποθήκευση
                     String resultsHtml = getResultsAfterEdit(type);
                     sendHtml(exchange,
                         resultPageWithTitle("Αποτελέσματα μετά την αποθήκευση"
@@ -266,7 +266,7 @@ public class BudgetApp {
         sb.append("<p style='font-size:1.1em;'>Ακολουθούν οι νέοι υπολογισμοί βάσει των στοιχείων που τροποποιήσατε:</p><hr>");
 
         try {
-            // --- ΤΟΜΕΙΣ (SECTORS) ---
+            // τομέις (Sectors)
             if ("sectors".equals(type) && modifiedSectorPercents != null) {
                 // Καλούμε τη σύγκριση - η AvgEurozone πλέον θα βρει 11 στοιχεία
                 double[] newCompare =
@@ -294,7 +294,7 @@ public class BudgetApp {
                 sb.append("</ul>");
             } else if ("regions".equals(type) &&
                 modifiedRegionAmounts != null) {
-                // --- ΠΕΡΙΦΕΡΕΙΕΣ (REGIONS) ---
+                // περιφέρειες (regions)
                 sb.append("<h3 style='color:#003366;'>2. Ανάλυση Δαπανών ανά Περιφέρεια</h3>");
 
                 long[] longAmounts = new long[modifiedRegionAmounts.length];
@@ -325,7 +325,7 @@ public class BudgetApp {
                 sb.append("</table>");
             } else if ("revenues".equals(type) &&
                 modifiedRevenueAmounts != null) {
-                // --- ΕΣΟΔΑ (REVENUES) ---
+                //έσοδα (revenues)
                 sb.append("<h3 style='color:#003366;'>3. Νέα Σύγκριση Φορολογικών Εσόδων με Ευρωζώνη</h3>");
 
                 try {
@@ -486,7 +486,7 @@ public class BudgetApp {
             long[][] full = Percent.converterToLong(revenue, 14, 2);
             /*
             * Διασφαλίζουμε ότι ο πίνακας έχει το μήκος που περιμένει η
-            * Calculation (π.χ. 13)
+            * Calculation 
             */
             double[] dData = new double[13];
             for (int i = 0; i < 13; i++) {
@@ -586,7 +586,7 @@ public class BudgetApp {
         return new String[0];
     }
 
-    // ================= ΥΠΟΜΕΝΟΥ ΣΕΛΙΔΑ =================
+    //υπομενού σελίδα
     private static String getSubMenuPage(int main) {
         String title = switch (main) {
             case 2 -> "Σύγκριση ποσοστιαίων δαπανών ανά τομέα με Ευρωζώνη";
@@ -636,7 +636,7 @@ public class BudgetApp {
             """.formatted(title, title, buttons);
     }
 
-    // ================= ΣΕΛΙΔΑ ΑΠΟΤΕΛΕΣΜΑΤΟΣ =================
+    // Σελίδα αποτελέσματος
     private static String resultPage(String result, int main) {
         boolean hasNoSubMenu = (main == 1 || main == 6 || main == 8);
         String subMenuButtonStyle =
@@ -661,62 +661,63 @@ public class BudgetApp {
             """.formatted(result,subMenuButtonStyle, main);
     }
 
-        // ================= ΕΚΤΕΛΕΣΗ ΕΠΙΛΟΓΩΝ =================
+        // Εκτέλεση επιλογών
     private static String executeChoice(int main, int sub) {
         StringBuilder sb = new StringBuilder();
         switch (main) {
             case 1 -> {
+                sb.append("Προυπολογισμός Ελλάδας μετά την αφαίρεση του αναλυκλώσιμου χρέους\n");
                 sb.append("=== ΑΡΧΕΙΟ 1: gr_revenue_expenses_25.csv ===\n");
                 appendFirstRows(sb, revenue, 33);
                 sb.append("\n=== ΑΡΧΕΙΟ 2: gr_ministy_25.csv ===\n");
                 appendFirstRows(sb, budget, 35);
             } case 2 -> {
-                long[] A = AvgEurozone.convertToLong(budget);
-                double[] B = AvgEurozone.ministrDiv(A);
-                double[] C = AvgEurozone.compareGrToEurozone(B);
+                long[] longBudget = AvgEurozone.convertToLong(budget);
+                double[] minDiv = AvgEurozone.ministrDiv(longBudget);
+                double[] difEuz = AvgEurozone.compareGrToEurozone(minDiv);
                 String[] sectors = AvgEurozone.sectors();
 
                 if (sub == 1) {
                     sb.append("Ποσοστιαίες δαπάνες Ελλάδας ανά τομέα:\n\n");
                     for (int i = 0; i < 11; i++) {
-                        sb.append("Η Ελλάδα δαπανά ").append(String.format("%.2f", B[i])).append("% στον τομέα ").append(sectors[i]).append("\n");
+                        sb.append("Η Ελλάδα δαπανά ").append(String.format("%.2f", minDiv[i])).append("% στον τομέα ").append(sectors[i]).append("\n");
                     }
                 } else if (sub == 2) {
                     sb.append("Σύγκριση με Μ.Ο. Ευρωζώνης:\n\n");
                     for (int i = 0; i < 11; i++) {
-                        if (C[i] > 0) {
-                            sb.append("Λιγότερο κατά ").append(String.format("%.2f", C[i])).append("% στον ").append(sectors[i]).append("\n");
-                        } else if (C[i] < 0) {
-                            sb.append("Περισσότερο κατά ").append(String.format("%.2f", Math.abs(C[i]))).append("% στον ").append(sectors[i]).append("\n");
+                        if (difEuz[i] > 0) {
+                            sb.append("Λιγότερο κατά ").append(String.format("%.2f", difEuz[i])).append("% στον ").append(sectors[i]).append("\n");
+                        } else if (difEuz[i] < 0) {
+                            sb.append("Περισσότερο κατά ").append(String.format("%.2f", Math.abs(difEuz[i]))).append("% στον ").append(sectors[i]).append("\n");
                         } else {
                             sb.append("Ίδιο με Μ.Ο. στον ").append(sectors[i]).append("\n");
                         }
                     }
                 }
             } case 3 -> {
-                long[][] s = Percent.converterToLong(revenue, 14, 2);
-                long[][] f = Percent.converterToLong(revenue, 16, 16);
-                double[][] g = Percent.percentual(s);
-                double[][] h = Percent.percentual(f);
-                long[][] n = Percent.amount(s);
-                long[][] m = Percent.amount(f);
+                long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
+                long[][] longExpenses = Percent.converterToLong(revenue, 16, 16);
+                double[][] incomePercent = Percent.percentual(longIncome);
+                double[][] expensesPercent = Percent.percentual(longExpenses);
+                long[][] incomeAmount = Percent.amount(longIncome);
+                long[][] expensesAmount = Percent.amount(longExpenses);
 
                 if (sub == 1) {
                     sb.append("ΣΥΓΚΡΙΣΗ ΕΣΟΔΩΝ ΤΕΛΕΥΤΑΙΑ 5 ΕΤΗ\n\n");
                     sb.append("Ποσοστιαίες διαφορές (%):\n");
                     sb.append("Έτη: 24-25 | 23-24 | 22-23 | 21-22\n");
-                    for (int i = 0; i < g.length; i++) {
+                    for (int i = 0; i < incomePercent.length; i++) {
                         sb.append(String.format("%-40s", revenue[i][1]));
                         for (int j = 0; j < 4; j++) {
-                            sb.append(String.format(" %8.2f%%", g[i][j]));
+                            sb.append(String.format(" %8.2f%%", incomePercent[i][j]));
                         }
                         sb.append("\n");
                     }
                     sb.append("\nΠοσά διαφορές:\n");
-                    for (int i = 0; i < n.length; i++) {
+                    for (int i = 0; i < incomeAmount.length; i++) {
                         sb.append(String.format("%-40s", revenue[i][1]));
                         for (int j = 0; j < 4; j++) {
-                            sb.append(String.format(" %,12d", n[i][j]));
+                            sb.append(String.format(" %,12d", incomeAmount[i][j]));
                         }
                         sb.append("\n");
                     }
@@ -724,18 +725,18 @@ public class BudgetApp {
                     sb.append("ΣΥΓΚΡΙΣΗ ΔΑΠΑΝΩΝ ΤΕΛΕΥΤΑΙΑ 5 ΕΤΗ\n\n");
                     sb.append("Ποσοστιαίες διαφορές (%):\n");
                     sb.append("Έτη: 24-25 | 23-24 | 22-23 | 21-22\n");
-                    for (int i = 0; i < h.length; i++) {
+                    for (int i = 0; i < expensesPercent.length; i++) {
                         sb.append(String.format("%-40s", revenue[i+14][1]));
                         for (int j = 0; j < 4; j++) {
-                            sb.append(String.format(" %8.2f%%", h[i][j]));
+                            sb.append(String.format(" %8.2f%%", expensesPercent[i][j]));
                         }
                         sb.append("\n");
                     }
                     sb.append("\nΠοσά διαφορές:\n");
-                    for (int i = 0; i < m.length; i++) {
+                    for (int i = 0; i < expensesAmount.length; i++) {
                         sb.append(String.format("%-40s", revenue[i+14][1]));
                         for (int j = 0; j < 4; j++) {
-                            sb.append(String.format(" %,12d", m[i][j]));
+                            sb.append(String.format(" %,12d", expensesAmount[i][j]));
                         }
                         sb.append("\n");
                     }
@@ -743,8 +744,8 @@ public class BudgetApp {
                 }
             }
             case 4 -> {
-                long[][] D = EuzLivingStandard.compareToLong(gdppop);
-                double[] E = EuzLivingStandard.findStandLiving(D);
+                long[][] longGdpop = EuzLivingStandard.compareToLong(gdppop);
+                double[] livStand = EuzLivingStandard.findStandLiving(longGdpop);
 
                 if (sub == 1) {
                     sb.append("ΚΑΤΑ ΚΕΦΑΛΗΝ ΑΕΠ ΧΩΡΩΝ ΕΥΡΩΖΩΝΗΣ (2025)\n\n");
@@ -754,9 +755,9 @@ public class BudgetApp {
                         "Λιθουανία", "Λουξεμβούργο", "Μάλτα", "Ολλανδία",
                         "Πορτογαλία", "Σλοβακία", "Σλοβενία", "Ισπανία"};
                     for (int i = 0; i < 19; i++) {
-                        sb.append(countries[i]).append(": ").append(String.format("%,.0f", E[i])).append(" €\n");
+                        sb.append(countries[i]).append(": ").append(String.format("%,.0f", livStand[i])).append(" €\n");
                     }
-                    sb.append("\nΜέσος όρος Ευρωζώνης: ").append(String.format("%,.0f", E[19])).append(" €\n");
+                    sb.append("\nΜέσος όρος Ευρωζώνης: ").append(String.format("%,.0f", livStand[19])).append(" €\n");
                 } else if (sub == 2) {
                     sb.append("ΣΥΓΚΡΙΣΗ ΒΙΟΤΙΚΟΥ ΕΠΙΠΕΔΟΥ ΕΛΛΑΔΑΣ ΜΕ" +
                         " ΑΛΛΕΣ ΧΩΡΕΣ\n\n");
@@ -767,7 +768,7 @@ public class BudgetApp {
                         "Λουξεμβούργο", "Μάλτα", "Ολλανδία", "Πορτογαλία",
                         "Σλοβακία", "Σλοβενία", "Ισπανία"};
                     for (int i = 0; i < 19; i++) {
-                        double diff = E[i] - 25300;
+                        double diff = livStand[i] - 25300;
                         if (diff > 0) {
                             sb.append(countries[i]).append(" έχει υψηλότερο κατά ").append(String.format("%,.0f", diff)).append(" €\n");
                         } else if (diff < 0) {

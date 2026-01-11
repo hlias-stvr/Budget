@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ReadTwoCsvFiles {
-    // --- ΜΕΘΟΔΟΣ: Διάβασμα CSV σε String[][] ---
+    //Διάβασμα CSV σε String[][]
     static String[][] readCsv(String resourcePath) {
         var rows = new ArrayList<String[]>();
         try (var is = ReadTwoCsvFiles.class.getResourceAsStream(resourcePath);
@@ -32,7 +32,7 @@ public class ReadTwoCsvFiles {
         return rows.toArray(new String[0][]);
     }
 
-    // --- ΕΚΤΥΠΩΣΗ ΠΡΩΤΩΝ ΓΡΑΜΜΩΝ ---
+    //εκτύπωση πρώτων γραμμών
     static void printFirstRows(String[][] data, int n) {
         for (int i = 0; i < Math.min(n, data.length); i++) {
             StringBuilder sb = new StringBuilder();

@@ -1,4 +1,5 @@
 package eurozone.gov.excel;
+//σύγκριση φορολογικών εσόδων της Ελλάδας με τον μέσο όρο της Ευρωζώνης 
 public class CompareEuzTaxes {
     public static void Calculation(long LongData[]) {
         final long GTP = 206000000000L;

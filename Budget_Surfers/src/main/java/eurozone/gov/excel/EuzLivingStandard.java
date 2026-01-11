@@ -1,6 +1,7 @@
 package eurozone.gov.excel;
 
 public class EuzLivingStandard {
+    // μετατροπή πίνακα gdppop σε long 
     public static long[][] compareToLong(String[][] gdppop) {
         long[][] gdppopulation = new long[19][2];
         for (int i = 0 ; i < 19 ; i++) {

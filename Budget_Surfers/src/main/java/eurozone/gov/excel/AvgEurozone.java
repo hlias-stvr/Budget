@@ -1,6 +1,7 @@
 package eurozone.gov.excel;
 
 public class AvgEurozone {
+    // μετατροπή πίνακα budget σε long
     public static long[] convertToLong(String[][] budget) {
         long[] grministr = new long[20];
         for (int i = 4; i < 24; i++) {
@@ -9,6 +10,7 @@ public class AvgEurozone {
         return grministr;
     }
 
+    // διαχωρισμός υπουργείων σε τομείς για σύγκριση με την Ευρωζώνη
     public static double [] ministrDiv(long[] grministr) {
         final long GTP = 206000000000L;
         long publicserv = grministr[0] + grministr[16] + grministr[1] +
@@ -32,6 +34,7 @@ public class AvgEurozone {
         long [] sectors = {publicserv, def, pubordsaf, econ, envprot,
             houscomamen, health, recrculrel, edu, socialprot, grsum};
         double [] grpercent = new double[11];
+        //εύρεση ποσοστών Ελλάδας ανά τομέα
         for (int i = 0; i < 11; i++) {
             grpercent[i] = Math.round(((double) sectors[i] / GTP * 100)
                 * 100.0) / 100.0;
@@ -39,6 +42,7 @@ public class AvgEurozone {
         return grpercent;
     }
 
+    // ονόματα τομέων 
     public static String[] sectors() {
         String grSectors[] = {"publicserv", "def", "pubordsaf", "econ",
             "envprot", "houscomamen", "health", "recrculrel",
@@ -46,9 +50,12 @@ public class AvgEurozone {
         return grSectors;
     }
 
+    // σύγκριση με Μέσο όρο ευρωζώνης
     public static double [] compareGrToEurozone(double[] grpercent) {
+        // ποσοστά Ευρωζώνης στους τομείς
         double [] euzpercent = {6.0, 1.2, 1.7, 5.7, 0.9, 1.2,
             7.4, 1.1, 4.6, 19.8, 49.5};
+            // σύγκριση ποσοστών Ελλάδας με Μέσο όρο ευρωζώνης
         double [] diffgreuz = new double[11];
         for (int i = 0; i < 11; i++) {
             diffgreuz[i] = Math.round((euzpercent[i] - grpercent[i])

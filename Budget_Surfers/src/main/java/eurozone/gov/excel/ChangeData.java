@@ -3,6 +3,7 @@ package eurozone.gov.excel;
 import java.util.Scanner;
 
 public class ChangeData {
+    //αλλαγές στους τομείς
     public static double[] newGrPercent(double[] grpercent, String[] grSectors, Scanner scanner) {
         double startsumpercent = grpercent[10];
         System.out.println("Αυτός είναι ο πίνακας με τις αρχικές ποσοστιαίες δαπάνες ανά τομέα.");
@@ -13,8 +14,10 @@ public class ChangeData {
         do {
             int input1 = -1;
             double input2 = -1.0;
-            while (true) {
+            // μέχρι να δωθεί έγκυρη τιμή
+            while (true) { 
                 try {
+                    //οδηγίες για τον χρήστη
                     System.out.println("Μπορείς να μεταβάλλεις το ποσοστό οποιουδήποτε τομέα θέλεις, όμως " +
                     "το συνολικό ποσοστό πρέπει να μείνει ίσο με το αρχικό.");
                     System.out.println("Αρχικό συνολικό ποσοστό: " + startsumpercent + "%");
@@ -89,6 +92,8 @@ public class ChangeData {
         } while ((grpercent[10] != startsumpercent) || (input3 == 1));
         return grpercent;
     }
+
+    // αλλαγές στις περιφέρειες
     public static long[] newAmountPerRegion(long[] budgetLong, String[][] budget, Scanner scanner) {
         long sum = 0;
         for (int i = 0; i < budgetLong.length; i++) {
@@ -104,7 +109,7 @@ public class ChangeData {
         do {
             int input1 = -1;
             long input2 = -10000000000L;
-            while (true) {
+            while (true) { // μέχρι να δωθεί έγκυρη τιμή 
                 try {
                     System.out.println("Μπορείς να μεταβάλλεις το ποσό οποιασδήποτε περιφέρειας θέλεις, όμως " +
                     "το συνολικό ποσό πρέπει να μείνει ίσο με το αρχικό.");
@@ -182,6 +187,8 @@ public class ChangeData {
         } while ((sum != 79592000) || (input3 == 1));
          return budgetLong;
     }
+
+    //αλλαγές στα έσοδα 
     public static long[] newRevenue(long[] LongData, String[][] revenue, Scanner scanner) {
         long startsum = LongData[0];
         System.out.println("Αυτός είναι ο πίνακας με τα αρχικά αναλυτικά έσοδα");

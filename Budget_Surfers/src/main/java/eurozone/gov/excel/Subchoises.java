@@ -147,8 +147,8 @@ public class Subchoises {
         }
     }
     public void subchoice7a(String[][] budget, Scanner scanner) {
-        long [] A = AvgEurozone.convertToLong(budget);
-        double [] grpercent = AvgEurozone.ministrDiv(A);
+        long [] longBudget1 = AvgEurozone.convertToLong(budget);
+        double [] grpercent = AvgEurozone.ministrDiv(longBudget1);
         String[] grSectors = AvgEurozone.sectors();
         double[] newgrPercent = ChangeData.newGrPercent(grpercent, grSectors, scanner);
         double [] newCompareAvgEurz = AvgEurozone.compareGrToEurozone(newgrPercent);    

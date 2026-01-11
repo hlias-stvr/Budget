@@ -9,6 +9,7 @@ public class RegionalPer {
         return budgetlong;
     }
 
+    // δαπάνη ανά πολίτη
     public static double[] calcBudgetPerPerson(long[] budgetlong) {
         double[] perperson = new double[7];
         long[] population = new long[7];
@@ -26,6 +27,7 @@ public class RegionalPer {
         return perperson;
     }
 
+    //δαπάνη ανά περιφέρεια 
     public static double[] calcBudgetPerRegion(long []budgetlong) {
         double[] perregion = new double[7];
         long sum = 0;
