@@ -64,7 +64,8 @@
         </module>
         
         <module name="RightCurly">
-            <property name="option" value="alone"/>
+            <property name="option" value="same"/>
+            <property name="tokens" value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_DO"/>
             <property name="severity" value="warning"/>
         </module>
         
