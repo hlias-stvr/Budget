@@ -16,6 +16,7 @@ public class TestRegionalPer {
             assertTrue(testLongRegionExpenses[i] > 0);
         }
     }
+
     @Test
     void testCalcBudgetPerPerson() {
         String[][] budget =
@@ -29,6 +30,7 @@ public class TestRegionalPer {
             assertTrue(testExpensesPerPerson[i] > 0);
         }
     }
+
     @Test
     void testCalcBudgetPerRegion() {
         String[][] budget =
