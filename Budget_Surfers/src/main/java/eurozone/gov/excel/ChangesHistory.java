@@ -1,14 +1,18 @@
 package eurozone.gov.excel;
+
 import java.util.ArrayList;
 
 public class ChangesHistory {
     private static ArrayList<BudgetChange> changes = new ArrayList<>();
+
     public static void addChangeDouble(String name, double amount) {
-        changes.add(new BudgetChange(name, amount)); 
+        changes.add(new BudgetChange(name, amount));
     }
+
     public static void addChangeLong(String name, long amount) {
-        changes.add(new BudgetChange(name, amount)); 
+        changes.add(new BudgetChange(name, amount));
     }
+
     public static void printAll() {
         if (changes.isEmpty()) {
             System.out.println("Η λίστα αλλαγών είναι κενή.");
