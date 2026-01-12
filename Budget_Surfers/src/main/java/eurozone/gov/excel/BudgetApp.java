@@ -262,9 +262,11 @@ public class BudgetApp {
 
     private static String getResultsAfterEdit(String type) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<div style='background:#f4f9ff; padding:25px; border-radius:12px; border-left:6px solid #28a745; text-align:left;'>");
+        sb.append("<div style='background:#f4f9ff; padding:25px; border-radius"
+            + ":12px; border-left:6px solid #28a745; text-align:left;'>");
         sb.append("<h2 style='color:#155724;'>✅ Οι αλλαγές εφαρμόστηκαν!</h2>");
-        sb.append("<p style='font-size:1.1em;'>Ακολουθούν οι νέοι υπολογισμοί βάσει των στοιχείων που τροποποιήσατε:</p><hr>");
+        sb.append("<p style='font-size:1.1em;'>Ακολουθούν οι νέοι υπολογισμοί"
+            + " βάσει των στοιχείων που τροποποιήσατε:</p><hr>");
 
         try {
             // τομέις (Sectors)
@@ -288,15 +290,18 @@ public class BudgetApp {
                         : "Περισσότερο κατά <b>" + String.format("%.2f",
                             Math.abs(newCompare[i])) + "%</b>";
 
-                    sb.append("<li style='margin-bottom:8px; background:white; padding:10px; border-radius:5px;'>");
-                    sb.append("<b>").append(sectors[i]).append("</b>: ").append(text);
+                    sb.append("<li style='margin-bottom:8px; background:white;"
+                        + " padding:10px; border-radius:5px;'>");
+                    sb.append("<b>").append(sectors[i]).append("</b>: ")
+                        .append(text);
                     sb.append("</li>");
                 }
                 sb.append("</ul>");
             } else if ("regions".equals(type) &&
                 modifiedRegionAmounts != null) {
                 // περιφέρειες (regions)
-                sb.append("<h3 style='color:#003366;'>2. Ανάλυση Δαπανών ανά Περιφέρεια</h3>");
+                sb.append("<h3 style='color:#003366;'>2. Ανάλυση Δαπανών" +
+                    " ανά Περιφέρεια</h3>");
 
                 long[] longAmounts = new long[modifiedRegionAmounts.length];
                 for (int i = 0; i < modifiedRegionAmounts.length; i++) {
@@ -308,26 +313,36 @@ public class BudgetApp {
                 double[] perRegion =
                     RegionalPer.calcBudgetPerRegion(longAmounts);
                 sb.append("<h4>Νέα Στοιχεία ανά Περιφέρεια:</h4>");
-                sb.append("<table border='1' style='width:100%; border-collapse:collapse; background:white;'>");
-                sb.append("<tr style='background:#eee;'><th>Περιφέρεια</th><th>Ποσό ανά Πολίτη</th><th>% Συνολικής Δαπάνης</th></tr>");
+                sb.append("<table border='1' style='width:100%; " +
+                    "border-collapse:collapse; background:white;'>");
+                sb.append("<tr style='background:#eee;'><th>Περιφέρεια</th>" +
+                    "<th>Ποσό ανά Πολίτη</th><th>% Συνολικής Δαπάνης" +
+                    "</th></tr>");
 
                 for (int i = 0; i < perPerson.length; i++) {
                     /*
                     * Διασφάλιση ότι δεν θα βγούμε εκτός ορίων του πίνακα
                     * budget
                     */
-                    String regionName = (i + 25 < budget.length) ? budget[i + 25][1] : "Περιφέρεια " + (i + 1); 
+                    String regionName = (i + 25 < budget.length) ?
+                        budget[i + 25][1] : "Περιφέρεια " + (i + 1);
                     sb.append("<tr>");
-                    sb.append("<td style='padding:8px;'>").append(regionName).append("</td>");
-                    sb.append("<td style='padding:8px; font-weight:bold;'>").append(String.format("%,.2f €", perPerson[i])).append("</td>");
-                    sb.append("<td style='padding:8px;'>").append(String.format("%.2f%%", perRegion[i])).append("</td>");
+                    sb.append("<td style='padding:8px;'>").append(regionName)
+                        .append("</td>");
+                    sb.append("<td style='padding:8px; font-weight:bold;'>")
+                        .append(String.format("%,.2f €", perPerson[i]))
+                        .append("</td>");
+                    sb.append("<td style='padding:8px;'>")
+                        .append(String.format("%.2f%%", perRegion[i]))
+                        .append("</td>");
                     sb.append("</tr>");
                 }
                 sb.append("</table>");
             } else if ("revenues".equals(type) &&
                 modifiedRevenueAmounts != null) {
                 //έσοδα (revenues)
-                sb.append("<h3 style='color:#003366;'>3. Νέα Σύγκριση Φορολογικών Εσόδων με Ευρωζώνη</h3>");
+                sb.append("<h3 style='color:#003366;'>3. Νέα Σύγκριση" +
+                    " Φορολογικών Εσόδων με Ευρωζώνη</h3>");
 
                 try {
                     /*
@@ -344,40 +359,69 @@ public class BudgetApp {
                         double avg = 40.9; // Μέσος Όρος Ευρωζώνης
                         double diff = Math.abs(grPct - avg);
 
-                        sb.append("<div style='background:white; padding:20px; border-radius:10px; border:1px solid ; display:inline-block; text-align:left;'>");
-                        sb.append("<p style='font-size:18px;'>Συνολικά Φορολογικά Έσοδα: <b>").append(String.format("%,d €", grTaxes)).append("</b></p>");
-                        sb.append("<p style='font-size:18px;'>Ποσοστό Ελλάδας: <b style='color:#007bff;'>").append(String.format("%.2f%%", grPct)).append("</b> του ΑΕΠ</p>");
-                        sb.append("<p style='font-size:18px;'>Μέσος Όρος Ευρωζώνης: <b>40.90%</b></p>");
+                        sb.append("<div style='background:white; padding:20px;"
+                            + " border-radius:10px; border:1px solid ; " +
+                            "display:inline-block; text-align:left;'>");
+                        sb.append("<p style='font-size:18px;'>Συνολικά" +
+                            " Φορολογικά Έσοδα: <b>").append(String
+                            .format("%,d €", grTaxes)).append("</b></p>");
+                        sb.append("<p style='font-size:18px;'>Ποσοστό Ελλάδας:"
+                            + " <b style='color:#007bff;'>")
+                            .append(String.format("%.2f%%", grPct))
+                            .append("</b> του ΑΕΠ</p>");
+                        sb.append("<p style='font-size:18px;'>Μέσος Όρος" +
+                            " Ευρωζώνης: <b>40.90%</b></p>");
                         sb.append("<hr>");
 
                         if (grPct > avg) {
-                            sb.append("<p style='color:#d9534f; font-weight:bold; font-size:18px;'> Η Ελλάδα υπερβαίνει τον Μ.Ο. κατά ").append(String.format("%.2f", diff)).append(" ποσοστιαίες μονάδες.</p>");
+                            sb.append("<p style='color:#d9534f; font-weight:" +
+                                "bold; font-size:18px;'> Η Ελλάδα υπερβαίνει" +
+                                " τον Μ.Ο. κατά ").append(String.format("%.2f",
+                                diff)).append(" ποσοστιαίες μονάδες.</p>");
                         } else if (grPct < avg) {
-                            sb.append("<p style='color:#5cb85c; font-weight:bold; font-size:18px;'> Η Ελλάδα υστερεί κατά ").append(String.format("%.2f", diff)).append(" ποσοστιαίες μονάδες.</p>");
+                            sb.append("<p style='color:#5cb85c; font-weight:" +
+                                "bold; font-size:18px;'> Η Ελλάδα υστερεί από" +
+                                " τον Μ.Ο. κατά ").append(String.format("%.2f",
+                                diff)).append(" ποσοστιαίες μονάδες.</p>");
                         } else {
-                            sb.append("<p style='color:#5cb85c; font-weight:bold; font-size:18px;'>Το ποσοστό είναι ακριβώς ίσο με τον Μ.Ο. της Ευρωζώνης.</p>");
+                            sb.append("<p style='color:#5cb85c; font-weight:" +
+                                "bold; font-size:18px;'>Το ποσοστό είναι" +
+                                " ακριβώς ίσο με τον Μ.Ο. της Ευρωζώνης.</p>");
                         }
                         sb.append("</div>");
 
-                        // Προαιρετικά: Εμφάνιση αναλυτικής λίστας όλων των εσόδων
-                        sb.append("<h4 style='margin-top:20px;'>Αναλυτικά Έσοδα:</h4>");
-                        sb.append("<ul style='list-style:none; padding:0; text-align:left; display:inline-block;'>");
+                        // Εμφάνιση αναλυτικής λίστας όλων των εσόδων
+                        sb.append("<h4 style='margin-top:20px;'>Αναλυτικά " +
+                            "Έσοδα:</h4>");
+                        sb.append("<ul style='list-style:none; padding:0; " +
+                            "text-align:left; display:inline-block;'>");
                         String[] revenueLabels = getLabels("revenues");
-                        for (int i = 0; i < Math.min(modifiedRevenueAmounts.length, revenueLabels.length); i++) {
-                            sb.append("<li style='padding:5px 0; border-bottom:1px solid #eee;'>");
-                            sb.append(revenueLabels[i]).append(": <b>").append(String.format("%,.0f €", modifiedRevenueAmounts[i])).append("</b>");
+                        for (int i = 0; i < Math.min(modifiedRevenueAmounts
+                            .length, revenueLabels.length); i++) {
+                            sb.append("<li style='padding:5px 0; " +
+                                "border-bottom:1px solid #eee;'>");
+                            sb.append(revenueLabels[i]).append(": <b>")
+                                .append(String.format("%,.0f €",
+                                modifiedRevenueAmounts[i])).append("</b>");
                             sb.append("</li>");
                         }
                         sb.append("</ul>");
                     } else {
-                        sb.append("<p style='color:red;'>❌ Σφάλμα: Ο πίνακας εσόδων είναι πολύ μικρός για τον υπολογισμό (Length: ").append(modifiedRevenueAmounts.length).append(").</p>");
+                        sb.append("<p style='color:red;'>❌ Σφάλμα: Ο πίνακας" +
+                            " εσόδων είναι πολύ μικρός για τον υπολογισμό " +
+                            "(Length: ").append(modifiedRevenueAmounts.length)
+                            .append(").</p>");
                     }
                 } catch (Exception e) {
-                    sb.append("<p style='color:red;'>❌ Σφάλμα κατά την επεξεργασία των εσόδων: ").append(e.getMessage()).append("</p>");
+                    sb.append("<p style='color:red;'>❌ Σφάλμα κατά την" +
+                        " επεξεργασία των εσόδων: ").append(e.getMessage())
+                        .append("</p>");
                 }
             }
         } catch (Exception e) {
-            sb.append("<p style='color:red; background:white; padding:10px; border:1px solid red;'>❌ Σφάλμα κατά τον υπολογισμό: ").append(e.getMessage()).append("</p>");
+            sb.append("<p style='color:red; background:white; padding:10px; "
+                + "border:1px solid red;'>❌ Σφάλμα κατά τον υπολογισμό: ")
+                .append(e.getMessage()).append("</p>");
         }
 
         sb.append("</div>");
@@ -437,7 +481,8 @@ public class BudgetApp {
     private static double calculateOriginalSum(String type) {
         if ("sectors".equals(type)) {
             long[] longMinistrExpenses = AvgEurozone.convertToLong(budget);
-            double[] grPercentSectors = AvgEurozone.ministrDiv(longMinistrExpenses);
+            double[] grPercentSectors =
+                AvgEurozone.ministrDiv(longMinistrExpenses);
             double sum = 0;
             for (int i = 0; i < 10; i++) {
                 sum += grPercentSectors[i];
@@ -463,15 +508,17 @@ public class BudgetApp {
 
     private static double[] initializeData(String type) {
         if ("sectors".equals(type)) {
-            long[] A = AvgEurozone.convertToLong(budget);
-            double[] B = AvgEurozone.ministrDiv(A); // Παράγει 11 στοιχεία
-
+            long[] longMinistrExpenses = AvgEurozone.convertToLong(budget);
+            double[] percSectorsExpenses =
+                AvgEurozone.ministrDiv(longMinistrExpenses);
+            //Παράγει 11 στοιχεία
             double[] copy = new double[11];
             /*
             * Αν το B έχει 11 στοιχεία, τα παίρνουμε,
             * αν έχει 10, γεμίζουμε τα υπόλοιπα
             * */
-            System.arraycopy(B, 0, copy, 0, Math.min(B.length, 11));
+            System.arraycopy(percSectorsExpenses, 0, copy, 0,
+                Math.min(percSectorsExpenses.length, 11));
 
             copy[10] = 50.69; // Η 11η θέση που "ικανοποιεί" την AvgEurozone
             return copy;
@@ -487,7 +534,7 @@ public class BudgetApp {
             long[][] full = BudgetVariance.converterToLong(revenue, 14, 2);
             /*
             * Διασφαλίζουμε ότι ο πίνακας έχει το μήκος που περιμένει η
-            * Calculation 
+            * Calculation
             */
             double[] dData = new double[13];
             for (int i = 0; i < 13; i++) {
@@ -553,16 +600,25 @@ public class BudgetApp {
         }
 
         html.append("<form method='post'>");
-        html.append("Κατηγορία (1-").append(displayLimit).append("): <input type='number' name='index' min='1' max='").append(displayLimit).append("' required><br>");
-        html.append("Νέα τιμή: <input type='number' name='value' step='0.01' required><br>");
-        html.append("<button type='submit' style='background:#007bff;color:white'>Εφάρμοσε αλλαγή</button></form>");
+        html.append("Κατηγορία (1-").append(displayLimit)
+            .append("): <input type='number' name='index' min='1' max='")
+            .append(displayLimit).append("' required><br>");
+        html.append("Νέα τιμή: <input type='number' name='value' step='0.01'" +
+            " required><br>");
+        html.append("<button type='submit' style='background:#007bff;color:" +
+            "white'>Εφάρμοσε αλλαγή</button></form>");
 
         // Το κουμπί αποθήκευσης εμφανίζεται όταν το άθροισμα των 10 είναι σωστό
         if (Math.abs(diff) < 0.01) {
-            html.append("<form method='post'><button name='action' value='finish' style='background:green;color:white;margin-top:20px'>Τέλος - Αποθήκευση & Εμφάνιση Αποτελεσμάτων</button></form>");
+            html.append("<form method='post'><button name='action' " +
+                "value='finish' style='background:green;color:white;" +
+                "margin-top:20px'>Τέλος - Αποθήκευση & Εμφάνιση Αποτελεσμάτων" +
+                "</button></form>");
         }
 
-        html.append("<form method='post'><button name='action' value='cancel' style='background:#dc3545;color:white;margin-top:20px'>Άκυρο - Επιστροφή</button></form>");
+        html.append("<form method='post'><button name='action' " +
+            "value='cancel' style='background:#dc3545;color:white;" +
+            "margin-top:20px'>Άκυρο - Επιστροφή</button></form>");
         html.append("</body></html>");
         return html.toString();
     }
@@ -667,37 +723,54 @@ public class BudgetApp {
         StringBuilder sb = new StringBuilder();
         switch (main) {
             case 1 -> {
-                sb.append("Προυπολογισμός Ελλάδας μετά την αφαίρεση του αναλυκλώσιμου χρέους\n");
+                sb.append("Προυπολογισμός Ελλάδας μετά την αφαίρεση του" +
+                    " αναλυκλώσιμου χρέους\n");
                 appendFirstRows(sb, revenue, 33);
                 appendFirstRows(sb, budget, 35);
             } case 2 -> {
-                long[] longBudget = AvgEurozone.convertToLong(budget);
-                double[] minDiv = AvgEurozone.ministrDiv(longBudget);
-                double[] difEuz = AvgEurozone.compareGrToEurozone(minDiv);
+                long[] longMinistrExpenses = AvgEurozone.convertToLong(budget);
+                double[] grPercentSectors =
+                    AvgEurozone.ministrDiv(longMinistrExpenses);
+                double[] difGrEuz =
+                    AvgEurozone.compareGrToEurozone(grPercentSectors);
                 String[] sectors = AvgEurozone.sectors();
 
                 if (sub == 1) {
                     sb.append("Ποσοστιαίες δαπάνες Ελλάδας ανά τομέα:\n\n");
                     for (int i = 0; i < 11; i++) {
-                        sb.append("Η Ελλάδα δαπανά ").append(String.format("%.2f", minDiv[i])).append("% στον τομέα ").append(sectors[i]).append("\n");
+                        sb.append("Η Ελλάδα δαπανά ")
+                            .append(String.format("%.2f", grPercentSectors[i]))
+                            .append("% στον τομέα ").append(sectors[i])
+                            .append("\n");
                     }
                 } else if (sub == 2) {
                     sb.append("Σύγκριση με Μ.Ο. Ευρωζώνης:\n\n");
                     for (int i = 0; i < 11; i++) {
-                        if (difEuz[i] > 0) {
-                            sb.append("Λιγότερο κατά ").append(String.format("%.2f", difEuz[i])).append("% στον ").append(sectors[i]).append("\n");
-                        } else if (difEuz[i] < 0) {
-                            sb.append("Περισσότερο κατά ").append(String.format("%.2f", Math.abs(difEuz[i]))).append("% στον ").append(sectors[i]).append("\n");
+                        if (difGrEuz[i] > 0) {
+                            sb.append("Λιγότερο κατά ")
+                                .append(String.format("%.2f", difGrEuz[i]))
+                                .append("% στον ").append(sectors[i])
+                                .append("\n");
+                        } else if (difGrEuz[i] < 0) {
+                            sb.append("Περισσότερο κατά ")
+                                .append(String.format("%.2f",
+                                Math.abs(difGrEuz[i]))).append("% στον ")
+                                .append(sectors[i]).append("\n");
                         } else {
-                            sb.append("Ίδιο με Μ.Ο. στον ").append(sectors[i]).append("\n");
+                            sb.append("Ίδιο με Μ.Ο. στον ").append(sectors[i])
+                                .append("\n");
                         }
                     }
                 }
             } case 3 -> {
-                long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
-                long[][] longExpenses = BudgetVariance.converterToLong(revenue, 16, 16);
-                double[][] incomePercent = BudgetVariance.percentual(longIncome);
-                double[][] expensesPercent = BudgetVariance.percentual(longExpenses);
+                long[][] longIncome =
+                    BudgetVariance.converterToLong(revenue, 14, 2);
+                long[][] longExpenses =
+                    BudgetVariance.converterToLong(revenue, 16, 16);
+                double[][] incomePercent =
+                    BudgetVariance.percentual(longIncome);
+                double[][] expensesPercent =
+                    BudgetVariance.percentual(longExpenses);
                 long[][] incomeAmount = BudgetVariance.amount(longIncome);
                 long[][] expensesAmount = BudgetVariance.amount(longExpenses);
 
@@ -708,7 +781,8 @@ public class BudgetApp {
                     for (int i = 0; i < incomePercent.length; i++) {
                         sb.append(String.format("%-40s", revenue[i][1]));
                         for (int j = 0; j < 4; j++) {
-                            sb.append(String.format(" %8.2f%%", incomePercent[i][j]));
+                            sb.append(String.format(" %8.2f%%",
+                                incomePercent[i][j]));
                         }
                         sb.append("\n");
                     }
@@ -716,7 +790,8 @@ public class BudgetApp {
                     for (int i = 0; i < incomeAmount.length; i++) {
                         sb.append(String.format("%-40s", revenue[i][1]));
                         for (int j = 0; j < 4; j++) {
-                            sb.append(String.format(" %,12d", incomeAmount[i][j]));
+                            sb.append(String.format(" %,12d",
+                                incomeAmount[i][j]));
                         }
                         sb.append("\n");
                     }
@@ -727,7 +802,8 @@ public class BudgetApp {
                     for (int i = 0; i < expensesPercent.length; i++) {
                         sb.append(String.format("%-40s", revenue[i + 14][1]));
                         for (int j = 0; j < 4; j++) {
-                            sb.append(String.format(" %8.2f%%", expensesPercent[i][j]));
+                            sb.append(String.format(" %8.2f%%",
+                                expensesPercent[i][j]));
                         }
                         sb.append("\n");
                     }
@@ -735,7 +811,8 @@ public class BudgetApp {
                     for (int i = 0; i < expensesAmount.length; i++) {
                         sb.append(String.format("%-40s", revenue[i + 14][1]));
                         for (int j = 0; j < 4; j++) {
-                            sb.append(String.format(" %,12d", expensesAmount[i][j]));
+                            sb.append(String.format(" %,12d",
+                                expensesAmount[i][j]));
                         }
                         sb.append("\n");
                     }
@@ -744,7 +821,8 @@ public class BudgetApp {
             }
             case 4 -> {
                 long[][] longGdpop = EuzLivingStandard.compareToLong(gdpPop);
-                double[] livStand = EuzLivingStandard.findStandLiving(longGdpop);
+                double[] livStand =
+                    EuzLivingStandard.findStandLiving(longGdpop);
 
                 if (sub == 1) {
                     sb.append("ΚΑΤΑ ΚΕΦΑΛΗΝ ΑΕΠ ΧΩΡΩΝ ΕΥΡΩΖΩΝΗΣ (2025)\n\n");
@@ -754,9 +832,13 @@ public class BudgetApp {
                         "Λιθουανία", "Λουξεμβούργο", "Μάλτα", "Ολλανδία",
                         "Πορτογαλία", "Σλοβακία", "Σλοβενία", "Ισπανία"};
                     for (int i = 0; i < 19; i++) {
-                        sb.append(countries[i]).append(": ").append(String.format("%,.0f", livStand[i])).append(" €\n");
+                        sb.append(countries[i]).append(": ")
+                            .append(String.format("%,.0f", livStand[i]))
+                            .append(" €\n");
                     }
-                    sb.append("\nΜέσος όρος Ευρωζώνης: ").append(String.format("%,.0f", livStand[19])).append(" €\n");
+                    sb.append("\nΜέσος όρος Ευρωζώνης: ")
+                        .append(String.format("%,.0f", livStand[19]))
+                        .append(" €\n");
                 } else if (sub == 2) {
                     sb.append("ΣΥΓΚΡΙΣΗ ΒΙΟΤΙΚΟΥ ΕΠΙΠΕΔΟΥ ΕΛΛΑΔΑΣ ΜΕ" +
                         " ΑΛΛΕΣ ΧΩΡΕΣ\n\n");
@@ -769,36 +851,48 @@ public class BudgetApp {
                     for (int i = 0; i < 19; i++) {
                         double diff = livStand[i] - 25300;
                         if (diff > 0) {
-                            sb.append(countries[i]).append(" έχει υψηλότερο κατά ").append(String.format("%,.0f", diff)).append(" €\n");
+                            sb.append(countries[i]).append(" έχει υψηλότερο" +
+                                " κατά ").append(String.format("%,.0f", diff))
+                                .append(" €\n");
                         } else if (diff < 0) {
-                            sb.append(countries[i]).append(" έχει χαμηλότερο κατά ").append(String.format("%,.0f", Math.abs(diff))).append(" €\n");
+                            sb.append(countries[i]).append(" έχει χαμηλότερο" +
+                                " κατά ").append(String.format("%,.0f",
+                                Math.abs(diff))).append(" €\n");
                         } else {
-                            sb.append(countries[i]).append(" έχει ίδιο με Ελλάδα\n");
+                            sb.append(countries[i]).append(" έχει ίδιο με" +
+                                " Ελλάδα\n");
                         }
                     }
                 }
             }
             case 5 -> {
-                long[] bl = RegionalPer.transformToLong(budget);
-                double[] pp = RegionalPer.calcBudgetPerPerson(bl);
-                double[] pr = RegionalPer.calcBudgetPerRegion(bl);
+                long[] longRegionExpenses = RegionalPer.transformToLong(budget);
+                double[] expensesPerPerson =
+                    RegionalPer.calcBudgetPerPerson(longRegionExpenses);
+                double[] expensesPerRegion =
+                    RegionalPer.calcBudgetPerRegion(longRegionExpenses);
                 String[] regions = {"Αττική", "Κεντρική Μακεδονία",
                     "Δυτική Ελλάδα", "Κρήτη", "Α.Μ.Θ.", "Ήπειρος", "Θεσσαλία"};
 
                 if (sub == 1) {
                     sb.append("ΔΑΠΑΝΗ ΑΝΑ ΠΟΛΙΤΗ ΑΝΑ ΠΕΡΙΦΕΡΕΙΑ\n\n");
                     for (int i = 0; i < 7; i++) {
-                        sb.append(regions[i]).append(": ").append(String.format("%.1f", pp[i])).append(" €\n");
+                        sb.append(regions[i]).append(": ")
+                            .append(String.format("%.1f", expensesPerPerson[i]))
+                            .append(" €\n");
                     }
                 } else if (sub == 2) {
                     sb.append("ΠΟΣΟΣΤΙΑΙΑ ΔΑΠΑΝΗ ΑΝΑ ΠΕΡΙΦΕΡΕΙΑ\n\n");
                     for (int i = 0; i < 7; i++) {
-                        sb.append(regions[i]).append(": ").append(String.format("%.1f", pr[i])).append("%\n");
+                        sb.append(regions[i]).append(": ")
+                            .append(String.format("%.1f", expensesPerRegion[i]))
+                            .append("%\n");
                     }
                 }
             }
             case 6 -> {
-                long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
+                long[][] longIncome =
+                    BudgetVariance.converterToLong(revenue, 14, 2);
                 long[] longIncome25 = new long[longIncome.length];
                 for (int i = 0; i < longIncome.length; i++) {
                     longIncome25[i] = longIncome[i][0];
@@ -811,17 +905,22 @@ public class BudgetApp {
                 double diff = Math.round(Math.abs(grPct - avg) * 10.0) / 10.0;
 
                 sb.append("ΣΥΓΚΡΙΣΗ ΦΟΡΟΛΟΓΙΚΩΝ ΕΣΟΔΩΝ ΜΕ ΕΥΡΩΖΩΝΗ (2025)\n\n");
-                sb.append("Ελλάδα: ").append(String.format("%.1f", grPct)).append("% του ΑΕΠ\n");
+                sb.append("Ελλάδα: ").append(String.format("%.1f", grPct))
+                    .append("% του ΑΕΠ\n");
                 sb.append("Μ.Ο. Ευρωζώνης: ").append(avg).append("%\n\n");
-                sb.append(grPct > avg ? "Η Ελλάδα έχει υψηλότερα κατά " : "Η Ευρωζώνη έχει υψηλότερα κατά ").append(diff).append(" ποσοστιαίες μονάδες\n");
+                sb.append(grPct > avg ? "Η Ελλάδα έχει υψηλότερα κατά " :
+                    "Η Ευρωζώνη έχει υψηλότερα κατά ").append(diff)
+                    .append(" ποσοστιαίες μονάδες\n");
             } case 8 -> {
                 if (historyTypes.isEmpty()) {
                     sb.append("ΔΕΝ ΥΠΑΡΧΟΥΝ ΚΑΤΑΓΕΓΡΑΜΜΕΝΕΣ ΑΛΛΑΓΕΣ\n\n");
                     sb.append("Δεν έχετε κάνει καμία επεξεργασία ακόμα.\n");
-                    sb.append("Χρησιμοποιήστε την επιλογή 7 για να κάνετε αλλαγές.");
+                    sb.append("Χρησιμοποιήστε την επιλογή 7 για να κάνετε" +
+                        " αλλαγές.");
                 } else {
                     sb.append("=== ΙΣΤΟΡΙΚΟ ΑΛΛΑΓΩΝ ===\n\n");
-                    sb.append("Σύνολο αλλαγών: ").append(historyTypes.size()).append("\n\n");
+                    sb.append("Σύνολο αλλαγών: ").append(historyTypes.size())
+                        .append("\n\n");
 
                     DateTimeFormatter formatter =
                         DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -829,8 +928,10 @@ public class BudgetApp {
                     for (int i = 0; i < historyTypes.size(); i++) {
                         sb.append("────────────────────────────────────────\n");
                         sb.append("Αλλαγή #").append(i + 1).append("\n");
-                        sb.append("Τύπος: ").append(historyTypeNames.get(i)).append("\n");
-                        sb.append("Ημερομηνία: ").append(historyTimestamps.get(i).format(formatter)).append("\n\n");
+                        sb.append("Τύπος: ").append(historyTypeNames.get(i))
+                            .append("\n");
+                        sb.append("Ημερομηνία: ").append(historyTimestamps
+                            .get(i).format(formatter)).append("\n\n");
 
                         String[] labels = getLabels(historyTypes.get(i));
                         double[] oldVals = historyOldValues.get(i);
@@ -839,7 +940,8 @@ public class BudgetApp {
                         sb.append("Αλλαγές:\n");
                         for (int j = 0; j <= oldVals.length - 1; j++) {
                             if (oldVals[j] != newVals[j]) {
-                                sb.append("  • ").append(labels[j]).append(": ");
+                                sb.append("  • ").append(labels[j])
+                                    .append(": ");
                                 sb.append(String.format("%.2f", oldVals[j]));
                                 sb.append(" → ");
                                 sb.append(String.format("%.2f", newVals[j]));
@@ -852,7 +954,8 @@ public class BudgetApp {
                         sb.append("\n");
                     }
                 }
-            } default -> sb.append("Αποτέλεσμα για επιλογή ").append(main).append(" - υποεπιλογή ").append(sub);
+            } default -> sb.append("Αποτέλεσμα για επιλογή ").append(main)
+                .append(" - υποεπιλογή ").append(sub);
         }
         return sb.toString();
     }
@@ -911,7 +1014,8 @@ public class BudgetApp {
             }
         }
         String newId = UUID.randomUUID().toString().substring(0, 8);
-        exchange.getResponseHeaders().add("Set-Cookie", "session=" + newId + "; Path=/");
+        exchange.getResponseHeaders().add("Set-Cookie", "session=" + newId +
+            "; Path=/");
         return newId;
     }
 
@@ -955,7 +1059,8 @@ public class BudgetApp {
                 </html>
                 """;
             byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
-            exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
+            exchange.getResponseHeaders().set("Content-Type",
+                "text/html; charset=UTF-8");
             exchange.sendResponseHeaders(200, bytes.length);
             try (OutputStream os = exchange.getResponseBody()) {
                 os.write(bytes);

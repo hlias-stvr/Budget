@@ -138,11 +138,11 @@ public class Choices {
     }
 
     public void mainChoice5(String[][] budget, Scanner scanner) {
-        long budgetLong[] = RegionalPer.transformToLong(budget);
+        long longRegionExpenses[] = RegionalPer.transformToLong(budget);
         double expensesPerPerson[] =
-            RegionalPer.calcBudgetPerPerson(budgetLong);
+            RegionalPer.calcBudgetPerPerson(longRegionExpenses);
         double expensesPerRegion[] =
-            RegionalPer.calcBudgetPerRegion(budgetLong);
+            RegionalPer.calcBudgetPerRegion(longRegionExpenses);
         int choice6 = -1;
         do {
             System.out.println("Γράψε\n1 για να δεις την δαπάνη ανά πολίτη");

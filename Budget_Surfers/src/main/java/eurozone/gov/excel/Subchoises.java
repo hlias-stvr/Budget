@@ -186,12 +186,12 @@ public class Subchoises {
     public void subchoice7a(String[][] budget, Scanner scanner) {
         long [] longMinistrExpenses = AvgEurozone.convertToLong(budget);
         double [] grPercentSectors =
-         AvgEurozone.ministrDiv(longMinistrExpenses);
+            AvgEurozone.ministrDiv(longMinistrExpenses);
         String[] grSectors = AvgEurozone.sectors();
         double[] newSectorsExpenses =
             ChangeData.newGrPercent(grPercentSectors, grSectors, scanner);
         double [] newCompareAvgEurz =
-         AvgEurozone.compareGrToEurozone(newSectorsExpenses);
+            AvgEurozone.compareGrToEurozone(newSectorsExpenses);
         int choice7 = -1;
         // αν αλλάξει τα δεδομένα της επιλογής 1
         do {
