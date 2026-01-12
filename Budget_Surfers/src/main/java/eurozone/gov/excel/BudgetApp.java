@@ -1051,10 +1051,10 @@ public class BudgetApp {
                 <!DOCTYPE html>
                 <html lang="el">
                 <head><meta charset="UTF-8"></head>
-                <body style="font-family: Arial; text-align: center; padding-top: 100px;">
-                    <img src="/png/logo.png" style="position:fixed; bottom:250px; left:50%; transform:translatex(-50%); width:400px; height:auto;">
+                <body style="font-family: Arial; margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
                     <h1>Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή Budget Surfers!</h1>
                     <p>Μπορείτε τώρα να κλείσετε αυτή την καρτέλα του browser.</p>
+                    <img src="/png/logo.png" style="margin-top: 40px; width: 400px; height: auto;">
                 </body>
                 </html>
                 """;
