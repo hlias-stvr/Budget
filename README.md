@@ -1,14 +1,38 @@
 # Budget
 Εφαρμογή σε JAVA για την ανάλυση των στοιχείων του κρατικού προϋπολογισμού της Ελλάδας
 
+## Απαιτήσεις
+**Java JDK/JRE 17+**
+**Maven 3.6+ (Προαιρετικά)**
+
 ## Οδηγίες μεταγλώττισης του προγράμματος
+```
 bash
-mvn clean compile (πιο ασφαλές)
-ή
-mvn compile
+Για μεταγλώττιση:
+1) a) Για περιβάλλον κονσόλας (CLI):
+      javac -cp target/classes eurozone.gov.excel.Main.java
+   b) Για γραφικό περιβάλλον (GUI):
+      javac -cp target/classes eurozone.gov.excel.BudgetApp.java
+2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
+      mvn clean compile (πιο ασφαλές)
+      ή
+      mvn compile
+```
 
 ## Οδηγίες εκτέλεσης του προγράμματος
-java -cp target/classes eurozone.gov.excel.Main
+```
+bash
+Για εκτέλεση:
+1) a) Για περιβάλλον κονσόλας (CLI):
+      java -cp target/classes eurozone.gov.excel.Main
+   b) Για γραφικό περιβάλλον (GUI):
+      java -cp target/classes eurozone.gov.excel.BudgetApp
+2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
+   a) Για περιβάλλον κονσόλας (CLI):
+      mvn exec:java -Dexec.mainClass="eurozone.gov.excel.Main"
+   b) Για γραφικό περιβάλλον (GUI):
+       mvn exec:java -Dexec.mainClass="eurozone.gov.excel.BudgetApp"
+```
 
 ## Οδηγίες χρήσης του προγράμματος
 Ο χρήστης έχει 7 βασικές επιλογές και την επιλογή εξόδου από την εφαρμογή.
@@ -52,13 +76,21 @@ java -cp target/classes eurozone.gov.excel.Main
                 * ├── gr_ministy_25.csv
                 * ├── gr_revenue_expenses_25.csv
         * └── test/java/
-            * ├── eurozone/gov/excel/
-            * │   └── TestAvgEurozone.java
+            * └── eurozone/gov/excel/
+                 * ├── TestAvgEurozone.java
+                 * ├── TestBudgetVariance.java
+                 * ├── TestChangeData.java
+                 * ├── TestEuzLivingStandard.java
+                 * ├── TestEuzTaxes.java
+                 * └── TestRegionalPer.java
     * ├── .gitignore
     * ├── pom.xml
     * └── README.md
 
 ## Διάγραμμα UML σχετικά με το σχεδιασμό του κώδικα
+<p align="center">
+<img src="docs/UML_Diagram_For_Budget_Surfers_Project.png" alt="UML Diagram">
+</p>
 
 ## Επισκόπηση των δομών δεδομένων και των αλγορίθμων που χρησιμοποιεί η εφαρμογή
 
