@@ -7,8 +7,8 @@ public class TestEuzTaxes {
     @Test
     void testCalcDiffGrEuzTaxes() {
         String[][] revenue =
-        ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        long[][] testLongIncome = Percent.converterToLong(revenue, 14, 2);
+        ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+        long[][] testLongIncome = BudgetVariance.converterToLong(revenue, 14, 2);
         long[] testLongIncome25 = new long[testLongIncome.length];
         for (int i = 0; i < testLongIncome.length; i++) {
             testLongIncome25[i] = testLongIncome[i][0];

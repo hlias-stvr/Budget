@@ -33,9 +33,9 @@ public class BudgetApp {
     static List<LocalDateTime> historyTimestamps = new ArrayList<>();
 
     public static void main(String[] args) {
-        revenue = ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        budget  = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
-        gdppop  = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
+        revenue = ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+        budget  = ReadCsvFiles.readCsv("/gr_ministy_25.csv");
+        gdppop  = ReadCsvFiles.readCsv("/Gdp_population_euz.csv");
         modifiedSectorPercents = initializeData("sectors");
         modifiedRegionAmounts = initializeData("regions");
         modifiedRevenueAmounts = initializeData("revenues");
@@ -451,7 +451,7 @@ public class BudgetApp {
             }
             return sum;
         } else if ("revenues".equals(type)) {
-            long[][] full = Percent.converterToLong(revenue, 14, 2);
+            long[][] full = BudgetVariance.converterToLong(revenue, 14, 2);
             long sum = 0;
             for (int i = 1; i < 14; i++) {
                 sum += full[i][0];
@@ -484,7 +484,7 @@ public class BudgetApp {
             }
             return dData;
         } else if ("revenues".equals(type)) {
-            long[][] full = Percent.converterToLong(revenue, 14, 2);
+            long[][] full = BudgetVariance.converterToLong(revenue, 14, 2);
             /*
             * Διασφαλίζουμε ότι ο πίνακας έχει το μήκος που περιμένει η
             * Calculation 
@@ -694,12 +694,12 @@ public class BudgetApp {
                     }
                 }
             } case 3 -> {
-                long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
-                long[][] longExpenses = Percent.converterToLong(revenue, 16, 16);
-                double[][] incomePercent = Percent.percentual(longIncome);
-                double[][] expensesPercent = Percent.percentual(longExpenses);
-                long[][] incomeAmount = Percent.amount(longIncome);
-                long[][] expensesAmount = Percent.amount(longExpenses);
+                long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
+                long[][] longExpenses = BudgetVariance.converterToLong(revenue, 16, 16);
+                double[][] incomePercent = BudgetVariance.percentual(longIncome);
+                double[][] expensesPercent = BudgetVariance.percentual(longExpenses);
+                long[][] incomeAmount = BudgetVariance.amount(longIncome);
+                long[][] expensesAmount = BudgetVariance.amount(longExpenses);
 
                 if (sub == 1) {
                     sb.append("ΣΥΓΚΡΙΣΗ ΕΣΟΔΩΝ ΤΕΛΕΥΤΑΙΑ 5 ΕΤΗ\n\n");
@@ -798,7 +798,7 @@ public class BudgetApp {
                 }
             }
             case 6 -> {
-                long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
+                long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
                 long[] longIncome25 = new long[longIncome.length];
                 for (int i = 0; i < longIncome.length; i++) {
                     longIncome25[i] = longIncome[i][0];

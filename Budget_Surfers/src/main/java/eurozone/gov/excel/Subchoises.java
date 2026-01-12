@@ -12,17 +12,17 @@ public class Subchoises {
         }
     }
 
-    public void subchoice2b(double[] percdiffSectorsExpenses,
+    public void subchoice2b(double[] percDiffSectorsExpenses,
         String[] grSectors) {
         for (int i = 0; i < 11; i++) {
-            if (percdiffSectorsExpenses[i] > 0) {
+            if (percDiffSectorsExpenses[i] > 0) {
                 System.out.println("Η Ελλάδα δαπανά "
-                    + percdiffSectorsExpenses[i]
+                    + percDiffSectorsExpenses[i]
                     + "% λιγότερο στον τομέα " + grSectors[i]
                     + " από τον ΜΟ της Ευρωζώνης");
-            } else if (percdiffSectorsExpenses[i] < 0) {
+            } else if (percDiffSectorsExpenses[i] < 0) {
                 System.out.println("Η Ελλάδα δαπανά "
-                    + Math.abs(percdiffSectorsExpenses[i])
+                    + Math.abs(percDiffSectorsExpenses[i])
                     + "% περισσότερο στον τομέα " + grSectors[i]
                     + " από τον ΜΟ της Ευρωζώνης");
             } else {
@@ -273,7 +273,7 @@ public class Subchoises {
     }
 
     public void subchoice7c(String[][] revenue, Scanner scanner) {
-        long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
+        long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
         long[] oneDimensLongImcome = new long[longIncome.length];
         for (int i = 0; i < oneDimensLongImcome.length; i++) {
             oneDimensLongImcome[i] = longIncome[i][0];

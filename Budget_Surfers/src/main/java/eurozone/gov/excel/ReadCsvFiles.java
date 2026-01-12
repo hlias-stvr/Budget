@@ -5,11 +5,11 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class ReadTwoCsvFiles {
+public class ReadCsvFiles {
     //Διάβασμα CSV σε String[][]
     static String[][] readCsv(String resourcePath) {
         var rows = new ArrayList<String[]>();
-        try (var is = ReadTwoCsvFiles.class.getResourceAsStream(resourcePath);
+        try (var is = ReadCsvFiles.class.getResourceAsStream(resourcePath);
                 var br = new BufferedReader(new
                     InputStreamReader(is, StandardCharsets.UTF_8))) {
             br.readLine(); // Παραλείπει header

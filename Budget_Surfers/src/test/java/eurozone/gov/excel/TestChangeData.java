@@ -11,7 +11,7 @@ public class TestChangeData {
 
     @Test
     void testNewGrPercent() {
-        String[][] budget = ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
+        String[][] budget = ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         long [] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
         double [] testPercSectorsExpenses =
             AvgEurozone.ministrDiv(testLongMinistrExpenses);
@@ -28,7 +28,7 @@ public class TestChangeData {
     @Test
     void testNewAmountPerRegion() {
         String[][] budget =
-        ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
+        ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         long [] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
         long [] testNewRegionExpenses =
             ChangeData.newAmountPerRegion(testLongMinistrExpenses, budget,
@@ -42,8 +42,8 @@ public class TestChangeData {
     @Test
     void testNewRevenue() {
         String[][] revenue =
-        ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        long[][] testLongIncome = Percent.converterToLong(revenue, 14, 2);
+        ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+        long[][] testLongIncome = BudgetVariance.converterToLong(revenue, 14, 2);
         long[] testLongIncome25 = new long[testLongIncome.length];
         for (int i = 0; i < testLongIncome25.length; i++) {
             testLongIncome25[i] = testLongIncome[i][0];

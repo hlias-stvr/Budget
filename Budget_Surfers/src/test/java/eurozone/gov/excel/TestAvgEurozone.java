@@ -9,7 +9,7 @@ public class TestAvgEurozone {
     @Test
     void testConvertToLong() {
         String[][] budget =
-        ReadTwoCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
+        ReadCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
         long[] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
         assertNotNull(testLongMinistrExpenses);
         assertEquals(20, testLongMinistrExpenses.length);
@@ -21,7 +21,7 @@ public class TestAvgEurozone {
     @Test
     void testMinistrDiv() {
         String[][] budget =
-        ReadTwoCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
+        ReadCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
         long[] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
         double[] testPercSectorsExpenses =
             AvgEurozone.ministrDiv(testLongMinistrExpenses);

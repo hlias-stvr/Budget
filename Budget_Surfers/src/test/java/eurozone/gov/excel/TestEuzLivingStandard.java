@@ -9,7 +9,7 @@ public class TestEuzLivingStandard {
     @Test
     void testCompareToLong() {
         String[][] gdpPop =
-        ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
+        ReadCsvFiles.readCsv("/Gdp_population_euz.csv");
         long[][] testLongGdpPop = EuzLivingStandard.compareToLong(gdpPop);
         assertNotNull(testLongGdpPop);
         assertEquals(19, testLongGdpPop.length);
@@ -23,7 +23,7 @@ public class TestEuzLivingStandard {
 
     @Test
     void testFindStandLiving() {
-        String[][] gdpPop = ReadTwoCsvFiles.readCsv("/Gdp_population_euz.csv");
+        String[][] gdpPop = ReadCsvFiles.readCsv("/Gdp_population_euz.csv");
         long[][] testLongGdpPop = EuzLivingStandard.compareToLong(gdpPop);
         double[] testEuzGdpPerCapita =
             EuzLivingStandard.findStandLiving(testLongGdpPop);

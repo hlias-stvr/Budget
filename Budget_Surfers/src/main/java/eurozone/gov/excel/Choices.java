@@ -8,8 +8,8 @@ public class Choices {
     public void mainChoice1(String[][] revenue, String[][] budget) {
         System.out.println("Προυπολογισμός Ελλάδας μετά την αφαίρεση του" +
             " αναλυκλώσιμου χρέους");
-        ReadTwoCsvFiles.printFirstRows(revenue, 33);
-        ReadTwoCsvFiles.printFirstRows(budget, 35);
+        ReadCsvFiles.printFirstRows(revenue, 33);
+        ReadCsvFiles.printFirstRows(budget, 35);
     }
 
     public void mainChoice2(String[][] budget, Scanner scanner) {
@@ -57,12 +57,12 @@ public class Choices {
     }
 
     public void mainChoice3(String[][] revenue, Scanner scanner) {
-        long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
-        long[][] longExpenses = Percent.converterToLong(revenue, 16, 16);
-        double[][] percVarIncome = Percent.percentual(longIncome);
-        double[][] percVarExpenses = Percent.percentual(longExpenses);
-        long[][] amountVarIncome = Percent.amount(longIncome);
-        long[][] amountVarExpenses = Percent.amount(longExpenses);
+        long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
+        long[][] longExpenses = BudgetVariance.converterToLong(revenue, 16, 16);
+        double[][] percVarIncome = BudgetVariance.percentual(longIncome);
+        double[][] percVarExpenses = BudgetVariance.percentual(longExpenses);
+        long[][] amountVarIncome = BudgetVariance.amount(longIncome);
+        long[][] amountVarExpenses = BudgetVariance.amount(longExpenses);
         int choice3 = -1;
         // υποεπιλογές για την επιλογή 3
         System.out.println("Γράψε 1 για σύγκριση εσόδων");
@@ -177,7 +177,7 @@ public class Choices {
     }
 
     public void mainChoice6(String[][] revenue) {
-        long[][] longIncome = Percent.converterToLong(revenue, 14, 2);
+        long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
         long[] oneDimensLongImcome = new long[longIncome.length];
         for (int i = 0; i < longIncome.length; i++) {
             oneDimensLongImcome[i] = longIncome[i][0];

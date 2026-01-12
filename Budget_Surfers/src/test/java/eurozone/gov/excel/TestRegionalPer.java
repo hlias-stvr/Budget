@@ -8,7 +8,7 @@ public class TestRegionalPer {
     @Test
     void testTransformToLong() {
         String[][] budget =
-        ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
+        ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         long[] testLongRegionExpenses = RegionalPer.transformToLong(budget);
         assertNotNull(testLongRegionExpenses);
         assertEquals(7, testLongRegionExpenses);
@@ -19,7 +19,7 @@ public class TestRegionalPer {
     @Test
     void testCalcBudgetPerPerson() {
         String[][] budget =
-        ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
+        ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         long[] testLongRegionExpenses = RegionalPer.transformToLong(budget);
         double[] testExpensesPerPerson =
             RegionalPer.calcBudgetPerPerson(testLongRegionExpenses);
@@ -32,7 +32,7 @@ public class TestRegionalPer {
     @Test
     void testCalcBudgetPerRegion() {
         String[][] budget =
-        ReadTwoCsvFiles.readCsv("/gr_ministy_25.csv");
+        ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         long[] testLongRegionExpenses = RegionalPer.transformToLong(budget);
         double[] testPercExpensesPerRegion =
             RegionalPer.calcBudgetPerRegion(testLongRegionExpenses);

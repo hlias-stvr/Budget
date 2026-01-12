@@ -8,7 +8,7 @@ mvn clean compile (πιο ασφαλές)
 mvn compile
 
 ## Οδηγίες εκτέλεσης του προγράμματος
-java -cp target/classes eurozone.gov.excel.ReadTwoCsvFiles
+java -cp target/classes eurozone.gov.excel.Main
 
 ## Οδηγίες χρήσης του προγράμματος
 Ο χρήστης έχει 7 βασικές επιλογές και την επιλογή εξόδου από την εφαρμογή.
@@ -34,12 +34,12 @@ java -cp target/classes eurozone.gov.excel.ReadTwoCsvFiles
             * └── java/
                 * └── eurozone/gov/excel/
                     * ├── AvgEurozone.java
+                    * ├── BudgetVariance.java
                     * ├── ButtonsGUI.java
                     * ├── ChangeData.java
                     * ├── CompareEuzTaxes.java
                     * ├── EuzLivingStandard.java
-                    * ├── Percent.java
-                    * ├── ReadTwoCsvFiles.java
+                    * ├── ReadCsvFiles.java
                     * └── RegionalPer.java
                 * └── ojavaszei/
                     * └── App.java

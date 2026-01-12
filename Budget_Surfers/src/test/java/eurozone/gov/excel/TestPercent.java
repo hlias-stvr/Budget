@@ -9,9 +9,9 @@ public class TestPercent {
     @Test
     void testConvertToLong() {
         String[][] revenue =
-        ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        long[][] testLongIncome = Percent.converterToLong(revenue, 14, 2);
-        long[][] testLongExpenses = Percent.converterToLong(revenue, 16, 16);
+        ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+        long[][] testLongIncome = BudgetVariance.converterToLong(revenue, 14, 2);
+        long[][] testLongExpenses = BudgetVariance.converterToLong(revenue, 16, 16);
         assertNotNull(testLongIncome);
         assertNotNull(testLongExpenses);
         assertEquals(14, testLongIncome.length);
@@ -33,11 +33,11 @@ public class TestPercent {
     @Test
     void testPercentual() {
         String[][] revenue =
-        ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        long[][] testLongIncome = Percent.converterToLong(revenue, 14, 2);
-        long[][] testLongExpenses = Percent.converterToLong(revenue, 16, 16);
-        double[][] testPercVarIncome = Percent.percentual(testLongIncome);
-        double[][] percVarExpenses = Percent.percentual(testLongExpenses);
+        ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+        long[][] testLongIncome = BudgetVariance.converterToLong(revenue, 14, 2);
+        long[][] testLongExpenses = BudgetVariance.converterToLong(revenue, 16, 16);
+        double[][] testPercVarIncome = BudgetVariance.percentual(testLongIncome);
+        double[][] percVarExpenses = BudgetVariance.percentual(testLongExpenses);
         assertNotNull(testPercVarIncome);
         assertEquals(0, testPercVarIncome[8][3]);
         assertNotNull(percVarExpenses);
@@ -47,11 +47,11 @@ public class TestPercent {
     @Test
     void testAmount() {
         String[][] revenue =
-        ReadTwoCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        long[][] testLongIncome = Percent.converterToLong(revenue, 14, 2);
-        long[][] testLongExpenses = Percent.converterToLong(revenue, 16, 16);
-        long[][] testAmountVarIncome = Percent.amount(testLongIncome);
-        long[][] amountVarExpenses = Percent.amount(testLongExpenses);
+        ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+        long[][] testLongIncome = BudgetVariance.converterToLong(revenue, 14, 2);
+        long[][] testLongExpenses = BudgetVariance.converterToLong(revenue, 16, 16);
+        long[][] testAmountVarIncome = BudgetVariance.amount(testLongIncome);
+        long[][] amountVarExpenses = BudgetVariance.amount(testLongExpenses);
         assertNotNull(testAmountVarIncome);
         assertEquals(2000000, testAmountVarIncome[2][3]);
         assertNotNull(amountVarExpenses);
