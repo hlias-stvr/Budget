@@ -33,11 +33,14 @@ public class ChangeData {
                     if (grpercent[10] < startsumpercent) {
                         System.out.println(
                             "Μένει να πρσθέσεις " +
-                            Math.round((startsumpercent - grpercent[10]) * 100.0) / 100.0
+                            Math.round((startsumpercent - grpercent[10]) * 100.0
+                        ) / 100.0
                             + "% σε κάποιον/ους τομέα/εις");
                     } else if (grpercent[10] > startsumpercent) {
                         System.out.println("Μένει να αφαιρέσεις "
-                            + Math.abs(Math.round(startsumpercent - grpercent[10]) * 100.0) / 100.0
+                            + Math.abs(Math.round(
+                                startsumpercent - grpercent[10]) * 100.0
+                        ) / 100.0
                              + "% από κάποιον/ους τομέα/εις");
                     }
                     System.out.println("Διάλεξε τον αριθμό του " +
