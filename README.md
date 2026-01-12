@@ -34,28 +34,26 @@ java -cp target/classes eurozone.gov.excel.Main
             * └── java/
                 * └── eurozone/gov/excel/
                     * ├── AvgEurozone.java
+                    * ├── BudgetApp.java
+                    * ├── BudgetChange.java
                     * ├── BudgetVariance.java
-                    * ├── ButtonsGUI.java
                     * ├── ChangeData.java
+                    * ├── ChangesHistory.java
+                    * ├── ChildChoices.java
+                    * ├── Choices.java
                     * ├── CompareEuzTaxes.java
                     * ├── EuzLivingStandard.java
+                    * ├── Main.java
                     * ├── ReadCsvFiles.java
-                    * └── RegionalPer.java
-                * └── ojavaszei/
-                    * └── App.java
+                    * ├── RegionalPer.java
+                    * └── Subchoises.java
             * └── resources/
                 * ├── Gdp_population_euz.csv
-                * ├── Gdp_population_euz.xlsx
-                * ├── averageeurozone.xlsx
-                * ├── budget25.xlsx
                 * ├── gr_ministy_25.csv
                 * ├── gr_revenue_expenses_25.csv
-                * └── ~$budget25.xlsx
         * └── test/java/
             * ├── eurozone/gov/excel/
             * │   └── TestAvgEurozone.java
-            * └── ojavaszei/
-                * └── AppTest.java
     * ├── .gitignore
     * ├── pom.xml
     * └── README.md
