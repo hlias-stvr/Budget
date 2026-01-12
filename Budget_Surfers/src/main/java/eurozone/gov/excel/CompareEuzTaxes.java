@@ -6,9 +6,9 @@ package eurozone.gov.excel;
 * Ευρωζώνης
 */
 public class CompareEuzTaxes {
-    public static void calcDiffGrEuzTaxes(long LongData[]) {
+    public static void calcDiffGrEuzTaxes(long longIncome25[]) {
         final long GTP = 206000000000L;
-        double grTaxes = Math.round((((LongData[1] + LongData[2]) /
+        double grTaxes = Math.round((((longIncome25[1] + longIncome25[2]) /
             (double) GTP) * 100) * 10.0) / 10.0;
         double avgEuzTaxes = Math.round(40.9 * 10.0) / 10.0;
         double diffGrEuzTaxes =

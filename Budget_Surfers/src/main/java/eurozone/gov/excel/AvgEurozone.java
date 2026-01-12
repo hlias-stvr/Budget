@@ -15,7 +15,7 @@ public class AvgEurozone {
 
     // Διαχωρισμός υπουργείων σε τομείς για σύγκριση με την Ευρωζώνη
     public static double [] ministrDiv(long[] ministrExp) {
-        final long GTP = 206000000000L;
+        final long GDP = 206000000000L;
         long publicserv = ministrExp[0] + ministrExp[16] + ministrExp[1] +
             ministrExp[7];
         long def = ministrExp[2];
@@ -40,7 +40,7 @@ public class AvgEurozone {
         //Εύρεση ποσοστών Ελλάδας ανά τομέα
         for (int i = 0; i < 11; i++) {
             percSectorsExpenses[i] = Math.round(((double) sectors[i] /
-                GTP * 100) * 100.0) / 100.0;
+                GDP * 100) * 100.0) / 100.0;
         }
         return percSectorsExpenses;
     }

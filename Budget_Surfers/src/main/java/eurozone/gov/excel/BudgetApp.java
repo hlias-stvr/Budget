@@ -19,7 +19,7 @@ public class BudgetApp {
 
     private static String[][] revenue;
     private static String[][] budget;
-    private static String[][] gdppop;
+    private static String[][] gdpPop;
     private static double[] modifiedSectorPercents;
     private static double[] modifiedRegionAmounts;
     private static double[] modifiedRevenueAmounts;
@@ -34,8 +34,8 @@ public class BudgetApp {
 
     public static void main(String[] args) {
         revenue = ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
-        budget  = ReadCsvFiles.readCsv("/gr_ministy_25.csv");
-        gdppop  = ReadCsvFiles.readCsv("/Gdp_population_euz.csv");
+        budget = ReadCsvFiles.readCsv("/gr_ministy_25.csv");
+        gdpPop = ReadCsvFiles.readCsv("/Gdp_population_euz.csv");
         modifiedSectorPercents = initializeData("sectors");
         modifiedRegionAmounts = initializeData("regions");
         modifiedRevenueAmounts = initializeData("revenues");
@@ -743,7 +743,7 @@ public class BudgetApp {
                 }
             }
             case 4 -> {
-                long[][] longGdpop = EuzLivingStandard.compareToLong(gdppop);
+                long[][] longGdpop = EuzLivingStandard.compareToLong(gdpPop);
                 double[] livStand = EuzLivingStandard.findStandLiving(longGdpop);
 
                 if (sub == 1) {

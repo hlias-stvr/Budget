@@ -11,7 +11,7 @@ public class TestRegionalPer {
         ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         long[] testLongRegionExpenses = RegionalPer.transformToLong(budget);
         assertNotNull(testLongRegionExpenses);
-        assertEquals(7, testLongRegionExpenses);
+        assertEquals(7, testLongRegionExpenses.length);
         for (int i = 0; i < testLongRegionExpenses.length; i++) {
             assertTrue(testLongRegionExpenses[i] > 0);
         }

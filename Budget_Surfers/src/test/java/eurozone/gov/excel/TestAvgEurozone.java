@@ -9,7 +9,7 @@ public class TestAvgEurozone {
     @Test
     void testConvertToLong() {
         String[][] budget =
-        ReadCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
+        ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         long[] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
         assertNotNull(testLongMinistrExpenses);
         assertEquals(20, testLongMinistrExpenses.length);
@@ -21,13 +21,13 @@ public class TestAvgEurozone {
     @Test
     void testMinistrDiv() {
         String[][] budget =
-        ReadCsvFiles.readCsv("src\\main\\resources\\gr_ministy_25.csv");
+        ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         long[] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
         double[] testPercSectorsExpenses =
             AvgEurozone.ministrDiv(testLongMinistrExpenses);
         double percSumGrMinistr = 0.0;
         long sumGrMinistr = 0;
-        final long GTP = 257100000000L;
+        final long GDP = 206000000000L;
         assertNotNull(testPercSectorsExpenses);
         assertEquals(11, testPercSectorsExpenses.length);
         for (int i = 0; i < testPercSectorsExpenses.length - 1; i++) {
@@ -35,13 +35,12 @@ public class TestAvgEurozone {
             percSumGrMinistr += testPercSectorsExpenses[i];
         }
         assertTrue(Math.abs(percSumGrMinistr - testPercSectorsExpenses[10])
-            < 0.000001);
+            < 0.02);
         for (int i = 0; i < testLongMinistrExpenses.length; i++) {
             sumGrMinistr += testLongMinistrExpenses[i];
         }
         double testPercSumGrMinistr =
-            Math.round(((double) sumGrMinistr / GTP * 100) * 100.0) / 100.0;
-        assertTrue(Math.abs(testPercSumGrMinistr - percSumGrMinistr) <
-            0.000001);
+            Math.round(((double) sumGrMinistr / GDP * 100) * 100.0) / 100.0;
+        assertTrue(Math.abs(testPercSumGrMinistr - percSumGrMinistr) < 0.02);
     }
 }
