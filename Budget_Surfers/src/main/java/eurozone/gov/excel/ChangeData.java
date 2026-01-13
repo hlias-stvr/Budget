@@ -248,15 +248,15 @@ public class ChangeData {
 
     //αλλαγές στα έσοδα
     public static long[] newRevenue(
-        long[] LongData, String[][] revenue, Scanner scanner) {
-        long startsum = LongData[0];
+        long[] longData, String[][] revenue, Scanner scanner) {
+        long startsum = longData[0];
         System.out.println("Αυτός είναι ο πίνακας " +
             "με τα αρχικά αναλυτικά έσοδα");
-        System.out.println("ΣΥΝΟΛΙΚΑ " + revenue[0][1] + " " + LongData[0]);
-        for (int i = 1; i < LongData.length; i++) {
-            System.out.print(i + " " + revenue[i][1] + " " + LongData[i]);
+        System.out.println("ΣΥΝΟΛΙΚΑ " + revenue[0][1] + " " + longData[0]);
+        for (int i = 1; i < longData.length; i++) {
+            System.out.print(i + " " + revenue[i][1] + " " + longData[i]);
             System.out.println(" που αντιστοιχεί στο " + Math.round(
-                ((LongData[i] / (double) startsum) * 100) * 100.0) / 100.0
+                ((longData[i] / (double) startsum) * 100) * 100.0) / 100.0
                 + "% των συνολικών εσόδων");
         }
         int input3 = 1;
@@ -270,7 +270,7 @@ public class ChangeData {
                              "κατηγορίας εσόδων θέλεις, όμως " +
                         "το συνολικό ποσό πρέπει να μείνει ίσο με το αρχικό.");
                     System.out.println("Αρχικό συνολικό ποσό: " + startsum);
-                    System.out.println("Νέο συνολικό ποσό: " + LongData[0]);
+                    System.out.println("Νέο συνολικό ποσό: " + longData[0]);
                     System.out.print("Προτείνουμε ,αρχικά, " +
                         "να μεταβάλλεις το ποσό των φόρων,");
                     System.out.print(" καθώς στην συνέχεια " +
@@ -278,13 +278,13 @@ public class ChangeData {
                     System.out.print(" να συγκρίνεις τα νέα φορλογικά έσοδα");
                     System.out.println("αναλογικά με " +
                         "τον μέσο όρο της Ευρωζώνης");
-                    if (LongData[0] < startsum) {
+                    if (longData[0] < startsum) {
                         System.out.println("Μένει να " +
-                            "προσθέσεις " + (startsum - LongData[0])
+                            "προσθέσεις " + (startsum - longData[0])
                             + " σε κάποια/ες κατηγορία/ες");
-                    } else if (LongData[0] > startsum) {
+                    } else if (longData[0] > startsum) {
                         System.out.println("Μένει να αφαιρέσεις " +
-                            (LongData[0] - startsum)
+                            (longData[0] - startsum)
                             + " από κάποια/ες κατηγορία/ες");
                     }
                     System.out.println("Διάλεξε τον αριθμό " +
@@ -315,22 +315,22 @@ public class ChangeData {
                         throw new IllegalArgumentException(" Η επιλογή " +
                         "πρέπει να είναι μεγαλύτερη από 0.");
                     }
-                    LongData[0] = LongData[0] + input2 - LongData[input1];
-                    LongData[input1] = input2;
+                    longData[0] = longData[0] + input2 - longData[input1];
+                    longData[input1] = input2;
                     ChangesHistory.addChangeLong(revenue[input1][1], input2);
                     System.out.println("Ο νέος πίνακας είναι ο εξής:");
                     System.out.println("ΣΥΝΟΛΙΚΑ " +
-                        revenue[0][1] + " " + LongData[0]);
-                    for (int i = 1; i < LongData.length; i++) {
+                        revenue[0][1] + " " + longData[0]);
+                    for (int i = 1; i < longData.length; i++) {
                         System.out.print(i + " " +
-                            revenue[i][1] + " " + LongData[i]);
+                            revenue[i][1] + " " + longData[i]);
                         System.out.println(" που αντιστοιχεί στο " +
                             Math.round
-                            (((LongData[i] / (double) LongData[0]) * 100
+                            (((longData[i] / (double) longData[0]) * 100
                         ) * 100.0) / 100.0
                             + "% των συνολικών εσόδων");
                     }
-                    if (LongData[0] != startsum) {
+                    if (longData[0] != startsum) {
                         System.out.println("Το συνολικό ποσό δεν " +
                             "είναι ίσο με το αρχικό ποσό, " +
                             "άρα θα πρέπει να μεταβάλλεις ποσό/ά και " +
@@ -367,7 +367,7 @@ public class ChangeData {
                     scanner.nextLine();
                 }
             }
-        } while ((LongData[0] != startsum) || (input3 == 1));
-        return LongData;
+        } while ((longData[0] != startsum) || (input3 == 1));
+        return longData;
     }
 }
