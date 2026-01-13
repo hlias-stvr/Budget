@@ -14,11 +14,17 @@ public class CompareEuzTaxes {
         double diffGrEuzTaxes =
             Math.round((Math.abs((grTaxes - avgEuzTaxes))) * 10.0) / 10.0;
         if (grTaxes > avgEuzTaxes) {
-            System.out.println("Τα έσοδα που λαμβάνει το ελληνικό κράτος από τη φορολογία σε ποσοστό δια του ΑΕΠ της Ελλάδος ("
-            + grTaxes + "%) ξεπερνούν εκείνα του μέσου όρου της ευρωζώνης (" + avgEuzTaxes + "%) κατά " + diffGrEuzTaxes + " %");
+            System.out.println("Τα έσοδα που λαμβάνει το ελληνικό κράτος από " +
+                "τη φορολογία σε ποσοστό δια του ΑΕΠ της Ελλάδος ("
+                + grTaxes + "%) ξεπερνούν εκείνα του μέσου όρου της " +
+                "ευρωζώνης (" + avgEuzTaxes + "%) κατά " + diffGrEuzTaxes +
+                 " %");
         } else {
-            System.out.println("Τα έσοδα που λαμβάνουν κατα μέσο όρο οι χώρες-μέλη της ευρωζώνης από τη φορολογία σε ποσοστό δια του ΑΕΠ ("
-            + avgEuzTaxes + "%) ξεπερνούν εκείνα του ελληνικού κράτους (" + grTaxes + "%) κατά " + diffGrEuzTaxes + " %");
+            System.out.println("Τα έσοδα που λαμβάνουν κατα μέσο όρο οι " +
+                "χώρες-μέλη της ευρωζώνης από τη " +
+                "φορολογία σε ποσοστό δια του ΑΕΠ ("
+                + avgEuzTaxes + "%) ξεπερνούν εκείνα του ελληνικού " +
+                "κράτους (" + grTaxes + "%) κατά " + diffGrEuzTaxes + " %");
         }
     }
 }
