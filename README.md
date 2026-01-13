@@ -55,37 +55,43 @@ bash
         * └── settings.json
     * └── src/
         * └── main/
-            * └── java/
-                * └── eurozone/gov/excel/
-                    * ├── AvgEurozone.java
-                    * ├── BudgetApp.java
-                    * ├── BudgetChange.java
-                    * ├── BudgetVariance.java
-                    * ├── ChangeData.java
-                    * ├── ChangesHistory.java
-                    * ├── ChildChoices.java
-                    * ├── Choices.java
-                    * ├── CompareEuzTaxes.java
-                    * ├── EuzLivingStandard.java
-                    * ├── Main.java
-                    * ├── ReadCsvFiles.java
-                    * ├── RegionalPer.java
-                    * └── Subchoises.java
+            * └── java/eurozone/gov/excel/
+                * ├── AvgEurozone.java
+                * ├── BudgetApp.java
+                * ├── BudgetChange.java
+                * ├── BudgetVariance.java
+                * ├── ChangedData.java
+                * ├── ChangesHistory.java
+                * ├── ChildChoices.java
+                * ├── Choices.java
+                * ├── CompareEuzTaxes.java
+                * ├── EuzLivingStandard.java
+                * ├── Main.java
+                * ├── ReadCsvFiles.java
+                * ├── RegionalPer.java
+                * └── Subchoises.java
             * └── resources/
                 * ├── Gdp_population_euz.csv
                 * ├── gr_ministy_25.csv
-                * └── gr_revenue_expenses_25.csv
-        * └── test/java/
-            * └── eurozone/gov/excel/
-                 * ├── TestAvgEurozone.java
-                 * ├── TestBudgetVariance.java
-                 * ├── TestChangeData.java
-                 * ├── TestEuzLivingStandard.java
-                 * ├── TestEuzTaxes.java
-                 * └── TestRegionalPer.java
+                * ├── gr_revenue_expenses_25.csv
+                * └── logo.png
+        * └── test/java/eurozone/gov/excel/
+            * ├── TestAvgEurozone.java
+            * ├── TestBudgetVariance.java
+            * ├── TestChangedData.java
+            * ├── TestEuzLivingStandard.java
+            * ├── TestEuzTaxes.java
+            * └── TestRegionalPer.java
     * ├── .gitignore
-    * ├── pom.xml
-    * └── README.md
+    * ├── .htmlhintrc.json
+    * ├── Budget.lnk
+    * ├── checkstyle.xml
+    * └── pom.xml
+* docs/
+    * └── UML_Diagram_For_Budget_Surfers.png
+* LICENCE
+* README.md
+
 
 ## Διάγραμμα UML σχετικά με το σχεδιασμό του κώδικα
 <p align="center">
