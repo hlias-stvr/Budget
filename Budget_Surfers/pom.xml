@@ -64,7 +64,39 @@
         <!-- jar plugin -->
         <plugin>
             <artifactId>maven-jar-plugin</artifactId>
-            <version>3.0.2</version>
+            <version>3.3.0</version>
+            <executions>
+                <execution>
+                    <id>gui</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                    <configuration>
+                        <classifier>gui</classifier>
+                        <archive>
+                            <manifest>
+                                <mainClass>eurozone.gov.excel.BudgetApp</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>cli</id>
+                    <phace>package</phace>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                    <configuration>
+                        <classifier>cli</classifier>
+                        <archive>
+                            <manifest>
+                                <mainClass>eurozone.gov.excel.Main</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </execution>
+            </executions>
         </plugin>
 
         <!-- install plugin -->
