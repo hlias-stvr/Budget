@@ -74,7 +74,7 @@ bash
             * └── resources/
                 * ├── Gdp_population_euz.csv
                 * ├── gr_ministy_25.csv
-                * ├── gr_revenue_expenses_25.csv
+                * └── gr_revenue_expenses_25.csv
         * └── test/java/
             * └── eurozone/gov/excel/
                  * ├── TestAvgEurozone.java
