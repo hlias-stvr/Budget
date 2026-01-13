@@ -84,7 +84,6 @@ bash
             * └── TestRegionalPer.java
     * ├── .gitignore
     * ├── .htmlhintrc.json
-    * ├── Budget.lnk
     * ├── checkstyle.xml
     * └── pom.xml
 * docs/
