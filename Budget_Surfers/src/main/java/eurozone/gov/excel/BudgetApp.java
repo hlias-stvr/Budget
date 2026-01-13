@@ -702,22 +702,28 @@ public class BudgetApp {
         };
         String buttons = switch (main) {
             case 2 -> """
-                <button class="blue" onclick="location.href='/submenu?main=
-                2&sub=1'">1 - Ποσοστιαίες δαπάνες Ελλάδας ανά τομέα</button>
-                <button class="blue" onclick="location.href='/submenu?main=
-                2&sub=2'">2 - Σύγκριση με Μ.Ο. Ευρωζώνης</button>
+                <button class="blue" onclick=
+                "location.href='/submenu?main=2&sub=1'">
+                1 - Ποσοστιαίες δαπάνες Ελλάδας ανά τομέα</button>
+                <button class="blue" onclick=
+                "location.href='/submenu?main=2&sub=2'">
+                2 - Σύγκριση με Μ.Ο. Ευρωζώνης</button>
                 """;
             case 3 -> """
-                <button class="blue" onclick="location.href='/submenu?main=
-                3&sub=1'">1 - Σύγκριση εσόδων</button>
-                <button class="blue" onclick="location.href='/submenu?main=
-                3&sub=2'">2 - Σύγκριση δαπανών</button>
+                <button class="blue"
+                onclick="location.href='/submenu?main=3&sub=1'">
+                1 - Σύγκριση εσόδων</button>
+                <button class="blue" onclick=
+                "location.href='/submenu?main=3&sub=2'">
+                2 - Σύγκριση δαπανών</button>
                 """;
             case 4 -> """
-                <button class="blue" onclick="location.href='/submenu?main=
-                4&sub=1'">1 - ΚΚΑΕΠ όλων των χωρών</button>
-                <button class="blue" onclick="location.href='/submenu?main=
-                4&sub=2'">2 - Σύγκριση Ελλάδας με άλλες χώρες</button>
+                <button class="blue" onclick=
+                "location.href='/submenu?main=4&sub=1'">
+                1 - ΚΚΑΕΠ όλων των χωρών</button>
+                <button class="blue" onclick=
+                "location.href='/submenu?main=4&sub=2'">
+                2 - Σύγκριση Ελλάδας με άλλες χώρες</button>
                 """;
             case 5 -> """
                 <button class="blue" onclick="location.href=
