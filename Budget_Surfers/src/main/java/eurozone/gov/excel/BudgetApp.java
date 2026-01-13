@@ -100,11 +100,14 @@ public class BudgetApp {
                 <meta charset="UTF-8">
                 <title>Μενού Προϋπολογισμού</title>
                 <style>
-                    body {font-family: Arial, sans-serif; background: #f0f8ff; text-align: center; padding: 40px;}
+                    body {font-family: Arial, sans-serif;
+                    background: #f0f8ff; text-align: center; padding: 40px;}
                     h1 {color: #003366;}
                     .container {max-width: 900px; margin: 0 auto;}
-                    button {display: block; width: 100%; padding: 18px; margin: 12px 0; font-size: 19px;
-                            border: none; border-radius: 10px; color: white; cursor: pointer;}
+                    button {display: block; width: 100%;
+                        padding: 18px; margin: 12px 0; font-size: 19px;
+                        border: none; border-radius: 10px;
+                        color: white; cursor: pointer;}
                     button.blue {background: #007bff;}
                     button.blue:hover {background: #0056b3;}
                     button.green {background: #28a745;}
@@ -114,18 +117,29 @@ public class BudgetApp {
                 </style>
             </head>
             <body>
-                <img src="/png/logo.png" style="position:absolute; top:20px; left:20px; width:100px; height:auto;">
+                <img src="/png/logo.png" style="position:absolute;
+                top:20px; left:20px; width:100px; height:auto;">
                 <div class="container">
                     <h1>Επίλεξε λειτουργία</h1>
-                    <button class="blue" onclick="go(1)">1 - Προβολή στοιχείων κρατικού προϋπολογισμού</button>
-                    <button class="blue" onclick="go(2)">2 - Σύγκριση ποσοστιαίων δαπανών ανά τομέα με Ευρωζώνη</button>
-                    <button class="blue" onclick="go(3)">3 - Σύγκριση του προϋπολογισμού τα τελευταία 5 έτη</button>
-                    <button class="blue" onclick="go(4)">4 - Σύγκριση βιοτικού επιπέδου της Ελλάδας</button>
-                    <button class="blue" onclick="go(5)">5 - Ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια</button>
-                    <button class="blue" onclick="go(6)">6 - Σύγκριση φορολογικών εσόδων με Ευρωζώνη</button>
-                    <button class="green" onclick="location.href='/edit'">7 - Επεξεργασία στοιχείων προϋπολογισμού</button>
-                    <button class="green" onclick="go(8)">8 - Προβολή ιστορικού αλλαγών</button>
-                    <button class="red" onclick="if(confirm('Έξοδος;')) location.href='/exit'">0 - Έξοδος</button>
+                    <button class="blue" onclick="go(1)">
+                    1 - Προβολή στοιχείων κρατικού προϋπολογισμού</button>
+                    <button class="blue" onclick="go(2)">
+                    2 - Σύγκριση ποσοστιαίων δαπανών ανά τομέα με Ευρωζώνη
+                    </button>
+                    <button class="blue" onclick="go(3)">
+                    3 - Σύγκριση του προϋπολογισμού τα τελευταία 5 έτη</button>
+                    <button class="blue" onclick="go(4)">
+                    4 - Σύγκριση βιοτικού επιπέδου της Ελλάδας</button>
+                    <button class="blue" onclick="go(5)">
+                    5 - Ανάλυση ποσοστιαίων δαπανών ανά περιφέρεια</button>
+                    <button class="blue" onclick="go(6)">
+                    6 - Σύγκριση φορολογικών εσόδων με Ευρωζώνη</button>
+                    <button class="green" onclick="location.href='/edit'">
+                    7 - Επεξεργασία στοιχείων προϋπολογισμού</button>
+                    <button class="green" onclick="go(8)">
+                    8 - Προβολή ιστορικού αλλαγών</button>
+                    <button class="red" onclick="if(confirm('Έξοδος;'))
+                    location.href='/exit'">0 - Έξοδος</button>
                 </div>
                 <script>
                     function go(choice) {
@@ -436,11 +450,17 @@ public class BudgetApp {
                 <meta charset="UTF-8">
                 <title>%s</title>
                 <style>
-                    body {font-family: Arial, sans-serif; background: #f0f8ff; padding: 40px; text-align: center;}
-                    .content {max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);}
+                    body {font-family: Arial, sans-serif;
+                    background: #f0f8ff; padding: 40px; text-align: center;}
+                    .content {max-width: 900px; margin: 0 auto;
+                    background: white; padding: 40px; border-radius: 15px;
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.1);}
                     h1 {color: #003366; margin-bottom: 30px;}
                     h3 {color: #007bff;}
-                    button {padding: 18px 40px; font-size: 18px; background: #dc3545; color: white; border: none; border-radius: 10px; cursor: pointer; margin-top: 40px;}
+                    button {padding: 18px 40px; font-size: 18px;
+                    background: #dc3545; color: white;
+                    border: none; border-radius: 10px;
+                    cursor: pointer; margin-top: 40px;}
                     button:hover {background: #c82333;}
                 </style>
             </head>
@@ -448,7 +468,8 @@ public class BudgetApp {
                 <div class="content">
                     <h1>%s</h1>
                     %s
-                    <button onclick="location.href='/'">Επιστροφή στο κύριο μενού</button>
+                    <button onclick="location.href='/'">
+                    Επιστροφή στο κύριο μενού</button>
                 </div>
             </body>
             </html>
@@ -461,18 +482,25 @@ public class BudgetApp {
             <html lang="el">
             <head><meta charset="UTF-8"><title>Επεξεργασία</title>
             <style>
-                body {font-family: Arial; background: #f0f8ff; text-align: center; padding: 50px;}
-                button {width: 80%; max-width: 600px; padding: 20px; margin: 15px; font-size: 18px; border: none; border-radius: 10px; color: white;}
+                body {font-family: Arial; background: #f0f8ff;
+                 text-align: center; padding: 50px;}
+                button {width: 80%; max-width: 600px; padding: 20px; margin:
+                 15px; font-size: 18px; border: none;
+                  border-radius: 10px; color: white;}
                 .blue {background: #007bff;}
                 .red {background: #dc3545;}
             </style></head>
             <body>
                 <h1>Επεξεργασία Στοιχείων</h1>
-                <button class="blue" onclick="location.href='/edit/sectors'">1 - Μεταβολή δαπανών ανά τομέα</button>
-                <button class="blue" onclick="location.href='/edit/regions'">2 - Μεταβολή δαπανών ανά περιφέρεια</button>
-                <button class="blue" onclick="location.href='/edit/revenues'">3 - Μεταβολή εσόδων</button>
+                <button class="blue" onclick="location.href='/edit/sectors'">
+                1 - Μεταβολή δαπανών ανά τομέα</button>
+                <button class="blue" onclick="location.href='/edit/regions'">
+                2 - Μεταβολή δαπανών ανά περιφέρεια</button>
+                <button class="blue" onclick="location.href='/edit/revenues'">
+                3 - Μεταβολή εσόδων</button>
                 <br><br>
-                <button class="red" onclick="location.href='/'">Πίσω στο κύριο μενού</button>
+                <button class="red" onclick="location.href='/'">
+                Πίσω στο κύριο μενού</button>
             </body>
             </html>
             """;
@@ -568,8 +596,14 @@ public class BudgetApp {
         }
 
         StringBuilder html = new StringBuilder();
-        html.append("<!DOCTYPE html><html lang='el'><head><meta charset='UTF-8'><title>Επεξεργασία ").append(type).append("</title>");
-        html.append("<style>body{font-family:Arial;padding:20px;background:#f0f9f9;}table{border-collapse:collapse;width:100%;}th,td{border:1px solid #ddd;padding:12px;text-align:left;}th{background:#e9ecef;}input{padding:8px;margin:5px;}button{padding:10px 20px;margin:5px;border:none;border-radius:5px;cursor:pointer;}</style></head><body>");
+        html.append("<!DOCTYPE html><html lang='el'><head><meta charset=" +
+        "'UTF-8'><title>Επεξεργασία ").append(type).append("</title>");
+        html.append("<style>body{font-family:Arial;padding:20px;" +
+            "background:#f0f9f9;}table{border-collapse:collapse;width:100%;}" +
+            "th,td{border:1px solid #ddd;padding:12px;text-align:left;}" +
+            "th{background:#e9ecef;}input{padding:8px;margin:5px;}" +
+            "button{padding:10px 20px;margin:5px;border:none;" +
+            "border-radius:5px;cursor:pointer;}</style></head><body>");
 
         html.append("<h2>Επεξεργασία ").append(switch (type) {
             case "sectors" -> "ποσοστιαίων δαπανών ανά τομέα";
@@ -578,15 +612,23 @@ public class BudgetApp {
             default -> "";
         }).append("</h2>");
 
-        html.append("<p><strong>Αρχικό σύνολο (προς εξισορρόπηση):</strong> ").append(String.format("%.2f", originalSum)).append(type.equals("sectors") ? "%" : " €").append("</p>");
+        html.append("<p><strong>Αρχικό σύνολο (προς εξισορρόπηση):</strong> ")
+        .append(String.format("%.2f", originalSum))
+        .append(type.equals("sectors") ? "%" : " €").append("</p>");
 
-        html.append("<table><tr><th>#</th><th>Κατηγορία</th><th>Τιμή</th></tr>");
+        html.append("<table><tr><th>#</th>" +
+            "<th>Κατηγορία</th><th>Τιμή</th></tr>");
         String[] labels = getLabels(type);
         // Εμφανίζουμε μόνο τις 10 πρώτες κατηγορίες για τους sectors
         for (int i = 0; i < displayLimit; i++) {
-            html.append("<tr><td>").append(i + 1).append("</td><td>").append(labels[i]).append("</td><td>").append(String.format("%.2f", data[i])).append("</td></tr>");
+            html.append("<tr><td>").append(i + 1)
+            .append("</td><td>").append(labels[i])
+            .append("</td><td>").append(String.format("%.2f", data[i]))
+            .append("</td></tr>");
         }
-        html.append("<tr style='background:#d4edda;font-weight:bold'><td colspan='2'>Τρέχον σύνολο (επεξεργασμένων)</td><td>").append(String.format("%.2f", currentSum)).append("</td></tr></table>");
+        html.append("<tr style='background:#d4edda;font-weight:bold'>" +
+        "<td colspan='2'>Τρέχον σύνολο (επεξεργασμένων)</td><td>")
+        .append(String.format("%.2f", currentSum)).append("</td></tr></table>");
 
         /*
         * Η 11η τιμή (50.69) υπάρχει στο background αλλά δεν επηρεάζει τον
@@ -594,9 +636,15 @@ public class BudgetApp {
         */
         double diff = currentSum - originalSum;
         if (Math.abs(diff) > 0.01) {
-            html.append("<p style='color:red;font-weight:bold'>Μένει να ").append(diff > 0 ? "αφαιρέσεις" : "προσθέσεις").append(" ").append(String.format("%.2f", Math.abs(diff))).append("</p>");
+            html.append("<p style='color:red;font-weight:bold'>Μένει να ")
+            .append(diff > 0 ? "αφαιρέσεις" : "προσθέσεις")
+            .append(" ").append(String.format("%.2f", Math.abs(diff)))
+                .append("</p>");
         } else {
-            html.append("<p style='color:green;font-weight:bold'>Ισορροπημένο! Οι αλλαγές θα εφαρμοστούν στους υπολογισμούς.</p>");
+            html.append("<p style='color:green;" +
+                "font-weight:bold'>" +
+                "Ισορροπημένο! Οι αλλαγές θα εφαρμοστούν στους υπολογισμούς." +
+                "</p>");
         }
 
         html.append("<form method='post'>");
@@ -654,20 +702,29 @@ public class BudgetApp {
         };
         String buttons = switch (main) {
             case 2 -> """
-                <button class="blue" onclick="location.href='/submenu?main=2&sub=1'">1 - Ποσοστιαίες δαπάνες Ελλάδας ανά τομέα</button>
-                <button class="blue" onclick="location.href='/submenu?main=2&sub=2'">2 - Σύγκριση με Μ.Ο. Ευρωζώνης</button>
+                <button class="blue" onclick="location.href='/submenu?main=
+                2&sub=1'">1 - Ποσοστιαίες δαπάνες Ελλάδας ανά τομέα</button>
+                <button class="blue" onclick="location.href='/submenu?main=
+                2&sub=2'">2 - Σύγκριση με Μ.Ο. Ευρωζώνης</button>
                 """;
             case 3 -> """
-                <button class="blue" onclick="location.href='/submenu?main=3&sub=1'">1 - Σύγκριση εσόδων</button>
-                <button class="blue" onclick="location.href='/submenu?main=3&sub=2'">2 - Σύγκριση δαπανών</button>
+                <button class="blue" onclick="location.href='/submenu?main=
+                3&sub=1'">1 - Σύγκριση εσόδων</button>
+                <button class="blue" onclick="location.href='/submenu?main=
+                3&sub=2'">2 - Σύγκριση δαπανών</button>
                 """;
             case 4 -> """
-                <button class="blue" onclick="location.href='/submenu?main=4&sub=1'">1 - ΚΚΑΕΠ όλων των χωρών</button>
-                <button class="blue" onclick="location.href='/submenu?main=4&sub=2'">2 - Σύγκριση Ελλάδας με άλλες χώρες</button>
+                <button class="blue" onclick="location.href='/submenu?main=
+                4&sub=1'">1 - ΚΚΑΕΠ όλων των χωρών</button>
+                <button class="blue" onclick="location.href='/submenu?main=
+                4&sub=2'">2 - Σύγκριση Ελλάδας με άλλες χώρες</button>
                 """;
             case 5 -> """
-                <button class="blue" onclick="location.href='/submenu?main=5&sub=1'">1 - Δαπάνη ανά πολίτη</button>
-                <button class="blue" onclick="location.href='/submenu?main=5&sub=2'">2 - Ποσοστιαία δαπάνη ανά περιφέρεια</button>
+                <button class="blue" onclick="location.href=
+                '/submenu?main=5&sub=1'">1 - Δαπάνη ανά πολίτη</button>
+                <button class="blue" onclick="location.href=
+                '/submenu?main=5&sub=2'">2 - Ποσοστιαία δαπάνη ανά περιφέρεια
+                </button>
                 """;
             default -> "";
         };
@@ -677,8 +734,11 @@ public class BudgetApp {
             <html lang="el">
             <head><meta charset="UTF-8"><title>%s</title>
             <style>
-                body {font-family: Arial; background: #f0f8ff; text-align: center; padding: 40px;}
-                button {width: 80%%; max-width: 600px; padding: 18px; margin: 15px auto; font-size: 18px; border: none; border-radius: 10px; color: white; cursor: pointer;}
+                body {font-family: Arial; background: #f0f8ff;
+                text-align: center; padding: 40px;}
+                button {width: 80%%; max-width: 600px; padding: 18px;
+                 margin: 15px auto; font-size: 18px; border: none;
+                 border-radius: 10px; color: white; cursor: pointer;}
                 .blue {background: #007bff;}
                 .blue:hover {background: #0056b3;}
                 .red {background: #dc3545;}
@@ -687,7 +747,8 @@ public class BudgetApp {
                 <h1>%s</h1>
                 %s
                 <br><br>
-               <button class="red" onclick="location.href='/'">0 - Πίσω στο κύριο μενού</button>
+               <button class="red" onclick="location.href=
+               '/'">0 - Πίσω στο κύριο μενού</button>
             </body>
             </html>
             """.formatted(title, title, buttons);
@@ -704,15 +765,20 @@ public class BudgetApp {
             <head><meta charset="UTF-8"><title>Αποτέλεσμα</title>
             <style>
                 body {font-family: Arial; background: #f9f9f9; padding: 20px;}
-                pre {background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); white-space: pre-wrap; font-family: monospace;}
-                button {padding: 15px 30px; margin: 20px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer;}
+                pre {background: white; padding: 25px; border-radius: 12px;
+                 box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                  white-space: pre-wrap; font-family: monospace;}
+                button {padding: 15px 30px; margin: 20px; font-size: 18px;
+                border: none; border-radius: 8px; cursor: pointer;}
                 .blue {background: #007bff; color: white;}
                 .red {background: #dc3545; color: white;}
             </style></head>
             <body>
                 <pre>%s</pre>
-                <button class="blue" style="%s" onclick="location.href='/submenu?main=%d'">Πίσω στο υπομενού</button>
-                <button class="red" onclick="location.href='/'">Κύριο μενού</button>
+                <button class="blue" style="%s" onclick="location.href=
+                '/submenu?main=%d'">Πίσω στο υπομενού</button>
+                <button class="red"
+                onclick="location.href='/'">Κύριο μενού</button>
             </body>
             </html>
             """.formatted(result, subMenuButtonStyle, main);
@@ -1051,10 +1117,17 @@ public class BudgetApp {
                 <!DOCTYPE html>
                 <html lang="el">
                 <head><meta charset="UTF-8"></head>
-                <body style="font-family: Arial; margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                    <h1>Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή Budget Surfers!</h1>
-                    <p>Μπορείτε τώρα να κλείσετε αυτή την καρτέλα του browser.</p>
-                    <img src="/png/logo.png" style="margin-top: 40px; width: 400px; height: auto;">
+                <body style="font-family: Arial; margin: 0; height: 100vh;
+                display: flex; flex-direction: column; justify-content: center;
+                align-items: center; text-align: center;">
+                <h1>
+                Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή Budget Surfers!
+                </h1>
+                <p>
+                Μπορείτε τώρα να κλείσετε αυτή την καρτέλα του browser.
+                </p>
+                    <img src="/png/logo.png" style="margin-top: 40px;
+                    width: 400px; height: auto;">
                 </body>
                 </html>
                 """;
