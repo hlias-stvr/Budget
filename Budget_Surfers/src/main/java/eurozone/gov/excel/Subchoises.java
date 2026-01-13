@@ -231,16 +231,18 @@ public class Subchoises {
     public void subchoice7b(String[][] budget, Scanner scanner) {
         long[] longRegionExpenses = RegionalPer.transformToLong(budget);
         long[] newRegionExpenses =
-        ChangeData.newAmountPerRegion(longRegionExpenses, budget, scanner);
+            ChangeData.newAmountPerRegion(longRegionExpenses, budget, scanner);
         int choice9 = -1;
-        // αν αλλάξει τα δεδομένα της επιλογής 2
+        // Αν αλλάξει τα δεδομένα της επιλογής 2
         do {
             double expensesPerPerson[] =
                 RegionalPer.calcBudgetPerPerson(newRegionExpenses);
             double percExpensesPerRegion[] =
                 RegionalPer.calcBudgetPerRegion(newRegionExpenses);
-            // ξανακαλεί τις μεθόδους που έχουν να κάνουν με αυτά που άλλαξε
-            // για να δει την διαφορά
+            /*
+            *Ξανακαλεί τις μεθόδους που έχουν να κάνουν με αυτά που άλλαξε
+            * για να δει την διαφορά
+            * */
             System.out.println("Γράψε\n1 για να δεις" +
                 " την νέα δαπάνη ανά πολίτη");
             System.out.println("2 για να δεις την νέα" +
@@ -274,12 +276,12 @@ public class Subchoises {
 
     public void subchoice7c(String[][] revenue, Scanner scanner) {
         long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
-        long[] oneDimensLongImcome = new long[longIncome.length];
-        for (int i = 0; i < oneDimensLongImcome.length; i++) {
-            oneDimensLongImcome[i] = longIncome[i][0];
+        long[] longIncome25 = new long[longIncome.length];
+        for (int i = 0; i < longIncome25.length; i++) {
+            longIncome25[i] = longIncome[i][0];
         }
         long[] newIncome =
-        ChangeData.newRevenue(oneDimensLongImcome, revenue, scanner);
+        ChangeData.newRevenue(longIncome25, revenue, scanner);
         System.out.println("Ακολουθεί η σύγκριση των νέων" +
             " φορολογικών εσόδων με τον μέσο όρο της Ευρωζώνης");
         CompareEuzTaxes.calcDiffGrEuzTaxes(newIncome);
