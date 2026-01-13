@@ -2,8 +2,9 @@ package eurozone.gov.excel;
 
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import java.nio.charset.StandardCharsets;
 
@@ -17,7 +18,7 @@ public class TestChangeData {
         String [] testGrSectors = AvgEurozone.sectors();
         String input =
             "2\n2\n" +
-            "9\n3.99\n" +
+            "9\n3,99\n" +
             "0\n";
         Scanner scanner = new Scanner(
             new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
@@ -32,7 +33,7 @@ public class TestChangeData {
     void testNewAmountPerRegion() {
         String[][] budget =
         ReadCsvFiles.readCsv("/gr_ministy_25.csv");
-        long [] testLongMinistrExpenses = AvgEurozone.convertToLong(budget);
+        long [] testLongRegionExpenses = RegionalPer.transformToLong(budget);
         String input =
             "1\n12091000\n" +
             "4\n15918000\n" +
@@ -40,7 +41,7 @@ public class TestChangeData {
         Scanner scanner = new Scanner(
             new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
         long [] testNewRegionExpenses =
-            ChangeData.newAmountPerRegion(testLongMinistrExpenses, budget,
+            ChangeData.newAmountPerRegion(testLongRegionExpenses, budget,
             scanner);
         assertEquals(12091000, testNewRegionExpenses[0]);
         assertEquals(15918000, testNewRegionExpenses[3]);
@@ -62,9 +63,9 @@ public class TestChangeData {
             "0\n";
         Scanner scanner = new Scanner(
             new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
-        long [] testarray =
+        long [] testNewLongIncome25 =
             ChangeData.newRevenue(testLongIncome25, revenue, scanner);
-        assertEquals(55000000, testarray[1]);
-        assertEquals(25000000, testarray[7]);
+        assertEquals(55000000, testNewLongIncome25[2]);
+        assertEquals(25000000, testNewLongIncome25[8]);
     }
 }
