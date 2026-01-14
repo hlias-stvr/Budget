@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 public class TestEuzTaxes {
     @Test
     void testCalcDiffGrEuzTaxes() {
-        String[][] revenue =
+        String[][] revenueExpenses =
         ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] testLongIncome =
-         BudgetVariance.converterToLong(revenue, 14, 2);
+         BudgetVariance.converterToLong(revenueExpenses, 14, 2);
         long[] testLongIncome25 = new long[testLongIncome.length];
         for (int i = 0; i < testLongIncome.length; i++) {
             testLongIncome25[i] = testLongIncome[i][0];

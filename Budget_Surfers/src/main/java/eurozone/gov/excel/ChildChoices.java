@@ -1,14 +1,15 @@
 package eurozone.gov.excel;
 
 public class ChildChoices {
-    public void childChoice3a1(String[][] revenue, double[][] percVarIncome) {
+    public void childChoice3a1(String[][] revenueExpenses,
+        double[][] percVarIncome) {
         System.out.println("Η διαφορά των ποσοστών των εσόδων ανά έτος είναι:");
         System.out.println("Έτη 2024-2025,2023-2024,2022-2023,2021-2022");
         for (int i = 0; i < percVarIncome.length; i++) {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
-                    System.out.print(revenue[i][1] + " " + percVarIncome[i][j]
-                        + "% ");
+                    System.out.print(revenueExpenses[i][1] + " " +
+                        percVarIncome[i][j] + "% ");
                 } else if (j == 1 || j == 2) {
                     System.out.print(percVarIncome[i][j] + "% ");
                 } else if (j == 3) {
@@ -18,13 +19,14 @@ public class ChildChoices {
         }
     }
 
-    public void childChoice3a2(String[][] revenue, long[][] amountVarIncome) {
+    public void childChoice3a2(String[][] revenueExpenses,
+        long[][] amountVarIncome) {
         System.out.println("Η διαφορά των ποσών των εσόδων ανά έτος είναι:");
         System.out.println("Έτη 2024-2025,2023-2024,2022-2023,2021-2022");
         for (int i = 0; i < amountVarIncome.length; i++) {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
-                    System.out.print(revenue[i][1] + " " +
+                    System.out.print(revenueExpenses[i][1] + " " +
                         amountVarIncome[i][j]);
                 } else if (j == 1 || j == 2) {
                     System.out.print(" " + amountVarIncome[i][j]);
@@ -35,13 +37,14 @@ public class ChildChoices {
         }
     }
 
-    public void childChoice3b1(String[][] revenue, double[][] percVarExpenses) {
+    public void childChoice3b1(String[][] revenueExpenses,
+        double[][] percVarExpenses) {
         System.out.println("Η διαφορά των ποσοστών των εξόδων ανά έτος είναι:");
         System.out.println("Έτη 2024-2025,2023-2024,2022-2023,2021-2022");
         for (int i = 0; i < percVarExpenses.length; i++) {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
-                    System.out.print(revenue[i][1] + " " +
+                    System.out.print(revenueExpenses[i][1] + " " +
                         percVarExpenses[i][j] + "% ");
                 } else if (j == 1 || j == 2) {
                     System.out.print(percVarExpenses[i][j] + "% ");
@@ -52,13 +55,14 @@ public class ChildChoices {
         }
     }
 
-    public void childChoice3b2(String[][] revenue, long[][] amountVarExpenses) {
+    public void childChoice3b2(String[][] revenueExpenses,
+        long[][] amountVarExpenses) {
         System.out.println("Η διαφορά των ποσών των εξόδων ανά έτος είναι:");
         System.out.println("Έτη 2024-2025,2023-2024,2022-2023,2021-2022");
         for (int i = 0; i < amountVarExpenses.length; i++) {
             for (int j = 0; j < 4; j++) {
                 if (j == 0) {
-                    System.out.print(revenue[i][1] + " " +
+                    System.out.print(revenueExpenses[i][1] + " " +
                         amountVarExpenses[i][j]);
                 } else if (j == 1 || j == 2) {
                     System.out.print(" " + amountVarExpenses[i][j]);

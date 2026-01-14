@@ -1,14 +1,17 @@
 package eurozone.gov.excel;
 
 public class BudgetVariance {
-    public static long[][] converterToLong(String[][] revenue, int k, int a) {
-        /*k how many lines and a the line of excel where the
-        copy of the other array begin*/
+    public static long[][] converterToLong(String[][] revenueExpenses,
+        int k, int a) {
+        /*
+        *k πόσες γραμμές να μετατραπούν και a η γραμμή του πίνακα
+        *(στην μορφή csv) από την οποία θα ξεκινήσει η μετατροπή
+        */
         long[][] longData = new long[k][5];
         int i = 0;
         for (int m = a - 2; m < k + a - 2; m++) {
             for (int j = 0; j < 5; j++) {
-                longData[i][j] = Long.parseLong(revenue[m][j + 2]);
+                longData[i][j] = Long.parseLong(revenueExpenses[m][j + 2]);
             }
             i++;
         }

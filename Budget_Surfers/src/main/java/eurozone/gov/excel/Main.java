@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String[][] revenue =
+        String[][] revenueExpenses =
             ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         String[][] budget  = ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         String[][] gdpPop  = ReadCsvFiles.readCsv("/Gdp_population_euz.csv");
@@ -41,13 +41,13 @@ public class Main {
                             System.out.println("Έξοδος από το πρόγραμμα");
                             break;
                         case 1:
-                            ch.mainChoice1(revenue, budget);
+                            ch.mainChoice1(revenueExpenses, budget);
                             break;
                         case 2:
                             ch.mainChoice2(budget, scanner);
                             break;
                         case 3:
-                            ch.mainChoice3(revenue, scanner);
+                            ch.mainChoice3(revenueExpenses, scanner);
                             break;
                         case 4:
                             ch.mainChoice4(gdpPop, scanner);
@@ -56,10 +56,10 @@ public class Main {
                             ch.mainChoice5(budget, scanner);
                             break;
                         case 6:
-                            ch.mainChoice6(revenue);
+                            ch.mainChoice6(revenueExpenses);
                             break;
                         case 7:
-                            ch.mainChoice7(revenue, budget, scanner);
+                            ch.mainChoice7(revenueExpenses, budget, scanner);
                             break;
                         case 8:
                             ChangesHistory.printAll();

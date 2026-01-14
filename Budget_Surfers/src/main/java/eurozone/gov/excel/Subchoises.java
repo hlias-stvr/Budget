@@ -32,8 +32,8 @@ public class Subchoises {
         }
     }
 
-    public void subchoice3a(double[][] percVarIncome, String[][] revenue,
-        long[][] amountVarIncome, Scanner scanner) {
+    public void subchoice3a(double[][] percVarIncome, String[][]
+        revenueExpenses, long[][] amountVarIncome, Scanner scanner) {
         int choice4 = -1;
         do {
             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
@@ -50,10 +50,12 @@ public class Subchoises {
                     }
                     switch(choice4) {
                         case 1:
-                            child.childChoice3a1(revenue, percVarIncome);
+                            child.childChoice3a1(revenueExpenses,
+                                percVarIncome);
                             break;
                         case 2:
-                            child.childChoice3a2(revenue, amountVarIncome);
+                            child.childChoice3a2(revenueExpenses,
+                                amountVarIncome);
                             break;
                     }
                     break;
@@ -73,8 +75,8 @@ public class Subchoises {
         } while (choice4 != 0);
     }
 
-    public void subchoice3b(double[][] percVarExpenses, String[][] revenue,
-        long[][] amountVarExpenses, Scanner scanner) {
+    public void subchoice3b(double[][] percVarExpenses, String[][]
+        revenueExpenses, long[][] amountVarExpenses, Scanner scanner) {
         int choice4 = -1;
         do {
             System.out.println("Επίλεξε 1 για να δεις τα ποσoστά ανά έτος");
@@ -90,10 +92,12 @@ public class Subchoises {
                     }
                     switch(choice4) {
                         case 1:
-                            child.childChoice3b1(revenue, percVarExpenses);
+                            child.childChoice3b1(revenueExpenses,
+                                percVarExpenses);
                             break;
                         case 2:
-                            child.childChoice3b2(revenue, amountVarExpenses);
+                            child.childChoice3b2(revenueExpenses,
+                                amountVarExpenses);
                             break;
                     }
                     break;
@@ -274,14 +278,15 @@ public class Subchoises {
         } while(choice9 != 0);
     }
 
-    public void subchoice7c(String[][] revenue, Scanner scanner) {
-        long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
+    public void subchoice7c(String[][] revenueExpenses, Scanner scanner) {
+        long[][] longIncome =
+            BudgetVariance.converterToLong(revenueExpenses, 14, 2);
         long[] longIncome25 = new long[longIncome.length];
         for (int i = 0; i < longIncome25.length; i++) {
             longIncome25[i] = longIncome[i][0];
         }
         long[] newIncome =
-        ChangeData.newRevenue(longIncome25, revenue, scanner);
+        ChangeData.newRevenue(longIncome25, revenueExpenses, scanner);
         System.out.println("Ακολουθεί η σύγκριση των νέων" +
             " φορολογικών εσόδων με τον μέσο όρο της Ευρωζώνης");
         CompareEuzTaxes.calcDiffGrEuzTaxes(newIncome);

@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Choices {
     Subchoises sub = new Subchoises();
 
-    public void mainChoice1(String[][] revenue, String[][] budget) {
+    public void mainChoice1(String[][] revenueExpenses, String[][] budget) {
         System.out.println("Προυπολογισμός Ελλάδας μετά την αφαίρεση του" +
             " αναλυκλώσιμου χρέους");
-        ReadCsvFiles.printFirstRows(revenue, 33);
+        ReadCsvFiles.printFirstRows(revenueExpenses, 33);
         ReadCsvFiles.printFirstRows(budget, 35);
     }
 
@@ -56,9 +56,11 @@ public class Choices {
         // μέχρι να δωθεί το 0 για πίσω
     }
 
-    public void mainChoice3(String[][] revenue, Scanner scanner) {
-        long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
-        long[][] longExpenses = BudgetVariance.converterToLong(revenue, 16, 16);
+    public void mainChoice3(String[][] revenueExpenses, Scanner scanner) {
+        long[][] longIncome =
+            BudgetVariance.converterToLong(revenueExpenses, 14, 2);
+        long[][] longExpenses =
+            BudgetVariance.converterToLong(revenueExpenses, 16, 16);
         double[][] percVarIncome = BudgetVariance.percentual(longIncome);
         double[][] percVarExpenses = BudgetVariance.percentual(longExpenses);
         long[][] amountVarIncome = BudgetVariance.amount(longIncome);
@@ -80,11 +82,11 @@ public class Choices {
                     }
                     switch(choice3) {
                         case 1:
-                            sub.subchoice3a(percVarIncome, revenue,
+                            sub.subchoice3a(percVarIncome, revenueExpenses,
                                 amountVarIncome, scanner);
                             break;
                         case 2:
-                            sub.subchoice3b(percVarExpenses, revenue,
+                            sub.subchoice3b(percVarExpenses, revenueExpenses,
                                 amountVarExpenses, scanner);
                             break;
                     }
@@ -176,8 +178,9 @@ public class Choices {
         } while(choice6 != 0);
     }
 
-    public void mainChoice6(String[][] revenue) {
-        long[][] longIncome = BudgetVariance.converterToLong(revenue, 14, 2);
+    public void mainChoice6(String[][] revenueExpenses) {
+        long[][] longIncome =
+            BudgetVariance.converterToLong(revenueExpenses, 14, 2);
         long[] oneDimensLongImcome = new long[longIncome.length];
         for (int i = 0; i < longIncome.length; i++) {
             oneDimensLongImcome[i] = longIncome[i][0];
@@ -185,7 +188,7 @@ public class Choices {
         CompareEuzTaxes.calcDiffGrEuzTaxes(oneDimensLongImcome);
     }
 
-    public void mainChoice7(String[][] revenue, String[][] budget,
+    public void mainChoice7(String[][] revenueExpenses, String[][] budget,
         Scanner scanner) {
         int choice8 = -1;
         do {
@@ -211,7 +214,7 @@ public class Choices {
                             sub.subchoice7b(budget, scanner);
                             break;
                         case 3:
-                            sub.subchoice7c(revenue, scanner);
+                            sub.subchoice7c(revenueExpenses, scanner);
                             break;
                     }
                     break;

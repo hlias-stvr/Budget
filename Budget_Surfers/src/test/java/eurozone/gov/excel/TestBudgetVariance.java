@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 public class TestBudgetVariance {
     @Test
     void testConvertToLong() {
-        String[][] revenue =
+        String[][] revenueExpenses =
         ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] testLongIncome =
-         BudgetVariance.converterToLong(revenue, 14, 2);
+         BudgetVariance.converterToLong(revenueExpenses, 14, 2);
         long[][] testLongExpenses =
-         BudgetVariance.converterToLong(revenue, 16, 16);
+         BudgetVariance.converterToLong(revenueExpenses, 16, 16);
         assertNotNull(testLongIncome);
         assertNotNull(testLongExpenses);
         assertEquals(14, testLongIncome.length);
@@ -34,12 +34,12 @@ public class TestBudgetVariance {
 
     @Test
     void testPercentual() {
-        String[][] revenue =
+        String[][] revenueExpenses =
         ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] testLongIncome =
-         BudgetVariance.converterToLong(revenue, 14, 2);
+         BudgetVariance.converterToLong(revenueExpenses, 14, 2);
         long[][] testLongExpenses =
-         BudgetVariance.converterToLong(revenue, 16, 16);
+         BudgetVariance.converterToLong(revenueExpenses, 16, 16);
         double[][] testPercVarIncome =
          BudgetVariance.percentual(testLongIncome);
         double[][] percVarExpenses =
@@ -52,12 +52,12 @@ public class TestBudgetVariance {
 
     @Test
     void testAmount() {
-        String[][] revenue =
+        String[][] revenueExpenses =
         ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] testLongIncome =
-         BudgetVariance.converterToLong(revenue, 14, 2);
+         BudgetVariance.converterToLong(revenueExpenses, 14, 2);
         long[][] testLongExpenses =
-         BudgetVariance.converterToLong(revenue, 16, 16);
+         BudgetVariance.converterToLong(revenueExpenses, 16, 16);
         long[][] testAmountVarIncome = BudgetVariance.amount(testLongIncome);
         long[][] amountVarExpenses = BudgetVariance.amount(testLongExpenses);
         assertNotNull(testAmountVarIncome);

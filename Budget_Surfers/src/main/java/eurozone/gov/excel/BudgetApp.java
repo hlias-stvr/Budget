@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 public class BudgetApp {
 
-    private static String[][] revenue;
+    private static String[][] revenueExpenses;
     private static String[][] budget;
     private static String[][] gdpPop;
     private static double[] modifiedSectorPercents;
@@ -33,7 +33,7 @@ public class BudgetApp {
     static List<LocalDateTime> historyTimestamps = new ArrayList<>();
 
     public static void main(String[] args) {
-        revenue = ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
+        revenueExpenses = ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         budget = ReadCsvFiles.readCsv("/gr_ministy_25.csv");
         gdpPop = ReadCsvFiles.readCsv("/Gdp_population_euz.csv");
         modifiedSectorPercents = initializeData("sectors");
@@ -524,7 +524,8 @@ public class BudgetApp {
             }
             return sum;
         } else if ("revenues".equals(type)) {
-            long[][] full = BudgetVariance.converterToLong(revenue, 14, 2);
+            long[][] full =
+                BudgetVariance.converterToLong(revenueExpenses, 14, 2);
             long sum = 0;
             for (int i = 1; i < 14; i++) {
                 sum += full[i][0];
@@ -559,7 +560,8 @@ public class BudgetApp {
             }
             return dData;
         } else if ("revenues".equals(type)) {
-            long[][] full = BudgetVariance.converterToLong(revenue, 14, 2);
+            long[][] full =
+                BudgetVariance.converterToLong(revenueExpenses, 14, 2);
             /*
             * Διασφαλίζουμε ότι ο πίνακας έχει το μήκος που περιμένει η
             * Calculation
@@ -683,7 +685,7 @@ public class BudgetApp {
         if ("revenues".equals(type)) {
             String[] labels = new String[13];
             for (int i = 0; i < 13; i++) {
-                labels[i] = revenue[i + 1][1];
+                labels[i] = revenueExpenses[i + 1][1];
                 // από γραμμή 1 και μετά (0 είναι σύνολο)
             }
             return labels;
@@ -797,7 +799,7 @@ public class BudgetApp {
             case 1 -> {
                 sb.append("Προυπολογισμός Ελλάδας μετά την αφαίρεση του" +
                     " αναλυκλώσιμου χρέους\n");
-                appendFirstRows(sb, revenue, 33);
+                appendFirstRows(sb, revenueExpenses, 33);
                 appendFirstRows(sb, budget, 35);
             } case 2 -> {
                 long[] longMinistrExpenses = AvgEurozone.convertToLong(budget);
@@ -836,9 +838,9 @@ public class BudgetApp {
                 }
             } case 3 -> {
                 long[][] longIncome =
-                    BudgetVariance.converterToLong(revenue, 14, 2);
+                    BudgetVariance.converterToLong(revenueExpenses, 14, 2);
                 long[][] longExpenses =
-                    BudgetVariance.converterToLong(revenue, 16, 16);
+                    BudgetVariance.converterToLong(revenueExpenses, 16, 16);
                 double[][] incomePercent =
                     BudgetVariance.percentual(longIncome);
                 double[][] expensesPercent =
@@ -851,7 +853,8 @@ public class BudgetApp {
                     sb.append("Ποσοστιαίες διαφορές (%):\n");
                     sb.append("Έτη: 24-25 | 23-24 | 22-23 | 21-22\n");
                     for (int i = 0; i < incomePercent.length; i++) {
-                        sb.append(String.format("%-40s", revenue[i][1]));
+                        sb.append(String.format("%-40s",
+                            revenueExpenses[i][1]));
                         for (int j = 0; j < 4; j++) {
                             sb.append(String.format(" %8.2f%%",
                                 incomePercent[i][j]));
@@ -860,7 +863,8 @@ public class BudgetApp {
                     }
                     sb.append("\nΠοσά διαφορές:\n");
                     for (int i = 0; i < incomeAmount.length; i++) {
-                        sb.append(String.format("%-40s", revenue[i][1]));
+                        sb.append(String.format("%-40s",
+                            revenueExpenses[i][1]));
                         for (int j = 0; j < 4; j++) {
                             sb.append(String.format(" %,12d",
                                 incomeAmount[i][j]));
@@ -872,7 +876,8 @@ public class BudgetApp {
                     sb.append("Ποσοστιαίες διαφορές (%):\n");
                     sb.append("Έτη: 24-25 | 23-24 | 22-23 | 21-22\n");
                     for (int i = 0; i < expensesPercent.length; i++) {
-                        sb.append(String.format("%-40s", revenue[i + 14][1]));
+                        sb.append(String.format("%-40s",
+                            revenueExpenses[i + 14][1]));
                         for (int j = 0; j < 4; j++) {
                             sb.append(String.format(" %8.2f%%",
                                 expensesPercent[i][j]));
@@ -881,7 +886,8 @@ public class BudgetApp {
                     }
                     sb.append("\nΠοσά διαφορές:\n");
                     for (int i = 0; i < expensesAmount.length; i++) {
-                        sb.append(String.format("%-40s", revenue[i + 14][1]));
+                        sb.append(String.format("%-40s",
+                            revenueExpenses[i + 14][1]));
                         for (int j = 0; j < 4; j++) {
                             sb.append(String.format(" %,12d",
                                 expensesAmount[i][j]));
@@ -964,7 +970,7 @@ public class BudgetApp {
             }
             case 6 -> {
                 long[][] longIncome =
-                    BudgetVariance.converterToLong(revenue, 14, 2);
+                    BudgetVariance.converterToLong(revenueExpenses, 14, 2);
                 long[] longIncome25 = new long[longIncome.length];
                 for (int i = 0; i < longIncome.length; i++) {
                     longIncome25[i] = longIncome[i][0];
@@ -990,7 +996,7 @@ public class BudgetApp {
                     sb.append("Χρησιμοποιήστε την επιλογή 7 για να κάνετε" +
                         " αλλαγές.");
                 } else {
-                    sb.append("=== ΙΣΤΟΡΙΚΟ ΑΛΛΑΓΩΝ ===\n\n");
+                    sb.append("    ΙΣΤΟΡΙΚΟ ΑΛΛΑΓΩΝ    \n\n");
                     sb.append("Σύνολο αλλαγών: ").append(historyTypes.size())
                         .append("\n\n");
 

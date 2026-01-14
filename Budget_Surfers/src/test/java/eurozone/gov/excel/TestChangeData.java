@@ -48,10 +48,10 @@ public class TestChangeData {
 
     @Test
     void testNewRevenue() {
-        String[][] revenue =
+        String[][] revenueExpenses =
         ReadCsvFiles.readCsv("/gr_revenue_expenses_25.csv");
         long[][] testLongIncome = BudgetVariance.converterToLong(
-            revenue, 14, 2);
+            revenueExpenses, 14, 2);
         long[] testLongIncome25 = new long[testLongIncome.length];
         for (int i = 0; i < testLongIncome25.length; i++) {
             testLongIncome25[i] = testLongIncome[i][0];
@@ -63,7 +63,7 @@ public class TestChangeData {
         Scanner scanner = new Scanner(
             new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
         long [] testNewLongIncome25 =
-            ChangeData.newRevenue(testLongIncome25, revenue, scanner);
+            ChangeData.newRevenue(testLongIncome25, revenueExpenses, scanner);
         assertEquals(55000000, testNewLongIncome25[2]);
         assertEquals(25000000, testNewLongIncome25[8]);
     }
