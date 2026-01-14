@@ -2,70 +2,118 @@
 Εφαρμογή σε JAVA για την ανάλυση των στοιχείων του κρατικού προϋπολογισμού της Ελλάδας
 
 ## Απαιτήσεις
-**Java JDK/JRE 17+**
+**Java JDK/JRE 17+**  
 **Maven 3.6+ (Προαιρετικά)**
 
 ## Οδηγίες μεταγλώττισης και εκτέλεσης του προγράμματος με jar
-```
+
 1) a) Για περιβάλλον κονσόλας (CLI):
             i) Κατέβασμα (με απλό κλικ) του αρχείου Budget_Surfers-1.0.0-cli.jar από τα releases του αποθετηρίου
-            και τρέξιμο με java -jar Budget_Surfers-1.0.0-cli.jar
+            και τρέξιμο με:
+                   ```
+                   bash
+                   java -jar Budget_Surfers-1.0.0-cli.jar
+                   ```
             Βρισκόμενος/η στον φάκελο όπου κατέβηκε το αρχείο (συνήθως Downloads)
             ή
             ii) Κατέβασμα (με απλό κλικ) του αρχείου run-gui.bat από τα releases του αποθετηρίου
             και τρέξιμο (με διπλό κλικ) του αρχείου αυτού
 
     b) Για γραφικό περιβάλλον (GUI):
-
             i) Κατέβασμα (με απλό κλικ) του αρχείου Budget_Surfers-1.0.0-gui.jar από τα releases του αποθετηρίου
-            και τρέξιμο με java -jar Budget_Surfers-1.0.0-gui.jar
+            και τρέξιμο με :
+                   ```
+                   bash
+                   java -jar Budget_Surfers-1.0.0-gui.jar
+                   ```
             Βρισκόμενος/η στον φάκελο όπου κατέβηκε το αρχείο (συνήθως Downloads)
             ή
             ii) Κατέβασμα (με απλό κλικ) του αρχείου run-cli.bat από τα releases του αποθετηρίου
             και τρέξιμο (με διπλό κλικ) του αρχείου αυτού
 
-2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
+3) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
             Για μεταγλώττιση:
+            ```
+            bash
             mvn clean package (πιο ασφαλές)
+            ```
             ή
+            ```
+            bash
             mvn package
-            
+            ```
+            Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
             Για εκτέλεση:
             a) Για περιβάλλον κονσόλας (CLI):
+                  ```
+                  bash
                   java -jar target/Budget_Surfers-1.0.0-cli.jar
+                  ```
+               Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
             b) Για γραφικό περιβάλλον (GUI):
+                  ```
+                  bash
                   java -jar target/Budget_Surfers-1.0.0-gui.jar
-```
+                  ```
+               Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
+   
 ## Οδηγίες μεταγλώττισης του προγράμματος χωρίς jar
-```
-bash
+
 1) a) Για περιβάλλον κονσόλας (CLI):
-                  javac -cp target/classes eurozone.gov.excel.Main.java
+          ```
+          bash
+          javac -cp target/classes eurozone.gov.excel.Main.java
+          ```
+      Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
    b) Για γραφικό περιβάλλον (GUI):
-                  javac -cp target/classes eurozone.gov.excel.BudgetApp.java
+          ```
+          bash
+          javac -cp target/classes eurozone.gov.excel.BudgetApp.java
+          ```
+      Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
 2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
-            mvn clean compile (πιο ασφαλές)
-            ή
-            mvn compile
+       ```
+       bash
+       mvn clean compile (πιο ασφαλές)
+       ```
+       ή
+       ```
+       bash
+       mvn compile
+       ```
+   Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
 
 
-```
 
-## Οδηγίες εκτέλεσης του προγράμματος
-```
+## Οδηγίες εκτέλεσης του προγράμματος χωρίς jar
 bash
 Για εκτέλεση:
 1) a) Για περιβάλλον κονσόλας (CLI):
-                  java -cp target/classes eurozone.gov.excel.Main
+          ```
+          bash
+          java -cp target/classes eurozone.gov.excel.Main
+          ```
+      Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
    b) Για γραφικό περιβάλλον (GUI):
-                  java -cp target/classes eurozone.gov.excel.BudgetApp
+          ```
+          bash
+          java -cp target/classes eurozone.gov.excel.BudgetApp
+          ```
+      Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
 ή
 2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
    a) Για περιβάλλον κονσόλας (CLI):
-                  mvn exec:java -Dexec.mainClass="eurozone.gov.excel.Main"
+          ```
+          bash
+          mvn exec:java -Dexec.mainClass="eurozone.gov.excel.Main"
+          ```
+      Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
    b) Για γραφικό περιβάλλον (GUI):
-                   mvn exec:java -Dexec.mainClass="eurozone.gov.excel.BudgetApp"
-```
+          ```
+          bash
+          mvn exec:java -Dexec.mainClass="eurozone.gov.excel.BudgetApp"
+          ```
+      Βρισκόμενος/η στον φάκελο root του project δηλαδή στον φάκελο Budget_Surfers
 
 ## Οδηγίες χρήσης του προγράμματος
 Ο χρήστης έχει 7 βασικές επιλογές και την επιλογή εξόδου από την εφαρμογή.
