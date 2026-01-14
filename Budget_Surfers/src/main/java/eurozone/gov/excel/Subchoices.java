@@ -2,7 +2,7 @@ package eurozone.gov.excel;
 
 import java.util.Scanner;
 
-public class Subchoises {
+public class Subchoices {
     ChildChoices child = new ChildChoices();
 
     public void subchoice2a(double[] percSectorsExpenses, String[] grSectors) {

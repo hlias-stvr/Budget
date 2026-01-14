@@ -3,7 +3,7 @@ package eurozone.gov.excel;
 import java.util.Scanner;
 
 public class Choices {
-    Subchoises sub = new Subchoises();
+    Subchoices sub = new Subchoices();
 
     public void mainChoice1(String[][] revenueExpenses, String[][] budget) {
         System.out.println("Προυπολογισμός Ελλάδας μετά την αφαίρεση του" +
