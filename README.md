@@ -15,7 +15,7 @@
             ii) Κατέβασμα (με απλό κλικ) του αρχείου run-gui.bat από τα releases του αποθετηρίου
             και τρέξιμο (με διπλό κλικ) του αρχείου αυτού
 
-b) Για γραφικό περιβάλλον (GUI):
+    b) Για γραφικό περιβάλλον (GUI):
 
             i) Κατέβασμα (με απλό κλικ) του αρχείου Budget_Surfers-1.0.0-gui.jar από τα releases του αποθετηρίου
             και τρέξιμο με java -jar Budget_Surfers-1.0.0-gui.jar
@@ -25,11 +25,12 @@ b) Για γραφικό περιβάλλον (GUI):
             και τρέξιμο (με διπλό κλικ) του αρχείου αυτού
 
 2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
-      Για μεταγλώττιση:
-      mvn clean package (πιο ασφαλές)
-      ή
-      mvn package
-      Για εκτέλεση:
+            Για μεταγλώττιση:
+            mvn clean package (πιο ασφαλές)
+            ή
+            mvn package
+            
+            Για εκτέλεση:
             a) Για περιβάλλον κονσόλας (CLI):
                   java -jar target/Budget_Surfers-1.0.0-cli.jar
             b) Για γραφικό περιβάλλον (GUI):
@@ -39,13 +40,13 @@ b) Για γραφικό περιβάλλον (GUI):
 ```
 bash
 1) a) Για περιβάλλον κονσόλας (CLI):
-      javac -cp target/classes eurozone.gov.excel.Main.java
+                  javac -cp target/classes eurozone.gov.excel.Main.java
    b) Για γραφικό περιβάλλον (GUI):
-      javac -cp target/classes eurozone.gov.excel.BudgetApp.java
+                  javac -cp target/classes eurozone.gov.excel.BudgetApp.java
 2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
-      mvn clean compile (πιο ασφαλές)
-      ή
-      mvn compile
+            mvn clean compile (πιο ασφαλές)
+            ή
+            mvn compile
 
 
 ```
@@ -55,14 +56,14 @@ bash
 bash
 Για εκτέλεση:
 1) a) Για περιβάλλον κονσόλας (CLI):
-      java -cp target/classes eurozone.gov.excel.Main
+                  java -cp target/classes eurozone.gov.excel.Main
    b) Για γραφικό περιβάλλον (GUI):
-      java -cp target/classes eurozone.gov.excel.BudgetApp
+                  java -cp target/classes eurozone.gov.excel.BudgetApp
 2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
    a) Για περιβάλλον κονσόλας (CLI):
-      mvn exec:java -Dexec.mainClass="eurozone.gov.excel.Main"
+                  mvn exec:java -Dexec.mainClass="eurozone.gov.excel.Main"
    b) Για γραφικό περιβάλλον (GUI):
-       mvn exec:java -Dexec.mainClass="eurozone.gov.excel.BudgetApp"
+                   mvn exec:java -Dexec.mainClass="eurozone.gov.excel.BudgetApp"
 ```
 
 ## Οδηγίες χρήσης του προγράμματος
