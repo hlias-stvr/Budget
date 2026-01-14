@@ -59,6 +59,7 @@ bash
                   java -cp target/classes eurozone.gov.excel.Main
    b) Για γραφικό περιβάλλον (GUI):
                   java -cp target/classes eurozone.gov.excel.BudgetApp
+ή
 2) Αν υπάρχει διαθέσιμη έκδοση Maven 3.6+:
    a) Για περιβάλλον κονσόλας (CLI):
                   mvn exec:java -Dexec.mainClass="eurozone.gov.excel.Main"
